@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,9 +23,11 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
             
+Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('event.index');
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
