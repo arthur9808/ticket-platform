@@ -19,6 +19,8 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css" rel="stylesheet" />
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -60,6 +62,8 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
+    <!-- Datepicker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

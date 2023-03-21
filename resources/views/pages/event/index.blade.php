@@ -4,18 +4,13 @@
     @include('layouts.navbars.auth.topnav', ['title' => 'Events'])
     <div class="card shadow-lg mx-4 card-profile-bottom">
         <div class="card-body p-3">
-            <div class="row gx-4">
-                <div class="col-auto my-auto">
-                    <div class="h-100">
-                        <h5 class="mb-1">
-                            Events
-                        </h5>
-                        <p class="mb-0 font-weight-bold text-sm">
-                            
-                        </p>
-                    </div>
+            <div class="card-header pb-0">
+                <div class="d-flex align-items-center">
+                    <h4 class="mb-0">Events</h4>
+                    <a href="{{ route('event.create') }}" class="btn btn-primary btn-sm ms-auto">Create</a>
                 </div>
-                
+            </div>
+            <div class="row">
                 
             </div>
         </div>

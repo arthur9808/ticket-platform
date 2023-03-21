@@ -28,6 +28,8 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
             
 Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('event.index');
+Route::get('/event-create', [EventController::class, 'create'])->middleware('auth')->name('event.create');
+Route::post('/event-store', [EventController::class, 'store'])->middleware('auth')->name('event.store');
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');

@@ -22,7 +22,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.event.create');
+        
     }
 
     /**
@@ -30,7 +31,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

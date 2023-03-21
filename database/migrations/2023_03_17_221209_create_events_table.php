@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('ubication');
-            $table->string('date');
-            $table->string('time');
+            $table->string('date_time_start');
+            $table->string('date_time_end');
+            $table->string('image');
             $table->text('summary');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');

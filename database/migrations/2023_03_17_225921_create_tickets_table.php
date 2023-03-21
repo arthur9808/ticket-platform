@@ -17,10 +17,8 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('type');
             $table->string('price');
-            $table->string('sales_start_date');
-            $table->string('sales_start_time');
-            $table->string('sales_end_date');
-            $table->string('sales_end_time');
+            $table->string('date_time_start');
+            $table->string('date_time_end');
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
