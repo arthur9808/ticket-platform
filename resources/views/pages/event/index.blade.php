@@ -33,7 +33,7 @@
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $event->date_time_start }}</p>
                                 </td>
-                                <td><a href="{{ route('tickets.add', [$event->id]) }}">Add Tickets</a></td>
+                                <td><a href="{{ route('ticket.create', [$event->id]) }}">Add Tickets</a></td>
                             </tr>
                             @endforeach
                         </tbody>
