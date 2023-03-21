@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ubication');
             $table->string('date_time_start');
             $table->string('date_time_end');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('summary');
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');

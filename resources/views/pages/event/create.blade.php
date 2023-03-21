@@ -21,27 +21,27 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title" class="form-control-label">Event Title</label>
-                            <input class="form-control" type="text" name="title">
+                            <input class="form-control" type="text" name="title" required>
                         </div>
                         <div class="form-group">
                             <label for="location" class="form-control-label">Location</label>
-                            <input class="form-control" type="text" name="location">
+                            <input class="form-control" type="text" name="ubication" required>
                         </div>
                         <div class="form-group">
                             <label for="dateTimeStart" class="form-control-label">Date and Time Start</label>
-                            <input class="form-control" type="text" name="dateTimeStart" id="dateTime">
+                            <input class="form-control" type="text" name="date_time_start" id="dateTime" required>
                         </div>
                         <div class="form-group">
                             <label for="dateTimeEnd" class="form-control-label">Date and Time End</label>
-                            <input class="form-control" type="text" name="dateTimeEnd" id="dateTime">
+                            <input class="form-control" type="text" name="date_time_end" id="dateTime" required>
                         </div>
                         <div class="form-group">
                             <label for="image" class="form-control-label">Main Event Image</label>
-                            <input class="form-control" type="file" name="image" id="image">
+                            <input class="form-control" type="file" name="image" id="image" required>
                         </div>
                         <div class="form-group">
                             <label for="summary" class="form-control-label">Summary</label>
-                            <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5"></textarea>
+                            <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5" required></textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Save</button>
