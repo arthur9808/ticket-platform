@@ -15,7 +15,7 @@
                 </div> 
             </div>
             <br>
-            <form role="form" method="POST" action={{ route('event.store') }} enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-6">

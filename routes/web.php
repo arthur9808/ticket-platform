@@ -30,10 +30,11 @@ use App\Http\Controllers\ChangePassword;
             
 Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('event.index');
 Route::get('/event-create', [EventController::class, 'create'])->middleware('auth')->name('event.create');
+Route::get('/event/{id}', [EventController::class, 'show'])->middleware('auth')->name('event.show');
 Route::post('/event-store', [EventController::class, 'store'])->middleware('auth')->name('event.store');
 
 Route::get('/tickets', [TicketController::class, 'index'])->middleware('auth')->name('ticket.index');
-Route::get('/ticketss-create/{id}', [TicketController::class, 'create'])->middleware('auth')->name('ticket.create');
+Route::get('/tickets-create/{id}', [TicketController::class, 'create'])->middleware('auth')->name('ticket.create');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
