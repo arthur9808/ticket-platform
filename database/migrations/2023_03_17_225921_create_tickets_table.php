@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('quantity');
             $table->string('type');
-            $table->string('price');
+            $table->string('price')->nullable();
             $table->string('date_time_start');
             $table->string('date_time_end');
             $table->unsignedBigInteger('event_id');

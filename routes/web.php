@@ -30,11 +30,19 @@ use App\Http\Controllers\ChangePassword;
             
 Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('event.index');
 Route::get('/event-create', [EventController::class, 'create'])->middleware('auth')->name('event.create');
+Route::get('/event-edit/{id}', [EventController::class, 'edit'])->middleware('auth')->name('event.edit');
+Route::post('/event-update/{id}', [EventController::class, 'update'])->middleware('auth')->name('event.update');
 Route::get('/event/{id}', [EventController::class, 'show'])->middleware('auth')->name('event.show');
 Route::post('/event-store', [EventController::class, 'store'])->middleware('auth')->name('event.store');
+Route::delete('/event-delete/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('event.destroy');
 
-Route::get('/tickets', [TicketController::class, 'index'])->middleware('auth')->name('ticket.index');
+
+Route::get('/tickets/{id}', [TicketController::class, 'index'])->middleware('auth')->name('ticket.index');
 Route::get('/tickets-create/{id}', [TicketController::class, 'create'])->middleware('auth')->name('ticket.create');
+Route::post('/ticket-store/{id}', [TicketController::class, 'store'])->middleware('auth')->name('ticket.store');
+Route::get('/ticket-edit/{id}', [TicketController::class, 'edit'])->middleware('auth')->name('ticket.edit');
+Route::post('/ticket-update/{id}', [TicketController::class, 'update'])->middleware('auth')->name('ticket.update');
+Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->middleware('auth')->name('ticket.destroy');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');

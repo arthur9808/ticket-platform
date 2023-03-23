@@ -71,7 +71,8 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('pages.event.edit', compact('event'));
     }
 
     /**
@@ -79,7 +80,17 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $all = $request->except(['_token', 'image']);
+        $event = Event::find($id);
+        $event->update($all);
+        if ($request->hasFile('image')) {
+            Storage::delete('public/'.$event->image);
+            $image = $request->file('image')->store('uploads','public');
+            Event::find($event->id)->update([
+                'image' => $image         
+            ]);
+        }
+        return back()->with('succes', 'Event succesfully updated');
     }
 
     /**
@@ -87,7 +98,9 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event = Event::find($id);
+        $event->delete();
+        return back()->with('succes', 'Event succesfully deleted');
     }
 
     

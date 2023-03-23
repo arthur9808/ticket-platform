@@ -14,6 +14,7 @@ class UserProfileController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request);
         $attributes = $request->validate([
             'username' => ['required','max:255', 'min:2'],
             'firstname' => ['max:100'],
