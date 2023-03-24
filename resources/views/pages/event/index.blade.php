@@ -36,7 +36,7 @@
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $event->date_time_start }}</p>
                                 </td>
-                                <td style="display:flex; justify-content:space-around;"><a href="{{ route('event.edit', [$event->id]) }}"><i class="fas fa-edit"></i></a><a href=""><i class="fas fa-eye"></i></a><a href="{{ route('ticket.index', [$event->id]) }}"><i class="fas fa-ticket-alt"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
+                                <td style="display:flex; justify-content:space-around;"><a href="{{ route('event.edit', [$event->id]) }}"><i class="fas fa-edit"></i></a><a href="{{ route('event.show', [$event->id]) }}"><i class="fas fa-eye"></i></a><a href="{{ route('ticket.index', [$event->id]) }}"><i class="fas fa-ticket-alt"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
                                     action="{{ route('event.destroy', $event->id) }}">
                                     @csrf
                                     {{ method_field('DELETE') }}

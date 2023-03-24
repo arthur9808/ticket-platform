@@ -32,7 +32,7 @@ Route::get('/events', [EventController::class, 'index'])->middleware('auth')->na
 Route::get('/event-create', [EventController::class, 'create'])->middleware('auth')->name('event.create');
 Route::get('/event-edit/{id}', [EventController::class, 'edit'])->middleware('auth')->name('event.edit');
 Route::post('/event-update/{id}', [EventController::class, 'update'])->middleware('auth')->name('event.update');
-Route::get('/event/{id}', [EventController::class, 'show'])->middleware('auth')->name('event.show');
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::post('/event-store', [EventController::class, 'store'])->middleware('auth')->name('event.store');
 Route::delete('/event-delete/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('event.destroy');
 
