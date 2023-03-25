@@ -7,7 +7,7 @@
             <div class="row gx-4">
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
-                        <img src="/img/user-icon.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                        <img src="{{ asset('storage/' .  auth()->user()->image) }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
                 <div class="col-auto my-auto">
@@ -15,9 +15,7 @@
                         <h5 class="mb-1">
                             {{ auth()->user()->firstname ?? 'Firstname' }} {{ auth()->user()->lastname ?? 'Lastname' }}
                         </h5>
-                        <p class="mb-0 font-weight-bold text-sm">
-                            
-                        </p>
+                        <p class="mb-0 font-weight-bold text-sm"></p>
                     </div>
                 </div>
                 
@@ -67,6 +65,12 @@
                                         <input class="form-control" type="text" name="lastname" value="{{ old('lastname', auth()->user()->lastname) }}">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image" class="form-control-label">Profile Image</label>
+                                        <input class="form-control" type="file" name="image" id="image">
+                                    </div>
+                                </div>
                             </div>
                             <hr class="horizontal dark">
                             <p class="text-uppercase text-sm">Contact Information</p>
@@ -101,6 +105,24 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Postal code</label>
                                         <input class="form-control" type="text" name="postal" value="{{ old('postal', auth()->user()->postal) }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Facebook</label>
+                                        <input class="form-control" type="text" name="facebook_url" value="{{ old('facebook_url', auth()->user()->facebook_url) }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Instagram</label>
+                                        <input class="form-control" type="text" name="instagram_url" value="{{ old('instagram_url', auth()->user()->instagram_url) }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Website</label>
+                                        <input class="form-control" type="text" name="web_url" value="{{ old('web_url', auth()->user()->web_url) }}">
                                     </div>
                                 </div>
                             </div>

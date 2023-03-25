@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('ubication');
+            $table->string('maps_url')->nullable();
             $table->string('date_time_start');
             $table->string('date_time_end');
             $table->string('image')->nullable();

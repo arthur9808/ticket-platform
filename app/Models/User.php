@@ -28,7 +28,11 @@ class User extends Authenticatable
         'city',
         'country',
         'postal',
-        'about'
+        'about',
+        'facebook_url',
+        'instagram_url',
+        'web_url',
+        'image'
     ];
 
     /**

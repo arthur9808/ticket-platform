@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->nullable()->after('email_verified_at');
+            $table->string('facebook_url')->nullable()->after('about');
+            $table->string('instagram_url')->nullable()->after('facebook_url');
+            $table->string('web_url')->nullable()->after('instagram_url');
+            $table->string('image')->nullable()->after('web_url');
             
         });
     }
@@ -24,6 +28,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('phone');
+            $table->dropColumn('facebook_url');
+            $table->dropColumn('instagram_url');
+            $table->dropColumn('web_url');
+            $table->dropColumn('image');
         });
     }
 };

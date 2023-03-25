@@ -28,6 +28,10 @@
                             <input class="form-control" type="text" name="ubication" required>
                         </div>
                         <div class="form-group">
+                            <label for="maps_url" class="form-control-label">Maps URL</label>
+                            <input class="form-control" type="text" name="maps_url" required>
+                        </div>
+                        <div class="form-group">
                             <label for="dateTimeStart" class="form-control-label">Date and Time Start</label>
                             <input class="form-control" type="text" name="date_time_start" id="dateTime" required>
                         </div>
