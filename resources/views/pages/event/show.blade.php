@@ -55,10 +55,15 @@
                             <div class="card" style="width: 20rem">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <h4>$200</h4>
+                                        @if ($event->tickets[0]->type == 'free')
+                                        <h4>Free</h4>
+                                        @endif
+                                        @if ($event->tickets[0]->type == 'paid')
+                                        <h4>${{ $event->tickets[0]->price }}</h4>
+                                        @endif
                                     </div>
                                     <div class="d-grid gap-2" style="padding-top: 10px">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getTickets">
                                             Get Tickets
                                         </button>
                                     </div>
@@ -102,7 +107,7 @@
                     </div>
                 </div>   
             </div>
-            <!-- Modal -->
+            <!-- Modal Contact -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -137,7 +142,112 @@
                 </div>
                 </div>
             </div>
+            <!-- Modal GetTickets-->
+            <div class="modal fade" id="getTickets" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center justify-content-center" style="padding-top: 15px">
+                                        <h6>{{ $event->title }}</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="modal-body" style="padding-top: 60px">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <h6>{{ $event->tickets[0]->title }}</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <p class="mb-0" style="font-size: 0.80rem"><strong>{{ $event->tickets[0]->type }}</strong></>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <p class="mb-0" style="font-size: 0.80rem">Sales end on {{ date('j F, Y (h:s a)', strtotime($event->tickets[0]->date_time_end)) }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <select class="form-select" id="selectTickets" aria-label="Default select example">
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="padding-top: 50px">
+                            <button type="button" class="btn btn-primary">Register</button>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <a type="button"  data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                                <div class="card" style="max-height: 200px">
+                                    <img src="{{ asset('storage/' .  $event->image) }}" style="height: 100%; object-fit: cover; object-position: top;" class="card-img-bottom" alt="">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
+                                    <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-around" style="padding-top: 10px">
+                                    <p class="mb-0" style="font-size: 0.80rem" id="totalTickets">1 x {{ $event->tickets[0]->title }}</>
+                                        @if ($event->tickets[0]->type == 'free')
+                                        <p class="mb-0" style="font-size: 0.80rem">$0.00</>
+                                        @else
+                                        <p class="mb-0" style="font-size: 0.80rem">${{  number_format($event->tickets[0]->price, 2) }}</>
+                                        @endif
+                                </div>
+                                <hr>
+                                <div class="d-flex align-items-center justify-content-around">
+                                    <h6>Total</h6>
+                                    <h6 id="totalValue">${{ number_format($event->tickets[0]->price, 2) }}</h6>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
     </main>
     @include('layouts.footers.guest.footer')
 @endsection
+@push('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+   function addCommas(nStr){
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+    var ticket_name = "{{ $event->tickets[0]->title }}";
+    var ticket_value = "{{ $event->tickets[0]->price }}";
+    
+    $('#selectTickets').change(function() {
+        var tickets = $(this).val();
+        $("#totalTickets").text(tickets + ' x ' + ticket_name );
+        var total_value = (tickets * ticket_value).toFixed(2);
+        $("#totalValue").text('$' + total_value);
+    });
+</script>
+@endpush

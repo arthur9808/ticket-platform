@@ -71,6 +71,7 @@ class EventController extends Controller
     public function edit(string $id)
     {
         $event = Event::find($id);
+        // dd($event->tickets);
         return view('pages.event.edit', compact('event'));
     }
 
