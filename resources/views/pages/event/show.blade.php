@@ -191,31 +191,120 @@
                                 </div>
                             </div>
                             <div class="modal-footer" style="padding-top: 50px">
-                            <button type="button" class="btn btn-primary">Register</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Register</button>
                             </div>
                         </div>
                         <div class="col-4">
-                            <a type="button"  data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
-                                <div class="card" style="max-height: 200px">
-                                    <img src="{{ asset('storage/' .  $event->image) }}" style="height: 100%; object-fit: cover; object-position: top;" class="card-img-bottom" alt="">
+                            <div class="d-flex align-items-center justify-content-end">
+                                <a type="button" style="padding-right: 5px;" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                            </div>
+                            <div class="card" style="max-height: 200px">
+                                <img src="{{ asset('storage/' .  $event->image) }}" style="height: 100%; object-fit: cover; object-position: top;" class="card-img-bottom" alt="">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
+                                <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-around" style="padding-top: 10px">
+                                <p class="mb-0" style="font-size: 0.80rem" id="totalTickets">1 x {{ $event->tickets[0]->title }}</>
+                                    @if ($event->tickets[0]->type == 'free')
+                                    <p class="mb-0" style="font-size: 0.80rem">$0.00</>
+                                    @else
+                                    <p class="mb-0" style="font-size: 0.80rem">${{  number_format($event->tickets[0]->price, 2) }}</>
+                                    @endif
+                            </div>
+                            <hr>
+                            <div class="d-flex align-items-center justify-content-around">
+                                <h6>Total</h6>
+                                <h6 id="totalValue">${{ number_format($event->tickets[0]->price, 2) }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Modal Checkout-->
+            <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content" data-tor="show(p):reveal(up)">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center justify-content-center" style="padding-top: 15px">
+                                        <h6>Checkout</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                    </div>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
-                                    <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
+                            </div>
+                            <hr>
+                            <form role="form" method="POST" action="{{ route('order.store', [$event->id]) }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body" style="padding-top: 10px">
+                                    <div class="row">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <h5>Contact Information</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name" class="form-control-label">First Name</label>
+                                                <input class="form-control" type="text" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <input class="form-control" type="text" name="last_name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email" class="form-control-label">Email</label>
+                                                <input class="form-control" type="text" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <input class="form-control" type="text" name="phone">
+                                            </div>
+                                        </div>
+                                        <input type="text" hidden name="quantity" id="quantity">
+                                    </div>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-around" style="padding-top: 10px">
-                                    <p class="mb-0" style="font-size: 0.80rem" id="totalTickets">1 x {{ $event->tickets[0]->title }}</>
-                                        @if ($event->tickets[0]->type == 'free')
-                                        <p class="mb-0" style="font-size: 0.80rem">$0.00</>
-                                        @else
-                                        <p class="mb-0" style="font-size: 0.80rem">${{  number_format($event->tickets[0]->price, 2) }}</>
-                                        @endif
+                                <div class="modal-footer" style="padding-top: 50px">
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Register</button>
                                 </div>
-                                <hr>
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <h6>Total</h6>
-                                    <h6 id="totalValue">${{ number_format($event->tickets[0]->price, 2) }}</h6>
-                                </div>
-                            
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex align-items-center justify-content-end">
+                                <a type="button" style="padding-right: 5px;" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                            </div>
+                            <div class="card" style="max-height: 200px">
+                                <img src="{{ asset('storage/' .  $event->image) }}" style="height: 100%; object-fit: cover; object-position: top;" class="card-img-bottom" alt="">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
+                                <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-around" style="padding-top: 10px">
+                                <p class="mb-0" style="font-size: 0.80rem" id="totalTickets2"></>
+                                    @if ($event->tickets[0]->type == 'free')
+                                    <p class="mb-0" style="font-size: 0.80rem">$0.00</>
+                                    @else
+                                    <p class="mb-0" style="font-size: 0.80rem">${{  number_format($event->tickets[0]->price, 2) }}</>
+                                    @endif
+                            </div>
+                            <hr>
+                            <div class="d-flex align-items-center justify-content-around">
+                                <h6>Total</h6>
+                                <h6 id="totalValue2">${{ number_format($event->tickets[0]->price, 2) }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,8 +335,11 @@
     $('#selectTickets').change(function() {
         var tickets = $(this).val();
         $("#totalTickets").text(tickets + ' x ' + ticket_name );
+        $("#totalTickets2").text(tickets + ' x ' + ticket_name );
+        $("#quantity").val(tickets);
         var total_value = (tickets * ticket_value).toFixed(2);
         $("#totalValue").text('$' + total_value);
+        $("#totalValue2").text('$' + total_value);
     });
 </script>
 @endpush

@@ -25,6 +25,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
             
@@ -43,6 +44,8 @@ Route::post('/ticket-store/{id}', [TicketController::class, 'store'])->middlewar
 Route::get('/ticket-edit/{id}', [TicketController::class, 'edit'])->middleware('auth')->name('ticket.edit');
 Route::post('/ticket-update/{id}', [TicketController::class, 'update'])->middleware('auth')->name('ticket.update');
 Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->middleware('auth')->name('ticket.destroy');
+
+Route::post('/order-store/{id}', [OrderController::class, 'store'])->middleware('auth')->name('order.store');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
