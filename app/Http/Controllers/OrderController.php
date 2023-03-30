@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Ticket;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $ticket = Ticket::find($id);
+        $orders = Order::where('ticket_id', $id)->get();
+        return view('pages.orders.index', compact('ticket', 'orders'));
+        
     }
 
     /**
@@ -27,7 +34,14 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $all = $request->except(['_token']);
+        for ($i=0; $i < $request->quantity; $i++) { 
+                $all['code'] = Str::random(5);
+                $order = Order::create($all);
+        }
+    
+        return back()->with('succes', 'Successful purchase, you will receive an email with your tickets');
+       
     }
 
     /**

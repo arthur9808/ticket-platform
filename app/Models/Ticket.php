@@ -16,6 +16,7 @@ class Ticket extends Model
         'price',
         'date_time_start',
         'date_time_end',
-        'event_id'
+        'event_id',
+        'available'
     ];
 }

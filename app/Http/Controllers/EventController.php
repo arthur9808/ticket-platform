@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Event;
+use App\Models\Ticket;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+Use \Carbon\Carbon;
 
 
 
@@ -61,7 +63,18 @@ class EventController extends Controller
     public function show(string $id)
     {
         $event = Event::find($id);
-        return view('pages.event.show', compact('event'));
+        $ticket = Ticket::where('event_id', $id)->where('available', '1')->first();
+        
+        if ($ticket != null) {
+            $count_orders = Order::where('ticket_id', $ticket->id)->count();
+        }else {
+            $count_orders = 0;
+
+        }
+        // dd($ticket);
+        $today = Carbon::now()->toDateTimeString();
+        
+        return view('pages.event.show', compact('event', 'ticket', 'count_orders', 'today'));
 
     }
 

@@ -37,8 +37,14 @@ class TicketController extends Controller
      */
     public function store(Request $request, $id)
     {
+        
         $all = $request->except(['_token']);
         $all['event_id'] = $id;
+        if ($request->available) {
+           $all['available'] = 1;
+        }else {
+            $all['available'] = 0;
+        }
         $ticket = Ticket::create($all);
 
         return redirect()->route('ticket.index', [$id]);
@@ -69,11 +75,15 @@ class TicketController extends Controller
     public function update(Request $request, string $id)
     {
         $all = $request->except(['_token']);
-
+        // dd($request);
         if ($all['type'] == 'free') {
             $all['price'] = null;
         }
-
+        if ($request->available) {
+            $all['available'] = 1;
+        }else {
+            $all['available'] = 0;
+        }
         $ticket = Ticket::find($id);
         $ticket->update($all);
         

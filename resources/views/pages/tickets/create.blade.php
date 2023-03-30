@@ -51,7 +51,10 @@
                             <label for="price" class="form-control-label">Price</label>
                             <input class="form-control" type="text" name="price" id="price" placeholder="$" required>
                         </div>
-                        
+                        <div class="form-check form-switch" style="padding-bottom: 15px;">
+                            <input class="form-check-input" type="checkbox" role="switch" id="available" name="available" checked>
+                            <label class="form-check-label" for="available">Available</label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Save</button>
                 </div>
