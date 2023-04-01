@@ -36,7 +36,7 @@
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $ticket->date_time_start }}</p>
                                 </td>
-                                <td style="display:flex; justify-content:space-around;"><a href="{{ route('ticket.edit', [$ticket->id]) }}"><i class="fas fa-edit"></i></a><a href=""><i class="fas fa-eye"></i></a><a href="{{ route('order.index', [$ticket->id]) }}"><i class="fas fa-shopping-cart"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
+                                <td style="display:flex; justify-content:space-around;"><a href="{{ route('ticket.edit', [$ticket->id]) }}"><i class="fas fa-edit"></i></a><a href=""><i class="fas fa-eye"></i></a><a href="{{ route('order.ticket', [$ticket->id]) }}"><i class="fas fa-shopping-cart"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
                                     action="{{ route('ticket.destroy', $ticket->id) }}">
                                     @csrf
                                     {{ method_field('DELETE') }}

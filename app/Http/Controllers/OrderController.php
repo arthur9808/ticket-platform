@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Ticket;
+use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -13,11 +14,19 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //Orders by Ticket
     public function index($id)
     {
         $ticket = Ticket::find($id);
         $orders = Order::where('ticket_id', $id)->get();
         return view('pages.orders.index', compact('ticket', 'orders'));
+        
+    }
+
+    public function orderByEvent($id)
+    {
+        $event = Event::find($id);
+        return view('pages.orders.orders-by-event', compact('event'));
         
     }
 

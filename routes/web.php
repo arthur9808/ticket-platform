@@ -46,7 +46,8 @@ Route::post('/ticket-update/{id}', [TicketController::class, 'update'])->middlew
 Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->middleware('auth')->name('ticket.destroy');
 
 Route::post('/order-store/{id}', [OrderController::class, 'store'])->middleware('auth')->name('order.store');
-Route::get('/orders/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.index');
+Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
+Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');

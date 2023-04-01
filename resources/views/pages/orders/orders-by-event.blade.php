@@ -9,7 +9,7 @@
         <div class="card-body p-3">
             <div class="card-header pb-0">
                 <div class="d-flex align-items-center">
-                    <h4 class="mb-0">Orders of {{ $ticket->title }}</h4>
+                    <h4 class="mb-0">Orders of Event {{ $event->title }}</h4>
                 </div>
             </div>
             <div class="card-body px-0 pt-4 pb-2">
@@ -20,11 +20,12 @@
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ticket</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Code</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($orders as $order)    
+                        @foreach ($event->orders as $order)    
                             <tr>
                                 <td style="padding-left: 24px">
                                     <p class="text-sm font-weight-bold mb-0">{{ $order->name_buyer . ' ' . $order->last_name_buyer }}</p>
@@ -34,6 +35,9 @@
                                 </td>
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $order->phone_buyer }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-bold mb-0">{{ $order->ticket->title }}</p>
                                 </td>
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $order->code }}</p>
@@ -50,7 +54,8 @@
 @push('js')
 
 <script>
-     $(document).ready(function () {
+     
+$(document).ready(function () {
     $('#orders').DataTable({
       "paging": false,
       "scrollY": 400,
@@ -78,5 +83,6 @@
       }],
     });
 });
+
 </script>
 @endpush
