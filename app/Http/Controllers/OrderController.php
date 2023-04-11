@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class OrderController extends Controller
 {
@@ -19,6 +20,7 @@ class OrderController extends Controller
     {
         $ticket = Ticket::find($id);
         $orders = Order::where('ticket_id', $id)->get();
+        
         return view('pages.orders.index', compact('ticket', 'orders'));
         
     }
@@ -47,8 +49,27 @@ class OrderController extends Controller
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);
+                QrCode::format('png')->size(100)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
+                $order->update([
+                    'svg_qr' => 'uploads/' . $all['code'] . '.png'
+                ]);
+
+                $data = array(
+					'name' => $name,
+					'email' => $email,
+					'subject' => $subject,
+					'monthName' => $data['monthName'],
+					'year' => $data['year'],
+					'link' => $data['link'],
+					'pdf_url' => $data['pdf_url'],
+				);
+                Mail::send('mail.email_report', $data, function ($message) use ($data) {
+					$message->from('admin@marketingnature.com', 'Marketing Nature');
+					$message->to($data['email'], $data['name']);
+					$message->subject($data['subject']);
+					$message->priority(3);
+				});
         }
-    
         return back()->with('succes', 'Successful purchase, you will receive an email with your tickets');
        
     }
