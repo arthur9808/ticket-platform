@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone_buyer');
             $table->string('svg_qr')->nullable();
             $table->string('code')->nullable();
+            $table->text('stripe_data')->nullable();
             $table->unsignedBigInteger('ticket_id');
             $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
             $table->timestamps();

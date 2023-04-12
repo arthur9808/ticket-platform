@@ -32,21 +32,28 @@ class StripeController extends Controller
                         'product_data' => [
                             'name' => 'Total',
                         ],
-                        'unit_amount'  => 500,
+                        'unit_amount'  => $ticket->price * 100,
                     ],
                     'quantity'   => $request->quantity,
                 ],
             ],
             'mode'        => 'payment',
-            'success_url' => route('stripe.success', [$all]),
+            'success_url' => route('stripe.success', [$all])."?session_id={CHECKOUT_SESSION_ID}",
             'cancel_url'  => route('event.show', [$ticket->event->id]),
         ]);
         
         return redirect()->away($session->url);
     }
 
-    public function success($all)
+    public function success(Request $request, $all)
     {
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+        $session_id = $request->query('session_id');
+       
+        $session = \Stripe\Checkout\Session::retrieve($session_id);
+        $session = $session->toArray();
+        $session = json_encode($session);
+        
         $array_code = explode('-', $all);
         $all = [
             'name_buyer' => $array_code[0],
@@ -60,6 +67,7 @@ class StripeController extends Controller
         // dd($ticket->event->user->email);
         for ($i=0; $i < $all['quantity']; $i++) { 
                 $all['code'] = Str::random(5);
+                $all['stripe_data'] = $session;
                 $order = Order::create($all);
                 QrCode::format('png')->size(100)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
                 $order->update([
