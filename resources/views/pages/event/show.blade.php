@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <form role="form" method="POST" action="{{ route('order.store', [$event->id]) }}" enctype="multipart/form-data">
+                            <form role="form" method="POST" action="{{ route('stripe.checkout') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body" style="padding-top: 10px">
                                     <div class="row">

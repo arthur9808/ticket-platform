@@ -26,6 +26,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
             
@@ -48,6 +49,9 @@ Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->midd
 Route::post('/order-store/{id}', [OrderController::class, 'store'])->middleware('auth')->name('order.store');
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
+
+Route::post('/checkout', [StripeController::class, 'checkout'])->middleware('auth')->name('stripe.checkout');
+Route::get('/success/{array}', [StripeController::class, 'success'])->middleware('auth')->name('stripe.success');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');

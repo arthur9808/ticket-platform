@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Ticket;
@@ -9,6 +9,7 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Stripe;
 
 class OrderController extends Controller
 {
@@ -46,6 +47,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $all = $request->except(['_token']);
+        $ticket = Ticket::where('id', $all['ticket_id'])->first();
+        // dd($ticket->event->user->email);
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);
@@ -53,22 +56,20 @@ class OrderController extends Controller
                 $order->update([
                     'svg_qr' => 'uploads/' . $all['code'] . '.png'
                 ]);
-
-                // $data = array(
-				// 	'name' => $name,
-				// 	'email' => $email,
-				// 	'subject' => $subject,
-				// 	'monthName' => $data['monthName'],
-				// 	'year' => $data['year'],
-				// 	'link' => $data['link'],
-				// 	'pdf_url' => $data['pdf_url'],
-				// );
-                // Mail::send('mail.email_report', $data, function ($message) use ($data) {
-				// 	$message->from('admin@marketingnature.com', 'Marketing Nature');
-				// 	$message->to($data['email'], $data['name']);
-				// 	$message->subject($data['subject']);
-				// 	$message->priority(3);
-				// });
+                
+                $data = array(
+					'name' => $all['name_buyer'],
+					'email' => $all['email_buyer'],
+					'subject' => $ticket->event->title,
+                    'user_name' => $ticket->event->user->username,
+                    'user_email' => $ticket->event->user->email
+				);
+                Mail::send('pages.email.email', $data, function ($message) use ($data) {
+					$message->from('admin@marketingnature.com', $data['user_name']);
+					$message->to($data['email'], $data['name']);
+					$message->subject($data['subject']);
+					$message->priority(3);
+				});
         }
         return back()->with('succes', 'Successful purchase, you will receive an email with your tickets');
        
