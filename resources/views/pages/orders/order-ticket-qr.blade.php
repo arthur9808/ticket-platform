@@ -17,10 +17,8 @@
         p {
             font-family:'Courier New', Courier, monospace;
         }
-        .card {
-            align-content: center;
+        .card-body {
             display: grid;
-            align-items: center;
             align-self: center;
         }
     </style>
@@ -33,7 +31,7 @@
           <h1 class="card-title " style="text-align: center;"><strong>{{ $name_ticket }}</strong></h1>
           <img src="{{ asset('storage/' . $qr) }}" alt="">
         </div>
-        <div class="card-footer">
+        <div class="card-footer" style="text-align: center">
             <p>Visit our website <strong>{{ $website }}</strong></p>
         </div>
     </div>
