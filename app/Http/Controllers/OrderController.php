@@ -115,6 +115,7 @@ class OrderController extends Controller
     {   
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
+        dd($event);
         $data = [
             'event_image'    => $event->image,
             'name_ticket'    => $order->ticket->title,
