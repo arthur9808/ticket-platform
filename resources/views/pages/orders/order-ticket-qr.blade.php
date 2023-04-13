@@ -10,27 +10,6 @@
 
     <title>Ticket</title>
     <style>
-        .hero { 
-            position: relative; 
-            height: 100vh;
-            width: 100%;
-            display: grid;
-            align-items: center;
-            justify-content: center;
-            background-image: url('{{ asset('storage/uploads/5pKrlGIfxqA3uzkKYZOCb20RcfBE3Ul3c9HhSvRB.jpg') }}');
-            background-size: contain;
-            background-repeat:no-repeat;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            bottom: 0px;
-            left: 0px;
-            background-color: rgba(255, 252, 252, 0.608);
-        }
         h1 {
             padding-bottom: 10px;
             font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -41,18 +20,15 @@
     </style>
   </head>
   <body >
-    {{-- <div class="hero">
-        <h1>Ticket</h1>
-       <img style="position: relative" src="{{ asset('storage/uploads/4wVAH.png') }}" alt="">
-    </div> --}}
+    
     <div class="card d-flex justify-content-center">
-        <img src="{{ asset('storage/' . $data['event_image']) }}" class="card-img-top" alt="">
+        <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
         <div class="card-body d-grid justify-content-center">
           <h1 class="card-title d-grid justify-content-center"><strong>{{ $data['name_ticket'] }}</strong></h1>
-          <img src="{{ asset('storage/' . $data['qr']) }}" alt="">
+          <img src="{{ asset('storage/' . $qr) }}" alt="">
         </div>
         <div class="card-footer d-grid justify-content-center">
-            <p>Visit our website <strong>{{ $data['website'] }}</strong></p>
+            <p>Visit our website <strong>{{ $website }}</strong></p>
         </div>
       </div>
     <!-- Optional JavaScript; choose one of the two! -->
