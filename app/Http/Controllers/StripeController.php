@@ -69,7 +69,7 @@ class StripeController extends Controller
                 $all['code'] = Str::random(5);
                 $all['stripe_data'] = $session;
                 $order = Order::create($all);
-                QrCode::format('png')->size(100)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
+                QrCode::format('png')->size(200)->style('round')->backgroundColor(255, 255, 255)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
                 $order->update([
                     'svg_qr' => 'uploads/' . $all['code'] . '.png'
                 ]);
@@ -82,7 +82,8 @@ class StripeController extends Controller
                     'user_email' => $ticket->event->user->email,
                     'event_image' => $ticket->event->image,
                     'organizer_image' => $ticket->event->user->image,
-                    'event_location' => $ticket->event->maps_url
+                    'event_location' => $ticket->event->maps_url,
+                    'code' => $order->code
 				);
                 Mail::send('pages.email.email', $data, function ($message) use ($data) {
 					$message->from('admin@marketingnature.com', $data['user_name']);

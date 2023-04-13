@@ -50,7 +50,8 @@ Route::post('/order-store/{id}', [OrderController::class, 'store'])->middleware(
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
 
-Route::get('/testemail', [OrderController::class, 'testemail']);
+Route::get('/test', [OrderController::class, 'test']);
+Route::get('/pdf/{code}', [OrderController::class, 'pdf'])->name('pdf');
 
 Route::post('/checkout', [StripeController::class, 'checkout'])->middleware('auth')->name('stripe.checkout');
 Route::get('/success/{array}', [StripeController::class, 'success'])->middleware('auth')->name('stripe.success');

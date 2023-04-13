@@ -76,6 +76,9 @@
                                     <td style="line-height: 24px; font-size: 16px; border-radius: 9999px; width: 192px; margin: 0;" align="center" bgcolor="#dc3545" width="192">
                                       <a href="{{ $event_location }}" style="color: #ffffff; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 9999px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: #fb6340; padding: 8px 24px; border: 1px solid #fb6340;">Event Location</a>
                                     </td>
+                                    <td style="line-height: 24px; font-size: 16px; border-radius: 9999px; width: 192px; margin: 0;" align="center" bgcolor="#dc3545" width="192">
+                                      <a href="{{ route('pdf', [$code]) }}" style="color: #ffffff; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 9999px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: #fb6340; padding: 8px 24px; border: 1px solid #fb6340;">Download Ticket</a>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>

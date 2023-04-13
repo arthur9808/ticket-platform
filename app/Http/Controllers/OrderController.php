@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Stripe;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -106,8 +107,22 @@ class OrderController extends Controller
     {
         //
     }
-    public function testemail() 
+    public function test() 
     {
-        return view('pages.email.email');
+        return view('pages.orders.order-ticket-qr');
+    }
+    public function pdf($code) 
+    {   
+        $order = Order::where('code', $code)->first();
+        $event = Event::where('id', $order->ticket->event_id)->first(); 
+        $data = [
+            'event_image'    => $event->image,
+            'name_ticket'    => $order->ticket->title,
+            'qr'             => $order->svq_qr,
+            'website'        => $event->user->web_url
+        ];
+        $pdf = PDF::loadView('pages.orders.order-ticket-qr', [$data]);
+
+        return $pdf->download('sample.pdf');
     }
 }
