@@ -17,17 +17,23 @@
         p {
             font-family:'Courier New', Courier, monospace;
         }
+        .card {
+            align-content: center;
+            display: grid;
+            align-items: center;
+            align-self: center;
+        }
     </style>
   </head>
   <body >
     
     <div class="card d-flex justify-content-center" style="width: 30rem; border: none;">
         <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
-        <div class="card-body d-grid justify-content-center">
-          <h1 class="card-title d-grid justify-content-center" style="padding-left: 25px"><strong>{{ $name_ticket }}</strong></h1>
+        <div class="card-body ">
+          <h1 class="card-title " style="text-align: center;"><strong>{{ $name_ticket }}</strong></h1>
           <img src="{{ asset('storage/' . $qr) }}" alt="">
         </div>
-        <div class="card-footer d-grid justify-content-center">
+        <div class="card-footer">
             <p>Visit our website <strong>{{ $website }}</strong></p>
         </div>
     </div>
