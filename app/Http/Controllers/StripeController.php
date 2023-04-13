@@ -79,7 +79,10 @@ class StripeController extends Controller
 					'email' => $all['email_buyer'],
 					'subject' => $ticket->event->title,
                     'user_name' => $ticket->event->user->username,
-                    'user_email' => $ticket->event->user->email
+                    'user_email' => $ticket->event->user->email,
+                    'event_image' => $ticket->event->image,
+                    'organizer_image' => $ticket->event->user->image,
+                    'event_location' => $ticket->event->maps_url
 				);
                 Mail::send('pages.email.email', $data, function ($message) use ($data) {
 					$message->from('admin@marketingnature.com', $data['user_name']);

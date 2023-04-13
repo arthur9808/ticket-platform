@@ -106,4 +106,8 @@ class OrderController extends Controller
     {
         //
     }
+    public function testemail() 
+    {
+        return view('pages.email.email');
+    }
 }
