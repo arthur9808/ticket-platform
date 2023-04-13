@@ -116,13 +116,17 @@ class OrderController extends Controller
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
         
-        $data = [
-            'event_image'    => $event->image,
-            'name_ticket'    => $order->ticket->title,
-            'qr'             => $order->svg_qr,
-            'website'        => $event->user->web_url
-        ];
-        $pdf = PDF::loadView('pages.orders.order-ticket-qr', [$data]);
+        // $data = [
+        //     'event_image'    => $event->image,
+        //     'name_ticket'    => $order->ticket->title,
+        //     'qr'             => $order->svg_qr,
+        //     'website'        => $event->user->web_url
+        // ];
+        $pdf = PDF::loadView('pages.orders.order-ticket-qr', [
+        'event_image'    => $event->image,
+        'name_ticket'    => $order->ticket->title,
+        'qr'             => $order->svg_qr,
+        'website'        => $event->user->web_url]);
 
         return $pdf->download('sample.pdf');
     }
