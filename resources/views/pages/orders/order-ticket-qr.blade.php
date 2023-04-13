@@ -24,7 +24,7 @@
     <div class="card d-flex justify-content-center">
         <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
         <div class="card-body d-grid justify-content-center">
-          <h1 class="card-title d-grid justify-content-center"><strong>{{ $data['name_ticket'] }}</strong></h1>
+          <h1 class="card-title d-grid justify-content-center"><strong>{{ $name_ticket }}</strong></h1>
           <img src="{{ asset('storage/' . $qr) }}" alt="">
         </div>
         <div class="card-footer d-grid justify-content-center">
