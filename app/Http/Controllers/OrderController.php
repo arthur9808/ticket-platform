@@ -127,14 +127,12 @@ class OrderController extends Controller
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
         
-        $options = ['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true, 'enableFontSubsetting' => true, 'isJavascriptEnabled' => true, 'isPhpEnabled' => true, 'debugKeepTemp' => true, 'isHtml5ParserEnabled' => true, 'chroot' => public_path(), 'defaultMediaType' => 'print', 'enableCssFloat' => true, 'isFontSubsettingEnabled' => true, 'isHtml5ParserEnabled' => true, 'isPhpEnabled' => true, 'isRemoteEnabled' => true, 'enableHtml5Parser' => true, 'enableRemote' => true, 'fontHeightRatio' => 1.3, 'isHtml5ParserEnabled' => true, 'isPhpEnabled' => true, 'logOutputFile' => storage_path('logs/dompdf.log'), 'pdfBackend' => 'CPDF', 'tempDir' => storage_path('app/temp')];
-
         $pdf = PDF::loadView('pages.orders.order-ticket-qr', [
             'event_image'    => $event->image,
             'name_ticket'    => $order->ticket->title,
             'qr'             => $order->svg_qr,
             'website'        => $event->user->web_url
-        ], [], 'utf-8');
+        ]);
 
         $pdf->setPaper('A4', 'portrait'); // Establecer el tamaño del papel y la orientación
         $pdf->output(); // Generar el archivo PDF
