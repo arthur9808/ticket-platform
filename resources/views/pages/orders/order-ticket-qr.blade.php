@@ -21,7 +21,7 @@
   </head>
   <body >
     
-    <div class="card d-flex justify-content-center" style="width: 30rem;">
+    <div class="card d-flex justify-content-center" style="width: 30rem; border: none;">
         <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
         <div class="card-body d-grid justify-content-center">
           <h1 class="card-title d-grid justify-content-center"><strong>{{ $name_ticket }}</strong></h1>
