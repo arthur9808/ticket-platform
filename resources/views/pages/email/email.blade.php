@@ -50,7 +50,7 @@
                               </tbody>
                             </table>
                             <div class="space-y-4">
-                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0;" align="left">Thanks for your order, {{ $name }}</h1>
+                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0;" align="left">Thanks for your order, {{ $name }}.</h1>
                               <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
                                 <tbody>
                                   <tr>
@@ -89,10 +89,10 @@
                                 </tr>
                               </tbody>
                             </table>
-                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #e2e8f0;" bgcolor="#ffffff">
+                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #f2f4f7;" bgcolor="#f2f4f7">
                               <tbody>
                                 <tr>
-                                  <img src="{{ asset('storage/' . $event_image) }}" alt="" style="max-width: 300px">  
+                                  <img src="{{ asset('storage/' . $event_image) }}" alt="">  
                                 </tr>
                               </tbody>
                             </table>
