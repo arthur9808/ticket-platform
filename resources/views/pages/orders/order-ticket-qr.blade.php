@@ -46,13 +46,13 @@
        <img style="position: relative" src="{{ asset('storage/uploads/4wVAH.png') }}" alt="">
     </div> --}}
     <div class="card d-flex justify-content-center">
-        <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
+        <img src="{{ asset('storage/' . $data['event_image']) }}" class="card-img-top" alt="">
         <div class="card-body d-grid justify-content-center">
-          <h1 class="card-title d-grid justify-content-center"><strong>{{ $name_ticket }}</strong></h1>
-          <img src="{{ asset('storage/' . $qr) }}" alt="">
+          <h1 class="card-title d-grid justify-content-center"><strong>{{ $data['name_ticket'] }}</strong></h1>
+          <img src="{{ asset('storage/' . $data['qr']) }}" alt="">
         </div>
         <div class="card-footer d-grid justify-content-center">
-            <p>Visit our website <strong>{{ $website }}</strong></p>
+            <p>Visit our website <strong>{{ $data['website'] }}</strong></p>
         </div>
       </div>
     <!-- Optional JavaScript; choose one of the two! -->
