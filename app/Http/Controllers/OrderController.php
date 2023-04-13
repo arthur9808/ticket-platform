@@ -134,7 +134,7 @@ class OrderController extends Controller
             'name_ticket'    => $order->ticket->title,
             'qr'             => $order->svg_qr,
             'website'        => $event->user->web_url
-        ], [], $options);
+        ], [], 'utf-8');
 
         $pdf->setPaper('A4', 'portrait'); // Establecer el tamaño del papel y la orientación
         $pdf->output(); // Generar el archivo PDF
