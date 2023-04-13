@@ -109,10 +109,21 @@ class OrderController extends Controller
     }
     public function test() 
     {
-        return view('pages.orders.order-ticket-qr');
+        $code = 'HtVUp';
+        $order = Order::where('code', $code)->first();
+        $event = Event::where('id', $order->ticket->event_id)->first(); 
+        
+        $data = [
+            'event_image'    => $event->image,
+            'name_ticket'    => $order->ticket->title,
+            'qr'             => $order->svg_qr,
+            'website'        => $event->user->web_url
+        ];
+        return view('pages.orders.order-ticket-qr', $data);
     }
     public function pdf($code) 
     {   
+        
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
         

@@ -21,7 +21,7 @@
   </head>
   <body >
     
-    <div class="card d-flex justify-content-center">
+    <div class="card d-flex justify-content-center" style="width: 20rem;">
         <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
         <div class="card-body d-grid justify-content-center">
           <h1 class="card-title d-grid justify-content-center"><strong>{{ $name_ticket }}</strong></h1>
@@ -30,7 +30,7 @@
         <div class="card-footer d-grid justify-content-center">
             <p>Visit our website <strong>{{ $website }}</strong></p>
         </div>
-      </div>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
