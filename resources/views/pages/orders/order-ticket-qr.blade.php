@@ -20,7 +20,7 @@
     </style>
   </head>
   <body >
-    <table align="center" style="width: 100%" >
+    <table class="container" align="center" style="width: 100%">
         <div class="card d-flex justify-content-center" style="width: 30rem; border: none; float:">
             <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
             <div class="card-body ">
