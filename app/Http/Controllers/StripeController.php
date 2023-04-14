@@ -86,7 +86,7 @@ class StripeController extends Controller
                     'code' => $order->code
 				);
                 Mail::send('pages.email.email', $data, function ($message) use ($data) {
-					$message->from('admin@marketingnature.com', $data['user_name']);
+					$message->from('admin@ticketsplatform.com', $data['user_name']);
 					$message->to($data['email'], $data['name']);
 					$message->subject($data['subject']);
 					$message->priority(3);
