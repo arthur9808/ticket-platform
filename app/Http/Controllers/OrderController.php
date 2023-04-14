@@ -134,20 +134,7 @@ class OrderController extends Controller
             'website'        => $event->user->web_url
         ]);
 
-        $pdf->setPaper('A4', 'portrait'); // Establecer el tamaño del papel y la orientación
-        $pdf->output(); // Generar el archivo PDF
-
-        // Agregar esta línea para centrar el contenido del PDF
-        $pdf->getDomPDF()->set_option('defaultMediaType', 'print');
-        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
-        $pdf->getDomPDF()->set_option('enable_html5_parser', true);
-        $pdf->getDomPDF()->set_option('chroot', public_path());
-        $pdf->getDomPDF()->set_option('enable_css_float', true);
-        $pdf->getDomPDF()->set_option('font_height_ratio', 1.3);
-        $pdf->getDomPDF()->set_option('pdf_backend', 'CPDF');
-        $pdf->getDomPDF()->set_option('tempDir', storage_path('app/temp'));
-        $pdf->getDomPDF()->set_base_path(public_path());
-        $pdf->getDomPDF()->set_base_path($event->user->web_url);
+        
 
         return $pdf->download('sample.pdf');
     }
