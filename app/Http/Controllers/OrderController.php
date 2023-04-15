@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Stripe;
 use PDF;
+use TCPDF;
 
 class OrderController extends Controller
 {
@@ -126,16 +127,13 @@ class OrderController extends Controller
         
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
-        
         $pdf = PDF::loadView('pages.orders.order-ticket-qr', [
             'event_image'    => $event->image,
             'name_ticket'    => $order->ticket->title,
             'qr'             => $order->svg_qr,
             'website'        => $event->user->web_url
         ]);
-
-        
-
         return $pdf->download('sample.pdf');
+        
     }
 }

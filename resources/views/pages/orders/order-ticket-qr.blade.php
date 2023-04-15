@@ -17,25 +17,28 @@
         p {
             font-family:'Courier New', Courier, monospace;
         }
-        table.container {
-            margin: 0 auto !important;
+        .pdf-container {
+            display: flex !important;
+            justify-content: center !important;
         }
 
     </style>
   </head>
   <body >
-    <table class="container" align="center" style="width: 100%">
-        <div class="card d-flex justify-content-center" style="width: 30rem; border: none; float:">
-            <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
-            <div class="card-body ">
-              <h1 class="card-title " style="text-align: center;"><strong>{{ $name_ticket }}</strong></h1>
-              <img src="{{ asset('storage/' . $qr) }}" style="padding-left: 125px" alt="">
+    <div class="pdf-container">
+        <table class="container" align="center" style="width: 100%">
+            <div class="card d-flex justify-content-center" style="width: 30rem; border: none; float:">
+                <img src="{{ asset('storage/' . $event_image) }}" class="card-img-top" alt="">
+                <div class="card-body ">
+                  <h1 class="card-title " style="text-align: center;"><strong>{{ $name_ticket }}</strong></h1>
+                  <img src="{{ asset('storage/' . $qr) }}" style="padding-left: 78px" alt="">
+                </div>
+                <div class="card-footer" style="text-align: center">
+                    <p>Visit our website <strong>{{ $website }}</strong></p>
+                </div>
             </div>
-            <div class="card-footer" style="text-align: center">
-                <p>Visit our website <strong>{{ $website }}</strong></p>
-            </div>
-        </div>
-    </table>
+        </table>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
