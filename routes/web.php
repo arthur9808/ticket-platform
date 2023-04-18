@@ -47,7 +47,7 @@ Route::get('/ticket-edit/{id}', [TicketController::class, 'edit'])->middleware('
 Route::post('/ticket-update/{id}', [TicketController::class, 'update'])->middleware('auth')->name('ticket.update');
 Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->middleware('auth')->name('ticket.destroy');
 
-Route::post('/order-store', [OrderController::class, 'store'])->middleware('auth')->name('order.store');
+Route::post('/order-store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
 
@@ -62,8 +62,8 @@ Route::post('/contact-list-store', [SmsController::class, 'storeContactList'])->
 Route::get('/add-contacts/{id}-{name}', [SmsController::class, 'addContactsTo'])->middleware('auth')->name('contacts.add');
 Route::post('/add-contacts-to/{id}-{name}', [SmsController::class, 'addCcontactsToStore'])->middleware('auth')->name('addcontacts.store');
 
-Route::post('/checkout', [StripeController::class, 'checkout'])->middleware('auth')->name('stripe.checkout');
-Route::get('/success/{array}', [StripeController::class, 'success'])->middleware('auth')->name('stripe.success');
+Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+Route::get('/success/{array}', [StripeController::class, 'success'])->name('stripe.success');
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
