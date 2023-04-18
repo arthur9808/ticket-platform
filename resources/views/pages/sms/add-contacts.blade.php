@@ -15,7 +15,7 @@
                 </div> 
             </div>
             <br>
-            <form role="form" method="POST" action="{{ route('contactlist.store') }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('addcontacts.store', [$id, $name]) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-6">
@@ -47,7 +47,7 @@
                             <select class="form-control" name="tickets" id="tickets">
                                 <option value="">Select a ticket...</option>
                                 @foreach ($tickets as $ticket)
-                                    <option value="{{ $ticket->id }}">{{ $ticket->title }}</option>
+                                    <option value="{{ $ticket->id }}">{{ $ticket->title . ' - ' .$ticket->event->title}}</option>
                                 @endforeach
                             </select>
                         </div>

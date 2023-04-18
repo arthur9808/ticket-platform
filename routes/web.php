@@ -56,9 +56,11 @@ Route::get('/pdf/{code}', [OrderController::class, 'pdf'])->name('pdf');
 Route::get('/sms', [SmsController::class, 'index'])->middleware('auth')->name('sms.index');
 Route::get('/contact-list', [SmsController::class, 'indexContactList'])->middleware('auth')->name('contactlist.index');
 Route::get('/sms-create', [SmsController::class, 'create'])->middleware('auth')->name('sms.create');
+Route::post('/add-campaign', [SmsController::class, 'addCampaingStore'])->middleware('auth')->name('addcampaign.store');
 Route::get('/contact-list-create', [SmsController::class, 'createContactList'])->middleware('auth')->name('contactlist.create');
 Route::post('/contact-list-store', [SmsController::class, 'storeContactList'])->middleware('auth')->name('contactlist.store');
 Route::get('/add-contacts/{id}-{name}', [SmsController::class, 'addContactsTo'])->middleware('auth')->name('contacts.add');
+Route::post('/add-contacts-to/{id}-{name}', [SmsController::class, 'addCcontactsToStore'])->middleware('auth')->name('addcontacts.store');
 
 Route::post('/checkout', [StripeController::class, 'checkout'])->middleware('auth')->name('stripe.checkout');
 Route::get('/success/{array}', [StripeController::class, 'success'])->middleware('auth')->name('stripe.success');

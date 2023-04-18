@@ -15,7 +15,7 @@
                 </div> 
             </div>
             <br>
-            <form role="form" method="POST" action="{{ route('event.store') }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('addcampaign.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-6">
@@ -23,9 +23,12 @@
                             <label for="title" class="form-control-label">Campaign Title</label>
                             <input class="form-control" type="text" name="title" required>
                         <div class="form-group">
-                            <label for="event" class="form-control-label">Send campaign to:</label>
-                            <select name="event" class="form-control" id="">
+                            <label for="contact_list" class="form-control-label">Send campaign to:</label>
+                            <select name="contact_list" class="form-control" id="contact_list">
                                 <option value="">Select a contact list...</option>
+                                @foreach ($contact_lists as $list)
+                                <option value="{{ $list['id'] }}">{{ $list['name'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -33,8 +36,8 @@
                             <textarea  class="form-control" name="message" id="message" cols="30" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="dateTimeStart" class="form-control-label">Schedule</label>
-                            <input class="form-control" type="text" name="date_time_start" id="dateTime" required>
+                            <label for="schedule" class="form-control-label">Schedule</label>
+                            <input class="form-control" type="text" name="schedule" id="schedule" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Save</button>
