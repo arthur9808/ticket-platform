@@ -33,9 +33,28 @@
             <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}" href="{{ route('event.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i>
+                        <span class="fas fa-calendar"></span>
                     </div>
                     <span class="nav-link-text ms-1">Events Management</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">ShortySMS</h6>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'contaclist.index' ? 'active' : '' }}" href="{{ route('contactlist.index') }}">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <span class="fas fa-list"></span>
+                    </div>
+                    <span class="nav-link-text ms-1">Contact Lists</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'sms.index' ? 'active' : '' }}" href="{{ route('sms.index') }}">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <span class="fas fa-sms"></span>
+                    </div>
+                    <span class="nav-link-text ms-1">Sms Campaigns</span>
                 </a>
             </li>
             {{-- <li class="nav-item">
@@ -46,7 +65,7 @@
                     <span class="nav-link-text ms-1">Tickets</span>
                 </a>
             </li> --}}
-            <li class="nav-item mt-3">
+            {{-- <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Pages</h6>
             </li>
             <li class="nav-item">
@@ -75,7 +94,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Virtual Reality</span>
                 </a>
-            </li>      
+            </li>       --}}
         </ul>
     </div>
     

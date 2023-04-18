@@ -26,6 +26,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
@@ -50,8 +51,14 @@ Route::post('/order-store/{id}', [OrderController::class, 'store'])->middleware(
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
 
-Route::get('/test', [OrderController::class, 'test']);
 Route::get('/pdf/{code}', [OrderController::class, 'pdf'])->name('pdf');
+
+Route::get('/sms', [SmsController::class, 'index'])->middleware('auth')->name('sms.index');
+Route::get('/contact-list', [SmsController::class, 'indexContactList'])->middleware('auth')->name('contactlist.index');
+Route::get('/sms-create', [SmsController::class, 'create'])->middleware('auth')->name('sms.create');
+Route::get('/contact-list-create', [SmsController::class, 'createContactList'])->middleware('auth')->name('contactlist.create');
+Route::post('/contact-list-store', [SmsController::class, 'storeContactList'])->middleware('auth')->name('contactlist.store');
+Route::get('/add-contacts/{id}-{name}', [SmsController::class, 'addContactsTo'])->middleware('auth')->name('contacts.add');
 
 Route::post('/checkout', [StripeController::class, 'checkout'])->middleware('auth')->name('stripe.checkout');
 Route::get('/success/{array}', [StripeController::class, 'success'])->middleware('auth')->name('stripe.success');
