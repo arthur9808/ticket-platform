@@ -7,13 +7,30 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Event;
 use App\Models\Order;
+use Carbon\Carbon;
 
 class SmsController extends Controller
 {
     public function index() 
     {
+        $access_token = env('SHORTYSMS_TOKEN');
         
-        return view('pages.sms.index');
+        $response = Http::withToken($access_token)->withHeaders([
+            'Content-Type' => 'application/json'
+        ])
+        ->get('https://shortysms.com/api/campaigns');
+        $response = $response->collect();
+        $response = $response->toArray();
+        if (array_key_exists('data', $response)) {
+            $campaigns = $response['data'];
+            $campaigns = array_filter($campaigns, function ($campaign) {
+                return $campaign['is_campaign'] === true;
+            });
+        } else {
+            $campaigns = [];
+        }
+        // dd($campaigns);
+        return view('pages.sms.campaignList', compact('campaigns'));
     }
     public function create() 
     {
@@ -30,13 +47,17 @@ class SmsController extends Controller
         } else {
             $contact_lists = [];
         }
-        // dd($contact_lists);
+        
         return view('pages.sms.createCampaign', compact('contact_lists'));
     }
 
     public function addCampaingStore(Request $request) {
-        dd($request);
-        $schedule = gmdate('Y-m-d H:i:s', $request->schedule);
+
+        // dd($request);
+        $utc_date = Carbon::now()->utc();
+        $utc_date = $utc_date->addMinute(); 
+        $utc_date = $utc_date->format('Y-m-d\TH:i:s\Z'); 
+        
         $access_token = env('SHORTYSMS_TOKEN');
         
         $response = Http::withToken($access_token)->withHeaders([
@@ -46,18 +67,13 @@ class SmsController extends Controller
             'title' => $request->title,
             'content' => $request->message,
             'contact_list_id' => $request->contact_list,
-            'from_phone_number' => '1',
-            'scheduled_at' => 'a'
+            'from_phone_number' => '(415) 639-3265',
+            'scheduled_at' => $utc_date
         ]);
         $response = $response->collect();
         $response = $response->toArray();
-        if (array_key_exists('data', $response)) {
-            $contact_lists = $response['data'];
-        } else {
-            $contact_lists = [];
-        }
-        // dd($contact_lists);
-        return view('pages.sms.createCampaign', compact('contact_lists'));
+        return redirect('/sms')->with('succes', 'Campaign succesfully creted.');
+
     }
 
     public function indexContactList() 

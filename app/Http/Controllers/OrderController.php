@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Stripe;
 use PDF;
-use TCPDF;
 
 class OrderController extends Controller
 {

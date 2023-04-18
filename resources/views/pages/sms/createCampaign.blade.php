@@ -35,10 +35,10 @@
                             <label for="message" class="form-control-label">Message</label>
                             <textarea  class="form-control" name="message" id="message" cols="30" rows="5" required></textarea>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="schedule" class="form-control-label">Schedule</label>
                             <input class="form-control" type="text" name="schedule" id="schedule" required>
-                        </div>
+                        </div> --}}
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Save</button>
                 </div>
@@ -50,7 +50,7 @@
 <!-- Datepicker -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    flatpickr("#dateTime", {
+    flatpickr("#schedule", {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         altInput: true,
