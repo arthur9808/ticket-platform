@@ -50,11 +50,11 @@ class OrderController extends Controller
     {
         $all = $request->except(['_token']);
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        // dd($ticket->event->user->email);
+        
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);
-                QrCode::format('png')->size(100)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
+                QrCode::format('png')->size(200)->style('round')->backgroundColor(255, 255, 255)->generate($all['code'], '../public/storage/uploads/'. $all['code'] .'.png');
                 $order->update([
                     'svg_qr' => 'uploads/' . $all['code'] . '.png'
                 ]);
@@ -64,10 +64,14 @@ class OrderController extends Controller
 					'email' => $all['email_buyer'],
 					'subject' => $ticket->event->title,
                     'user_name' => $ticket->event->user->username,
-                    'user_email' => $ticket->event->user->email
+                    'user_email' => $ticket->event->user->email,
+                    'event_image' => $ticket->event->image,
+                    'organizer_image' => $ticket->event->user->image,
+                    'event_location' => $ticket->event->maps_url,
+                    'code' => $order->code
 				);
                 Mail::send('pages.email.email', $data, function ($message) use ($data) {
-					$message->from('admin@marketingnature.com', $data['user_name']);
+					$message->from('admin@ticketsplatform.com', $data['user_name']);
 					$message->to($data['email'], $data['name']);
 					$message->subject($data['subject']);
 					$message->priority(3);

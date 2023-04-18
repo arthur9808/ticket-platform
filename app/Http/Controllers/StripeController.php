@@ -21,7 +21,7 @@ class StripeController extends Controller
         
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
         $all = implode('-', $all);
-
+        
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
         $session = \Stripe\Checkout\Session::create([
