@@ -78,8 +78,8 @@
                                        <p style="font-size: 14px; line-height: 24px; width: 100%;">Abraham Garcia on
                                         March 16, 2023 10:10 AM</p>
                                       </td>
-                                      <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left" width="100%" height="16">
-                                        <img class="w-16" src="{{ asset('storage/uploads/rBkss.png') }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 100px; border-style: none; border-width: 0;" width="64">
+                                      <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="right" width="100%" height="16">
+                                        <img class="w-16" src="{{ asset('storage/uploads/UyDoW.png') }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 100px; border-style: none; border-width: 0;" width="64">
                                       </td>
                                     </tr>
                                 </tbody>
