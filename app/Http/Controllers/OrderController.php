@@ -113,17 +113,24 @@ class OrderController extends Controller
     }
     public function test() 
     {
-        $code = 'HtVUp';
+        $code = 'UyDoW';
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
-        
-        $data = [
-            'event_image'    => $event->image,
-            'name_ticket'    => $order->ticket->title,
-            'qr'             => $order->svg_qr,
-            'website'        => $event->user->web_url
-        ];
-        return view('pages.orders.order-ticket-qr', $data);
+        $pdf = PDF::loadView('pages.orders.pdf', [
+            'event_title'     => $event->title,
+            'event_ubication' => $event->ubication,
+            'event_datetime'  => $event->date_time_start,
+            'order'           => $order->id,
+            'type_ticket'     => $order->ticket->type,
+            'name_ticket'     => $order->ticket->title,
+            'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
+            'order_date'      => $order->created_at,
+            'qr'              => $order->svg_qr,
+            'website'         => $event->user->web_url
+        ]);
+        return $pdf->download('sample.pdf');
+
+        return view('pages.orders.pdf');
     }
     public function pdf($code) 
     {   
@@ -131,10 +138,16 @@ class OrderController extends Controller
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
         $pdf = PDF::loadView('pages.orders.order-ticket-qr', [
-            'event_image'    => $event->image,
-            'name_ticket'    => $order->ticket->title,
-            'qr'             => $order->svg_qr,
-            'website'        => $event->user->web_url
+            'event_title'     => $event->title,
+            'event_ubication' => $event->ubication,
+            'event_datetime'  => $event->date_time_start,
+            'order'           => $order->id,
+            'type_ticket'     => $order->ticket->type,
+            'name_ticket'     => $order->ticket->title,
+            'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
+            'order_date'      => $order->created_at,
+            'qr'              => $order->svg_qr,
+            'website'         => $event->user->web_url
         ]);
         return $pdf->download('sample.pdf');
         

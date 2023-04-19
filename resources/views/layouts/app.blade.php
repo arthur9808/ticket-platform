@@ -26,7 +26,14 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
-
+    
+    <style>
+        @media only screen and (max-width: 575px) {
+            .locationDiv {
+                padding-top: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -87,6 +94,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/vfs_fonts.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
 
     @stack('js')
 </body>

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbars.guest.navbar')
     <main class="main-content  mt-0">
         <div class="page-header align-items-start min-vh-60 pt-5 pb-11 m-6 border-radius-lg"
             style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
@@ -38,17 +37,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 locationDiv">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <i class="fas fa-map-pin" style="padding-right: 10px"></i>
-                                            <h6 class="mb-0">Location</h6>
+                                            <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0" style="font-size: 0.80rem">{{ $event->ubication }}</p>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map" style="font-weight: 100">Google Maps</i></a>
                                         </div>
                                     </div>
                                 </div>  
@@ -236,7 +232,9 @@
                                 <a type="button" style="padding-right: 5px;" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
                             </div>
                             <div class="card" style="max-height: 200px">
-                                <img src="{{ asset('storage/' .  $event->image) }}" style="height: 100%; object-fit: cover; object-position: top;" class="card-img-bottom" alt="">
+                                <div class="image-container" style="max-height: 200px; overflow:hidden;">
+                                    <img src="{{ asset('storage/' .  $event->image) }}" style="height:auto;" class="card-img-top" alt="">
+                                </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
                                 <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
@@ -308,7 +306,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phone" class="form-control-label">Phone</label>
-                                                <input class="form-control" type="text" name="phone_buyer">
+                                                <input class="form-control" type="text" id="phone_buyer" name="phone_buyer">
                                             </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantity" value="1">
@@ -382,6 +380,23 @@
         $("#totalValue2").text('$' + total_value);
     });
     
+    var element = document.getElementById('phone_buyer');  
+      var mask = IMask(element, {
+        mask: [
+            {
+        mask: '+{1}(000)000-0000',
+        startsWith: '1',
+        lazy: true,
+        country: 'Usa'
+      },
+      {
+        mask: '+{52}(000)000-0000',
+        startsWith: '52',
+        lazy: true,
+        country: 'Mexico'
+      },
+        ]
+        });
 </script>
 @endif
 @endpush

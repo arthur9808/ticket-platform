@@ -50,6 +50,7 @@ Route::delete('/ticket-delete/{id}', [TicketController::class, 'destroy'])->midd
 Route::post('/order-store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
+Route::get('/test', [OrderController::class, 'test'])->middleware('auth');
 
 Route::get('/pdf/{code}', [OrderController::class, 'pdf'])->name('pdf');
 
