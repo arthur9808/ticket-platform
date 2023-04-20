@@ -67,6 +67,8 @@ class StripeController extends Controller
         ];
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
         // dd($ticket);
+        $codes = [];
+
         for ($i=0; $i < $all['quantity']; $i++) { 
                 $all['code'] = Str::random(5);
                 $all['stripe_data'] = $session;
@@ -75,6 +77,7 @@ class StripeController extends Controller
                 $order->update([
                     'svg_qr' => 'uploads/' . $all['code'] . '.png'
                 ]);
+                $codes[] = $order->code;
 
                 $event = Event::where('id', $order->ticket->event_id)->first(); 
                 $pdf = PDF::loadView('pages.orders.pdf', [
@@ -109,7 +112,9 @@ class StripeController extends Controller
                     $message->attachData($pdf->output(), 'Order.pdf');
 				});
         }
-        return redirect('/event' . '/' . $ticket->event->id)->with('succes', 'Successful purchase, you will receive an email with your tickets');
+        $codes = implode('-', $codes);
+        return redirect()->route('successpage', [$codes]);
+        
 
     }
 }
