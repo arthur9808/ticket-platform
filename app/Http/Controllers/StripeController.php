@@ -23,7 +23,7 @@ class StripeController extends Controller
         $all = $request->except(['_token']);
         
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        $all = implode('-', $all);
+        $all = implode(',', $all);
         
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
@@ -56,8 +56,7 @@ class StripeController extends Controller
         $session = \Stripe\Checkout\Session::retrieve($session_id);
         $session = $session->toArray();
         $session = json_encode($session);
-        
-        $array_code = explode('-', $all);
+        $array_code = explode(',', $all);
         $all = [
             'name_buyer' => $array_code[0],
             'last_name_buyer' => $array_code[1],
@@ -67,7 +66,7 @@ class StripeController extends Controller
             'ticket_id' => $array_code[5]
         ];
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        // dd($ticket->event->user->email);
+        // dd($ticket);
         for ($i=0; $i < $all['quantity']; $i++) { 
                 $all['code'] = Str::random(5);
                 $all['stripe_data'] = $session;

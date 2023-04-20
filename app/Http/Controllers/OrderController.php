@@ -49,7 +49,7 @@ class OrderController extends Controller
     {
         $all = $request->except(['_token']);
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        
+        // dd($ticket);
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);

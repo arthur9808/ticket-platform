@@ -64,7 +64,7 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $ticket = Ticket::where('event_id', $id)->where('available', '1')->first();
-        
+        // dd($ticket);
         if ($ticket != null) {
             $count_orders = Order::where('ticket_id', $ticket->id)->count();
         }else {
