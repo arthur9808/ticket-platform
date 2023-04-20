@@ -62,19 +62,20 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::find($id);
-        $ticket = Ticket::where('event_id', $id)->where('available', '1')->first();
+        
+        $data['event'] = Event::find($id);
+        $data['ticket'] = Ticket::where('event_id', $id)->where('available', '1')->first();
         // dd($ticket);
-        if ($ticket != null) {
-            $count_orders = Order::where('ticket_id', $ticket->id)->count();
+        if ($data['ticket'] != null) {
+            $data['count_orders'] = Order::where('ticket_id', $data['ticket']->id)->count();
         }else {
-            $count_orders = 0;
+            $data['count_orders'] = 0;
 
         }
-        // dd($ticket);
-        $today = Carbon::now()->toDateTimeString();
         
-        return view('pages.event.show', compact('event', 'ticket', 'count_orders', 'today'));
+        $data['today'] = Carbon::now()->toDateTimeString();
+        
+        return view('pages.event.show', $data);
 
     }
 
