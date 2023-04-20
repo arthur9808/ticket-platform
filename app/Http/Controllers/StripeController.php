@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Ticket;
 use App\Models\Order;
+use App\Models\Event;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
+use PDF;
+
 
 class StripeController extends Controller
 {
@@ -73,7 +76,21 @@ class StripeController extends Controller
                 $order->update([
                     'svg_qr' => 'uploads/' . $all['code'] . '.png'
                 ]);
-                
+
+                $event = Event::where('id', $order->ticket->event_id)->first(); 
+                $pdf = PDF::loadView('pages.orders.pdf', [
+                    'event_title'     => $event->title,
+                    'event_ubication' => $event->ubication,
+                    'event_datetime'  => $event->date_time_start,
+                    'order'           => $order->id,
+                    'type_ticket'     => $order->ticket->type,
+                    'name_ticket'     => $order->ticket->title,
+                    'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
+                    'order_date'      => $order->created_at,
+                    'qr'              => $order->svg_qr,
+                    'website'         => $event->user->web_url
+                ]);
+
                 $data = array(
 					'name' => $all['name_buyer'],
 					'email' => $all['email_buyer'],
@@ -85,11 +102,12 @@ class StripeController extends Controller
                     'event_location' => $ticket->event->maps_url,
                     'code' => $order->code
 				);
-                Mail::send('pages.email.email', $data, function ($message) use ($data) {
+                Mail::send('pages.email.email', $data, function ($message) use ($data, $pdf) {
 					$message->from('admin@ticketsplatform.com', $data['user_name']);
 					$message->to($data['email'], $data['name']);
 					$message->subject($data['subject']);
 					$message->priority(3);
+                    $message->attachData($pdf->output(), 'Order.pdf');
 				});
         }
         return redirect('/event' . '/' . $ticket->event->id)->with('succes', 'Successful purchase, you will receive an email with your tickets');
