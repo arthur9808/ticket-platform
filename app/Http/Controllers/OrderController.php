@@ -51,6 +51,8 @@ class OrderController extends Controller
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
         // dd($ticket);
         $codes = [];
+        $orders_data = [];
+
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);
@@ -60,7 +62,7 @@ class OrderController extends Controller
                 ]);
                 $codes[] = $order->code;
                 $event = Event::where('id', $order->ticket->event_id)->first(); 
-                $pdf = PDF::loadView('pages.orders.pdf', [
+                $orders_data[] = [
                     'event_title'     => $event->title,
                     'event_ubication' => $event->ubication,
                     'event_datetime'  => $event->date_time_start,
@@ -71,27 +73,29 @@ class OrderController extends Controller
                     'order_date'      => $order->created_at,
                     'qr'              => $order->svg_qr,
                     'website'         => $event->user->web_url
-                ]);
+                ];
 
-                $data = array(
-					'name' => $all['name_buyer'],
-					'email' => $all['email_buyer'],
-					'subject' => $ticket->event->title,
-                    'user_name' => $ticket->event->user->username,
-                    'user_email' => $ticket->event->user->email,
-                    'event_image' => $ticket->event->image,
-                    'organizer_image' => $ticket->event->user->image,
-                    'event_location' => $ticket->event->maps_url,
-                    'code' => $order->code
-				);
-                Mail::send('pages.email.email', $data, function ($message) use ($data, $pdf) {
-					$message->from('admin@ticketsplatform.com', $data['user_name']);
-					$message->to($data['email'], $data['name']);
-					$message->subject($data['subject']);
-					$message->priority(3);
-                    $message->attachData($pdf->output(), 'Order.pdf');
-				});
-        }
+            }
+            $pdf = PDF::loadView('pages.orders.pdf', ['orders_data' => $orders_data]);
+            
+            $data = array(
+                'name' => $all['name_buyer'],
+                'email' => $all['email_buyer'],
+                'subject' => $ticket->event->title,
+                'user_name' => $ticket->event->user->username,
+                'user_email' => $ticket->event->user->email,
+                'event_image' => $ticket->event->image,
+                'organizer_image' => $ticket->event->user->image,
+                'event_location' => $ticket->event->maps_url,
+                'code' => $order->code
+            );
+            Mail::send('pages.email.email', $data, function ($message) use ($data, $pdf) {
+                $message->from('admin@ticketsplatform.com', $data['user_name']);
+                $message->to($data['email'], $data['name']);
+                $message->subject($data['subject']);
+                $message->priority(3);
+                $message->attachData($pdf->output(), 'Order.pdf');
+            });
         $codes = implode('-', $codes);
         return redirect()->route('successpage', [$codes]);
        

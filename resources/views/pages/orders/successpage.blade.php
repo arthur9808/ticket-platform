@@ -32,25 +32,27 @@
                             <div class="row" style="padding-top:40px">
                               <div class="col-6">
                                 <div class="d-flex align-items-center justify-content-start">
-                                  <h6>{{ count($codes)  . ' Tickey sent to:'}}</h6>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-start">
-                                  <p>{{ $order->email_buyer }}</p>
+                                  <h6>{{ count($codes)  . ' Ticket sent to:'}}</h6>
                                 </div>
                               </div>
                               <div class="col-6">
                                 <div class="d-flex align-items-center justify-content-start">
-                                  <h6>DATE:</h6>
+                                  <h6>Date:</h6>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-start">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-6">
+                                  <p>{{ $order->email_buyer }}</p>
+                              </div>
+                              <div class="col-6"> 
                                   <p>{{date('j F, Y (h:s a)', strtotime($event->date_time_start)) }}</p>
-                                </div>
                               </div>
                             </div>
                             <div class="row" style="padding-bottom: 80px">
                               <div class="col-12">
                                 <div class="d-flex align-items-center justify-content-start">
-                                  <h6>LOCATION:</h6>
+                                  <h6>Location:</h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-start">
                                   <p>{{ $event->ubication }}</p>

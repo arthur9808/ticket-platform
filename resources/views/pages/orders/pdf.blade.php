@@ -12,6 +12,7 @@
     </style>
   </head>
   <body class="bg-red-100" style="outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;" bgcolor="#ffffff">
+    @foreach ($orders_data as $order_data)    
     <table class="bg-red-100 body" valign="top" role="presentation" border="0" cellpadding="0" cellspacing="0" style="outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;" bgcolor="#ffffff">
       <tbody>
         <tr>
@@ -56,7 +57,7 @@
                                       <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0; color:#344767" align="left">Ticketplatform</h1>
                                     </td>
                                     <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="right" width="100%" height="16">
-                                      <h5>Order#{{ $order }}</h5>
+                                      <h5>Order#{{ $order_data['order'] }}</h5>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -64,10 +65,10 @@
                               <div style="border: 1px solid #d2c9c9;">
                                 <table class="container" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                                   <tbody>
-                                      <h2 style="margin-left: 15px;">{{ $event_title }}</h2>
-                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 50px; margin-left: 15px;" align="left">{{ $event_ubication }}1</p>
-                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ date('j F, Y h:s a', strtotime($event_datetime)) }}</p>
-                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ strtoupper($type_ticket . ' order') }}</p>
+                                      <h2 style="margin-left: 15px;">{{ $order_data['event_title'] }}</h2>
+                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 50px; margin-left: 15px;" align="left">{{ $order_data['event_ubication'] }}1</p>
+                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ date('j F, Y h:s a', strtotime($order_data['event_datetime'])) }}</p>
+                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ strtoupper($order_data['type_ticket'] . ' order') }}</p>
                                       <p class="" style="line-height: 24px; font-size: 12px; color: #545454; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">Order Information</p>
                                   </tbody>
                                 </table>
@@ -75,12 +76,12 @@
                                   <tbody>
                                       <tr>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-left: 15px;" align="left" width="100%" height="16">
-                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">Order #{{ $order }}. Ordered by</p>
+                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">Order #{{ $order_data['order'] }}. Ordered by</p>
                                          <p style="font-size: 14px; line-height: 24px; width: 100%;">Abraham Garcia on
-                                          {{ date('j F, Y h:s a', strtotime($order_date)) }}</p>
+                                          {{ date('j F, Y h:s a', strtotime($order_data['order_date'])) }}</p>
                                         </td>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-right: 15px; padding-bottom: 15px;" align="right" width="100%" height="16">
-                                          <img class="w-16" src="{{ asset('storage/' . $qr) }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 100px; border-style: none; border-width: 0;" width="64">
+                                          <img class="w-16" src="{{ asset('storage/' . $order_data['qr']) }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 100px; border-style: none; border-width: 0;" width="64">
                                         </td>
                                       </tr>
                                   </tbody>
@@ -99,6 +100,7 @@
         </tr>
       </tbody>
     </table>
+    @endforeach
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
 
