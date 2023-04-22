@@ -51,7 +51,7 @@ Route::post('/order-store', [OrderController::class, 'store'])->name('order.stor
 Route::get('/orders-by-ticket/{id}', [OrderController::class, 'index'])->middleware('auth')->name('order.ticket');
 Route::get('/orders-by-event/{id}', [OrderController::class, 'orderByEvent'])->middleware('auth')->name('order.event');
 Route::get('/test', [OrderController::class, 'test'])->middleware('auth');
-Route::get('/successpage/{codes}', [OrderController::class, 'successpage'])->middleware('auth')->name('successpage');;
+Route::get('/successpage/{codes}', [OrderController::class, 'successpage'])->name('successpage');;
 
 Route::get('/pdf/{code}', [OrderController::class, 'pdf'])->name('pdf');
 
