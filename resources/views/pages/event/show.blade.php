@@ -437,7 +437,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                    <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                         Get Details
                                     </button>
                                 </div>
@@ -453,7 +453,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                     Get Details
                                 </button>
                             </div>
