@@ -406,25 +406,61 @@
             @endif
         </div>
         <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
-            <div class="row" style="padding-top: 20px">
-                <div class="col-12 d-flex align-items-center justify-content-center">
-                    @if ($ticket->type == 'free')
-                    <h4>Free</h4>
-                    @endif
-                    @if ($ticket->type == 'paid')
-                    <h4>$ {{ $ticket->price }}</h4>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTickets">
-                            Get Tickets
-                        </button>
+            @if ($ticket !=null)   
+                @if ($today < $event->date_time_start) 
+                    @if ($count_orders < $ticket->quantity))
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                @if ($ticket->type == 'free')
+                                <h4>Free</h4>
+                                @endif
+                                @if ($ticket->type == 'paid')
+                                <h4>$ {{ $ticket->price }}</h4>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTickets">
+                                        Get Tickets
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row" style="padding-top: 20px">
+                            <div class="col-12 d-flex align-items-center justify-content-center">
+                                <h4>Sales Ended</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                        Get Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div> 
+                    @endif     
+                @else
+                    <div class="row" style="padding-top: 20px">
+                        <div class="col-12 d-flex align-items-center justify-content-center">
+                            <h4>Sales Ended</h4>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                    Get Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>       
+                @endif 
+            @endif
         </nav>
     </main>
     @include('layouts.footers.guest.footer')
