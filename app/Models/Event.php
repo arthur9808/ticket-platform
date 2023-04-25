@@ -20,7 +20,9 @@ class Event extends Model
         'date_time_end',
         'image',
         'summary',
-        'created_by'
+        'created_by',
+        'meta_title',
+        'meta_description'
     ];
 
     public function user(): BelongsTo{

@@ -47,6 +47,14 @@
                             <label for="summary" class="form-control-label">Summary</label>
                             <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5" required></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="meta_title" class="form-control-label">Meta Title</label>
+                            <input class="form-control" type="text" name="meta_title">
+                        </div>
+                        <div class="form-group">
+                            <label for="meta_description" class="form-control-label">Meta Title</label>
+                            <input class="form-control" type="text" name="meta_description">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Save</button>
                 </div>

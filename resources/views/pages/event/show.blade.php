@@ -2,9 +2,14 @@
 
 @section('content')
     <main class="main-content  mt-0">
-        <div class="page-header align-items-start min-vh-60 pt-5 pb-11 m-6 border-radius-lg"
+        {{-- <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-6 border-radius-lg"
             style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
             <span class="mask bg-gradient-dark opacity-3"></span>
+        </div> --}}
+        <div class="row" style="background-image: url('{{ asset('storage/uploads/blur.png') }}'); background-position: top; background-repeat: no-repeat; background-size: cover;">  
+            <div class="align-items-center min-vh-45" style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top; background-repeat: no-repeat;">   
+            </div>   
+            <span class="mask bg-gradient-dark opacity-3"></span>  
         </div>
         <div id="alert">
             @include('components.alert')
@@ -21,11 +26,67 @@
                     <div class="d-flex align-items-center" style="padding-top: 20px">
                         <h6 class="mb-0">{{ $event->summary }}</h6>
                     </div>
-                </div>     
-                <div class="card-body pb-0">
-                    <div class="row">
-                        <div class="col-6">
+                </div> 
+                <div class="card-body pb-0">                 
+                    <nav class="navbar sticky-top navbar-light  nav-event">
+                        <div class="col-6" id="navDesktop">
+                            <ul class="nav justify-content-around">
+                                <li class="nav-item" id="aInfo">
+                                    <a class="nav-link"  href="#whenandwhere">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aDetails" href="#about">Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aOrganizer" href="#organizer">Organizer</a>
+                                </li>
+                            </ul>  
+                        </div>
+                        <div class="col-12" id="navPhone">
+                            <ul class="nav justify-content-around">
+                                <li class="nav-item" id="aInfo">
+                                    <a class="nav-link"  href="#whenandwhere">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aDetails" href="#about">Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aOrganizer" href="#organizer">Organizer</a>
+                                </li>
+                            </ul>  
+                        </div>
+                    </nav>            
+                    <div class="row" id="whenandwhere">
+                        <div class="col-6" id="whDesktop">
                             <div class="row">
+                                <h4 style="padding-bottom: 20px">When and where</h4>
+                                <div class="col-sm-6">
+                                    <div class="card-transparent">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <i class="far fa-calendar" style="padding-right: 10px"></i>
+                                            <h6 class="mb-0">Date and Time</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card-transparent">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $event->ubication }}</p>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="col-12" id="whPhone">
+                            <div class="row">
+                                <h4 style="padding-bottom: 20px">When and where</h4>
                                 <div class="col-sm-6">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
@@ -50,7 +111,7 @@
                                 </div>  
                             </div>
                         </div>
-                        <div class="col-6 d-flex align-items-center justify-content-end">
+                        <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
                             @if ($ticket !=null)    
                             <div class="card" style="width: 20rem">
                                 @if ($today < $event->date_time_start)
@@ -99,19 +160,15 @@
                         </div>
                         
                     </div>
-                    <div class="row" style="padding-top: 40px">
+                    <div class="row" style="padding-top: 40px" id="about">
                         <div class="card-transparent" style="width: 40rem">
-                            <div class="card-header">
-                                <h4>About this event</h4>
-                            </div>
+                            <h4 style="padding-bottom: 20px">About this event</h4>  
                             <img src="{{ asset('storage/' .  $event->image) }}" class="card-img-bottom" alt="">
                         </div>
                     </div>
-                    <div class="row" style="padding-top: 40px">
-                        <div class="card-transparent" style="width: 40rem">
-                            <div class="card-header">
-                                <h4>Organizer</h4>
-                            </div>
+                    <div class="row" style="padding-top: 40px" id="organizer">
+                        <div class="card-transparent" style="width: 40rem">                          
+                            <h4 style="padding-bottom: 20px">Organizer</h4>                           
                             <div class="card-body" >
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="avatar avatar-xl">
@@ -348,6 +405,27 @@
             </div>
             @endif
         </div>
+        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
+            <div class="row" style="padding-top: 20px">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    @if ($ticket->type == 'free')
+                    <h4>Free</h4>
+                    @endif
+                    @if ($ticket->type == 'paid')
+                    <h4>$ {{ $ticket->price }}</h4>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTickets">
+                            Get Tickets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </main>
     @include('layouts.footers.guest.footer')
 @endsection
@@ -397,6 +475,28 @@
       },
         ]
         });
+    
+        $('#aInfo').click(function() {
+            $('#aInfo').css('border-bottom', 'solid #fb6340');
+            $('#aDetails').css('border-bottom', 'none');
+            $('#aOrganizer').css('border-bottom', 'none');
+        });
+        $('#aDetails').click(function() {
+            $('#aInfo').css('border-bottom', 'none');
+            $('#aDetails').css('border-bottom', 'solid #fb6340');
+            $('#aOrganizer').css('border-bottom', 'none');
+        });
+        $('#aOrganizer').click(function() {
+            $('#aInfo').css('border-bottom', 'none');
+            $('#aDetails').css('border-bottom', 'none');
+            $('#aOrganizer').css('border-bottom', 'solid #fb6340');
+        });
+        $('#aInfo').on('touchstart', function(event) {
+    event.preventDefault(); // Evitar el comportamiento predeterminado de la etiqueta 'a'
+    // Seleccionar el div y cambiar su color de fondo
+    $('#aInfo').css('border-bottom', 'solid #fb6340');
+    
+  });
 </script>
 @endif
 @endpush

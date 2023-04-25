@@ -53,6 +53,14 @@
                             <label for="summary" class="form-control-label">Summary</label>
                             <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5" required>{{ $event->summary }}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="meta_title" class="form-control-label">Meta Title</label>
+                            <input class="form-control" type="text" name="meta_title" value="{{ $event->meta_title }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="meta_description" class="form-control-label">Meta Description</label>
+                            <input class="form-control" type="text" name="meta_description" value="{{ $event->meta_description }}">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Update</button>
                 </div>

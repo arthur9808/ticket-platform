@@ -7,8 +7,17 @@
     <link rel="apple-touch-icon" sizes="76x76" href="">
     <link rel="icon" type="image/png" href="">
     <title>
-       Ticket Platform
+        @if (Route::is('event.show'))
+            @if ($event->meta_title != null)
+                {{ $event->meta_title . ' | ' . $event->meta_description }}
+            @else    
+                {{ $event->title . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' | Ticketplatform'}}
+            @endif
+        @else
+            Ticket Platform
+        @endif
     </title>
+    
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -28,12 +37,58 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     
     <style>
+        .nav-event {
+            box-shadow: none !important;
+        }
+        .nav-event .col-6 {
+            border-bottom: solid 1px rgb(221,221,221);
+
+        }
+        #navPhone {
+            display: none;
+        }
+        #whenandwhere {
+            padding-top: 40px;
+        }
+        #whPhone{
+            display: none;
+        }
+        #getTicketsBottom {
+            display: none; 
+        }
+        #cardGetTickets {
+               display: block; 
+        }
+        @media only screen and (max-width: 959px) {
+            #cardGetTickets {
+               display: none !important; 
+            }
+            #getTicketsBottom {
+               display: block;
+               height: 140px; 
+               box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
+            }
+            #whDesktop {
+                display: none;
+            }
+            #whPhone {
+            display: block;
+            }
+            #navDesktop {
+                display: none;
+            }
+            #navPhone {
+                display: block;
+            }
+            
+        }
         @media only screen and (max-width: 575px) {
             .locationDiv {
-                padding-top: 25px;
+                padding-top: 20px !important;
             }
         }
     </style>
+    
 </head>
 
 <body class="{{ $class ?? '' }}">

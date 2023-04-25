@@ -42,7 +42,7 @@ class EventController extends Controller
         
         $all = $request->except(['_token', 'image']);
         $all['created_by'] = Auth::id();
-       
+    //    dd($all);
         $event = Event::create($all);
     
         if ($request->hasFile('image')) {
