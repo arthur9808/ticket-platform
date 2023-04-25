@@ -30,7 +30,7 @@
                 <div class="card-body pb-0">                 
                     <nav class="navbar sticky-top navbar-light  nav-event">
                         <div class="col-6" id="navDesktop">
-                            <ul class="nav justify-content-around">
+                            <ul class="nav justify-content-around" id="mi-ul">
                                 <li class="nav-item" id="aInfo">
                                     <a class="nav-link"  href="#whenandwhere">Info</a>
                                 </li>
@@ -491,12 +491,9 @@
             $('#aDetails').css('border-bottom', 'none');
             $('#aOrganizer').css('border-bottom', 'solid #fb6340');
         });
-        $('#aInfo').on('touchstart', function(event) {
-    event.preventDefault(); // Evitar el comportamiento predeterminado de la etiqueta 'a'
-    // Seleccionar el div y cambiar su color de fondo
-    $('#aInfo').css('border-bottom', 'solid #fb6340');
-    
-  });
+        
+
+  
 </script>
 @endif
 @endpush

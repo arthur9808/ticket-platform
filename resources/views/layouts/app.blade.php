@@ -44,6 +44,9 @@
             border-bottom: solid 1px rgb(221,221,221);
 
         }
+        .sticky-top {
+            top: 15px;
+        }
         #navPhone {
             display: none;
         }
