@@ -17,6 +17,61 @@
             Ticket Platform
         @endif
     </title>
+    @if (Route::is('event.show'))    
+        @php
+            $fecha_inicial = $event->date_time_start ;
+            $fecha = DateTime::createFromFormat('Y-m-d H:i', $fecha_inicial);
+            $fecha_formateada = $fecha->format('Y-m-d\TH:i');
+            $offset = timezone_offset_get($fecha->getTimezone(), $fecha);
+            $fecha_final_start = $fecha_formateada . sprintf('%+03d:%02d', $offset / 3600, abs($offset) % 3600 / 60);
+
+            $fecha_inicial = $event->date_time_end ;
+            $fecha = DateTime::createFromFormat('Y-m-d H:i', $fecha_inicial);
+            $fecha_formateada = $fecha->format('Y-m-d\TH:i');
+            $offset = timezone_offset_get($fecha->getTimezone(), $fecha);
+            $fecha_final_end = $fecha_formateada . sprintf('%+03d:%02d', $offset / 3600, abs($offset) % 3600 / 60);
+        @endphp
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            "name": "{{ $event->title }}",
+            "startDate": "{{ $fecha_final_start }}",
+            "endDate": "{{ $fecha_final_end }}",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "location": {
+                "@type": "Place",
+                "name": "{{ $event->ubication }}",
+                "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "{{ $event->street_address }}",
+                "addressLocality": "{{ $event->address_locality }}",
+                "postalCode": "{{ $event->postal_code }}",
+                "addressRegion": "{{ $event->address_region }}",
+                "addressCountry": "{{ $event->address_country }}"
+                }
+            },
+            "image": [
+                "{{ asset('storage/' .  $event->image) }}"
+            ],
+            "description": "{{ $event->summary }}",
+            "offers": {
+                "@type": "Offer",
+                "url": "{{ request()->url() }}",
+            },
+            "performer": {
+                "@type": "PerformingGroup",
+                "name": "{{ $event->user->username }}"
+            },
+            "organizer": {
+                "@type": "Organization",
+                "name": "{{ $event->user->username }}",
+                "url": "{{ $event->user->web_url }}"
+            }
+            }
+        </script>
+    @endif
     
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

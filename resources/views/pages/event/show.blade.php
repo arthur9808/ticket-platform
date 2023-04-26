@@ -78,7 +78,7 @@
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ $event->ubication }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $location  }}</p>
                                         </div>
                                     </div>
                                 </div>  
@@ -164,6 +164,7 @@
                         <div class="card-transparent" style="width: 40rem">
                             <h4 style="padding-bottom: 20px">About this event</h4>  
                             <img src="{{ asset('storage/' .  $event->image) }}" class="card-img-bottom" alt="">
+                            <p class="mb-0" style="font-size: 0.80rem; padding-top: 20px;">{{ $event->about}}</p>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 40px" id="organizer">

@@ -24,8 +24,32 @@
                             <input class="form-control" type="text" name="title" required>
                         </div>
                         <div class="form-group">
-                            <label for="location" class="form-control-label">Location</label>
+                            <label for="summary" class="form-control-label">Event Description</label>
+                            <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="form-control-label">Place</label>
                             <input class="form-control" type="text" name="ubication" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="street_address" class="form-control-label">Street Address</label>
+                            <input class="form-control" type="text" name="street_address" value="{{ $event->street_address }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_locality" class="form-control-label">Address Locality</label>
+                            <input class="form-control" type="text" name="address_locality" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code" class="form-control-label">Postal Code</label>
+                            <input class="form-control" type="text" name="postal_code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_region" class="form-control-label">Adress Region</label>
+                            <input class="form-control" type="text" name="address_region" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address_country" class="form-control-label">Adress Country</label>
+                            <input class="form-control" type="text" name="address_country" required>
                         </div>
                         <div class="form-group">
                             <label for="maps_url" class="form-control-label">Maps URL</label>
@@ -44,8 +68,8 @@
                             <input class="form-control" type="file" name="image" id="image" required>
                         </div>
                         <div class="form-group">
-                            <label for="summary" class="form-control-label">Summary</label>
-                            <textarea  class="form-control" name="summary" id="summary" cols="30" rows="5" required></textarea>
+                            <label for="about" class="form-control-label">About Event</label>
+                            <textarea  class="form-control" name="about" id="about" cols="30" rows="5" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="meta_title" class="form-control-label">Meta Title</label>

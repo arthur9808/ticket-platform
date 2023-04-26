@@ -72,7 +72,7 @@ class EventController extends Controller
             $data['count_orders'] = 0;
 
         }
-        
+        $data['location'] = $data['event']->ubication . ' ' . $data['event']->street_address . ', ' . $data['event']->address_locality . ', ' . $data['event']->address_region . ' ' . $data['event']->postal_code . ', ' . $data['event']->address_country;
         $data['today'] = Carbon::now()->toDateTimeString();
         
         return view('pages.event.show', $data);

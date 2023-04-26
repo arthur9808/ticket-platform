@@ -15,6 +15,12 @@ class Event extends Model
     protected $fillable = [
         'title',
         'ubication',
+        'street_address',
+        'address_locality',
+        'postal_code',
+        'address_region',
+        'address_country',
+        'about',
         'maps_url',
         'date_time_start',
         'date_time_end',
