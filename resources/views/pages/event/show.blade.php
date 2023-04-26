@@ -31,8 +31,8 @@
                     <nav class="navbar sticky-top navbar-light  nav-event">
                         <div class="col-6" id="navDesktop">
                             <ul class="nav justify-content-around" id="mi-ul">
-                                <li class="nav-item" id="aInfo">
-                                    <a class="nav-link"  href="#whenandwhere">Info</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aInfo" href="#whenandwhere">Info</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="aDetails" href="#about">Details</a>
@@ -44,14 +44,14 @@
                         </div>
                         <div class="col-12" id="navPhone">
                             <ul class="nav justify-content-around">
-                                <li class="nav-item" id="aInfo">
-                                    <a class="nav-link"  href="#whenandwhere">Info</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="aInfo2" href="#whenandwhere">Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aDetails" href="#about">Details</a>
+                                    <a class="nav-link" id="aDetails2" href="#about">Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aOrganizer" href="#organizer">Organizer</a>
+                                    <a class="nav-link" id="aOrganizer2" href="#organizer">Organizer</a>
                                 </li>
                             </ul>  
                         </div>
@@ -512,7 +512,8 @@
       },
         ]
         });
-    
+        
+
         $('#aInfo').click(function() {
             $('#aInfo').css('border-bottom', 'solid #fb6340');
             $('#aDetails').css('border-bottom', 'none');
@@ -527,6 +528,21 @@
             $('#aInfo').css('border-bottom', 'none');
             $('#aDetails').css('border-bottom', 'none');
             $('#aOrganizer').css('border-bottom', 'solid #fb6340');
+        });
+        $('#aInfo2').click(function() {
+            $('#aInfo2').css('border-bottom', 'solid #fb6340');
+            $('#aDetails2').css('border-bottom', 'none');
+            $('#aOrganizer2').css('border-bottom', 'none');
+        });
+        $('#aDetails2').click(function() {
+            $('#aInfo2').css('border-bottom', 'none');
+            $('#aDetails2').css('border-bottom', 'solid #fb6340');
+            $('#aOrganizer2').css('border-bottom', 'none');
+        });
+        $('#aOrganizer2').click(function() {
+            $('#aInfo2').css('border-bottom', 'none');
+            $('#aDetails2').css('border-bottom', 'none');
+            $('#aOrganizer2').css('border-bottom', 'solid #fb6340');
         });
         
 

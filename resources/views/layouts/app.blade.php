@@ -100,7 +100,7 @@
 
         }
         .sticky-top {
-            top: 15px;
+            padding-top: 15px;
         }
         #navPhone {
             display: none;
