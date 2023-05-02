@@ -106,8 +106,10 @@ class OrderController extends Controller
         $codes = explode('-', $codes);
         $order = Order::where('code', $codes[0])->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
+        $location = $event->ubication . ' ' . $event->street_address . ', ' . $event->address_locality . ', ' . $event->address_region . ' ' . $event->postal_code . ', ' . $event->address_country;
+
         // dd($event);
-        return view('pages.orders.successpage', compact('event', 'order', 'codes'));
+        return view('pages.orders.successpage', compact('event', 'order', 'codes', 'location'));
     }
 
     /**

@@ -282,7 +282,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer" style="padding-top: 50px">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Register</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Checkout</button>
                             </div>
                         </div>
                         <div class="col-4">
@@ -390,7 +390,7 @@
                                         <div class="col-12">
                                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                                 <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#checkoutMobile">
-                                                    Register
+                                                    Checkout
                                                 </button>
                                             </div>
                                         </div>
@@ -458,7 +458,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="padding-top: 50px">
-                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Register</button>
+                                <button type="submit" class="btn btn-primary">Place Order</button>
                                 </div>
                             </form>
                         </div>
@@ -490,13 +490,98 @@
                 </div>
                 </div>
             </div>
+            <div class="modal fade" id="checkoutMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                <div class="modal-content" data-tor="show(p):reveal(up)">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <a type="button" style="padding-right: 10px;" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <h6>Checkout</h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <form role="form" method="POST" action="{{ $ticket->type == 'paid' ? route('stripe.checkout') : route('order.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body" style="padding-top: 10px">
+                                    <div class="row">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <h5>Contact Information</h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="name" class="form-control-label">First Name</label>
+                                                <input class="form-control" type="text" name="name_buyer">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <input class="form-control" type="text" name="last_name_buyer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email" class="form-control-label">Email</label>
+                                                <input class="form-control" type="text" name="email_buyer">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer">
+                                            </div>
+                                        </div>
+                                        <input type="text" hidden name="quantity" id="quantityMobile" value="1">
+                                        <input type="text" hidden name="ticket_id" id="ticket_idMobile" value="{{ $ticket->id }}">
+                                    </div>
+                                </div>
+                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">  
+                                    <div class="row" style="padding-top: 20px;">
+                                        <div class="col-6">
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center justify-content-around">
+                                                <h6>Total</h6>
+                                                <h6 id="totalValueMobile2">${{ number_format($ticket->price, 2) }}</h6>
+                                            </div>  
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                                                <button type="submit" class="btn btn-primary btn-lg">
+                                                    Place Order
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
             @endif
         </div>
         <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
             @if ($ticket !=null)   
                 @if ($today < $event->date_time_start) 
                     @if ($count_orders < $ticket->quantity)
-                        <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
+                        <div class="row" style="padding-top: 20px;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
                                 @if ($ticket->type == 'free')
                                 <h4>Free</h4>
@@ -506,7 +591,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row" style="--bs-gutter-x: -0.5rem;">
+                        <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
@@ -516,12 +601,12 @@
                             </div>
                         </div>
                     @else
-                        <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
+                        <div class="row" style="padding-top: 20px;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
                                 <h4>Sales Ended</h4>
                             </div>
                         </div>
-                        <div class="row" style="--bs-gutter-x: -0.5rem;">
+                        <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
@@ -532,12 +617,12 @@
                         </div> 
                     @endif     
                 @else
-                    <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
+                    <div class="row" style="padding-top: 20px;">
                         <div class="col-12 d-flex align-items-center justify-content-center">
                             <h4>Sales Ended</h4>
                         </div>
                     </div>
-                    <div class="row" style="--bs-gutter-x: -0.5rem;">
+                    <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
@@ -583,12 +668,30 @@
     $('.moreLess').click(function() {
         var tickets = $('#inputTickets').val();
         var total_value = (tickets * ticket_value).toFixed(2);
+        $("#quantityMobile").val(tickets);
         $("#totalValueMobile").text('$' + total_value);
-
+        $("#totalValueMobile2").text('$' + total_value);
        console.log(tickets);
     });
     
     var element = document.getElementById('phone_buyer');  
+      var mask = IMask(element, {
+        mask: [
+            {
+        mask: '+{1}(000)000-0000',
+        startsWith: '1',
+        lazy: true,
+        country: 'Usa'
+      },
+      {
+        mask: '+{52}(000)000-0000',
+        startsWith: '52',
+        lazy: true,
+        country: 'Mexico'
+      },
+        ]
+        });
+    var element = document.getElementById('phone_buyerMobile');  
       var mask = IMask(element, {
         mask: [
             {

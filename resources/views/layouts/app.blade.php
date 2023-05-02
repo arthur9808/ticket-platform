@@ -105,7 +105,16 @@
         .sticky-top {
             padding-top: 15px;
         }
+        #checkout .row {
+            --bs-gutter-x: 1.5rem !important; 
+        }
+        #checkoutMobile .row {
+            --bs-gutter-x: 1.5rem !important; 
+        }
         #navPhone {
+            display: none;
+        }
+        #successpage .mobile {
             display: none;
         }
         #whenandwhere {
@@ -139,6 +148,12 @@
                 display: none;
             }
             #navPhone {
+                display: block;
+            }
+            #sucesspage .desktop {
+                display: none;
+            }
+            #sucesspage .mobile {
                 display: block;
             }
             
