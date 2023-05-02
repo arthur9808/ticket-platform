@@ -105,7 +105,7 @@
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ $event->ubication }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $location }}</p>
                                         </div>
                                     </div>
                                 </div>  
@@ -492,11 +492,11 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-light bg-light">
+        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
             @if ($ticket !=null)   
                 @if ($today < $event->date_time_start) 
                     @if ($count_orders < $ticket->quantity)
-                        <div class="row" style="padding-top: 20px">
+                        <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
                                 @if ($ticket->type == 'free')
                                 <h4>Free</h4>
@@ -506,7 +506,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" style="--bs-gutter-x: -0.5rem;">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
@@ -516,12 +516,12 @@
                             </div>
                         </div>
                     @else
-                        <div class="row" style="padding-top: 20px">
+                        <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
                                 <h4>Sales Ended</h4>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" style="--bs-gutter-x: -0.5rem;">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
@@ -532,12 +532,12 @@
                         </div> 
                     @endif     
                 @else
-                    <div class="row" style="padding-top: 20px">
+                    <div class="row" style="padding-top: 20px; --bs-gutter-x: -0.5rem;">
                         <div class="col-12 d-flex align-items-center justify-content-center">
                             <h4>Sales Ended</h4>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="--bs-gutter-x: -0.5rem;">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">

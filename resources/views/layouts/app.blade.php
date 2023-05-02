@@ -92,6 +92,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     
     <style>
+        .row {
+            --bs-gutter-x: -0.5rem !important; 
+        }
         .nav-event {
             box-shadow: none !important;
         }
