@@ -126,10 +126,14 @@
         #getTicketsBottom {
             display: none; 
         }
+        #getTicketsBottom1 {
+            display: none; 
+        }
         #cardGetTickets {
                display: block; 
         }
         @media only screen and (max-width: 959px) {
+            
             #cardGetTickets {
                display: none !important; 
             }
@@ -137,6 +141,12 @@
                display: block;
                height: 140px; 
                box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
+            }
+            #getTicketsBottom1{
+               display: block;
+               height: 140px; 
+               box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
+               position: sticky !important;
             }
             #whDesktop {
                 display: none;

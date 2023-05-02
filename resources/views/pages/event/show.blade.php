@@ -577,7 +577,7 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
+        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom1">
             @if ($ticket !=null)   
                 @if ($today < $event->date_time_start) 
                     @if ($count_orders < $ticket->quantity)
