@@ -492,10 +492,10 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">
+        <nav class="fixed-bottom navbar-light bg-light">
             @if ($ticket !=null)   
                 @if ($today < $event->date_time_start) 
-                    @if ($count_orders < $ticket->quantity))
+                    @if ($count_orders < $ticket->quantity)
                         <div class="row" style="padding-top: 20px">
                             <div class="col-12 d-flex align-items-center justify-content-center">
                                 @if ($ticket->type == 'free')
