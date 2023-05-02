@@ -315,6 +315,92 @@
                 </div>
                 </div>
             </div>              
+            <div class="modal fade" id="getTicketsMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <a type="button" style="padding-right: 10px;" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <h6>{{ $event->title }}</h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal-body" style="padding-top: 60px">
+                                    <div class="row" style="--bs-gutter-x: -0.5rem;">
+                                        <div class="col-7">
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <h6>{{ $ticket->title }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div class="d-flex align-items-center justify-content-center">                                                
+                                                <button class="btn btn-primary px-3 me-2 moreLess"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                                </button>
+                                                <div class="form-outline" style="margin-bottom: 0.5rem;">
+                                                <input id="inputTickets" min="1"  max="10" name="quantity" value="1" type="number" class="form-control" style="-webkit-appearance: none;
+                                                margin: 0;"/>
+                                                </div>
+                                                <button class="btn btn-primary px-3 ms-2 moreLess"
+                                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <p class="mb-0" style="font-size: 0.80rem"><strong>{{ $ticket->type }}</strong></>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <p class="mb-0" style="font-size: 0.80rem">Sales end on {{ date('j F, Y (h:s a)', strtotime($ticket->date_time_end)) }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            @if (($ticket->quantity - $count_orders) <= '10')    
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - $count_orders . ' left'}}</p>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">    
+                                    <div class="row" style="padding-top: 20px;">
+                                        <div class="col-6">
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center justify-content-around">
+                                                <h6>Total</h6>
+                                                <h6 id="totalValueMobile">${{ number_format($ticket->price, 2) }}</h6>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#checkoutMobile">
+                                                    Register
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>              
             <!-- Modal Checkout-->
             <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -423,7 +509,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTickets">
+                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
                                         Get Tickets
                                     </button>
                                 </div>
@@ -493,6 +579,13 @@
         var total_value = (tickets * ticket_value).toFixed(2);
         $("#totalValue").text('$' + total_value);
         $("#totalValue2").text('$' + total_value);
+    });
+    $('.moreLess').click(function() {
+        var tickets = $('#inputTickets').val();
+        var total_value = (tickets * ticket_value).toFixed(2);
+        $("#totalValueMobile").text('$' + total_value);
+
+       console.log(tickets);
     });
     
     var element = document.getElementById('phone_buyer');  
