@@ -49,10 +49,7 @@ class OrderController extends Controller
     {
         $all = $request->except(['_token']);
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        $title = $ticket->event->title . ' - ' . date('j F, Y (h:s a)', strtotime($ticket->event->date_time_start));
-        $clock = date('j F, Y h:s a', strtotime($ticket->event->date_time_start)) . ' to ' . date('j F, Y h:s a', strtotime($ticket->event->date_time_end));
-        $location = $ticket->event->ubication . ' ' . $ticket->event->street_address . ', ' . $ticket->event->address_locality . ', ' . $ticket->event->address_region . ' ' . $ticket->event->postal_code . ', ' . $ticket->event->address_country;
-        $order_date = date('j F, Y', strtotime($order->created_at));
+        
         $codes = [];
         $orders_data = [];
 
@@ -80,6 +77,11 @@ class OrderController extends Controller
 
             }
             $pdf = PDF::loadView('pages.orders.pdf', ['orders_data' => $orders_data]);
+
+            $title = $ticket->event->title . ' - ' . date('j F, Y (h:s a)', strtotime($ticket->event->date_time_start));
+            $clock = date('j F, Y h:s a', strtotime($ticket->event->date_time_start)) . ' to ' . date('j F, Y h:s a', strtotime($ticket->event->date_time_end));
+            $location = $ticket->event->ubication . ' ' . $ticket->event->street_address . ', ' . $ticket->event->address_locality . ', ' . $ticket->event->address_region . ' ' . $ticket->event->postal_code . ', ' . $ticket->event->address_country;
+            $order_date = date('j F, Y', strtotime($order->created_at));
             
             $data = array(
                 'name' => $all['name_buyer'],
