@@ -430,13 +430,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="name" class="form-control-label">First Name</label>
-                                                <input class="form-control" type="text" name="name_buyer">
+                                                <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="last_name" class="form-control-label">Last Name</label>
-                                                <input class="form-control" type="text" name="last_name_buyer">
+                                                <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
                                     </div>
@@ -444,14 +444,22 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="email" class="form-control-label">Email</label>
-                                                <input class="form-control" type="text" name="email_buyer">
+                                                <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phone" class="form-control-label">Phone</label>
-                                                <input class="form-control" type="text" id="phone_buyer" name="phone_buyer">
+                                                <input class="form-control" type="text" id="phone_buyer" name="phone_buyer" required>
                                             </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAccept" name="checkAccept" required>
+                                                <label class="form-check-label" for="checkAccept">
+                                                    I agree to receive text message and emails as reminders for the event.
+                                                </label>
+                                              </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantity" value="1">
                                         <input type="text" hidden name="ticket_id" id="ticket_id" value="{{ $ticket->id }}">
@@ -521,13 +529,13 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="name" class="form-control-label">First Name</label>
-                                                <input class="form-control" type="text" name="name_buyer">
+                                                <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="last_name" class="form-control-label">Last Name</label>
-                                                <input class="form-control" type="text" name="last_name_buyer">
+                                                <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
                                     </div>
@@ -535,14 +543,22 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="email" class="form-control-label">Email</label>
-                                                <input class="form-control" type="text" name="email_buyer">
+                                                <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phone" class="form-control-label">Phone</label>
-                                                <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer">
+                                                <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer" required>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAccept" name="checkAccept" required>
+                                                <label class="form-check-label" for="checkAccept">
+                                                    I agree to receive text message and emails as reminders for the event.
+                                                </label>
+                                              </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantityMobile" value="1">
                                         <input type="text" hidden name="ticket_id" id="ticket_idMobile" value="{{ $ticket->id }}">

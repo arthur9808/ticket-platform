@@ -50,35 +50,24 @@
                               </tbody>
                             </table>
                             <div class="space-y-4">
-                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0;" align="left">Thanks for your order, {{ $name }}.</h1>
-                              <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
+                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0; padding-top:15px;" align="center">Thanks for your order, {{ $name }}.</h1>
+                              <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-bottom: 30px;" width="100%" align="center">
                                 <tbody>
                                   <tr>
                                     <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left" width="100%" height="16">
                                       &#160;
                                     </td>
                                   </tr>
-                                </tbody>
-                              </table>
-                              <p class="" style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;" align="left">Do not forget to bring your ticket the day of the event.</p>
-                              <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
-                                <tbody>
                                   <tr>
-                                    <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="left" width="100%" height="16">
-                                      &#160;
+                                    <td align="center">
+                                      <p class="" style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;" align="center">Do not forget to bring your ticket the day of the event.</p>
                                     </td>
                                   </tr>
                                 </tbody>
                               </table>
-                              <table class="btn btn-red-500 rounded-full px-6 w-full w-lg-48" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-radius: 9999px; border-collapse: separate !important; width: 192px;" width="192">
+                              <table class="btn btn-red-500 rounded-full px-6 w-full w-lg-48" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-radius: 9999px; border-collapse: separate !important; width: 192px;" width="192" align="center">
                                 <tbody>
                                   <tr>
-                                    <td style="line-height: 24px; font-size: 16px; border-radius: 9999px; width: 192px; margin: 0;" align="center" bgcolor="#dc3545" width="192">
-                                      <a href="{{ $event_location }}" style="color: #ffffff; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 9999px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: #fb6340; padding: 8px 24px; border: 1px solid #fb6340;">Event Location</a>
-                                    </td>
-                                    <td style="line-height: 24px; font-size: 16px; border-radius: 9999px; width: 192px; margin: 0;" align="center" bgcolor="#dc3545" width="192">
-                                      <a href="{{ route('pdf', [$code]) }}" style="color: #ffffff; font-size: 16px; font-family: Helvetica, Arial, sans-serif; text-decoration: none; border-radius: 9999px; line-height: 20px; display: block; font-weight: normal; white-space: nowrap; background-color: #fb6340; padding: 8px 24px; border: 1px solid #fb6340;">Download Ticket</a>
-                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -92,11 +81,59 @@
                                 </tr>
                               </tbody>
                             </table>
-                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #f2f4f7;" bgcolor="#f2f4f7">
+                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #f2f4f7;" bgcolor="#f2f4f7">
                               <tbody>
                                 <tr>
-                                  <img src="{{ asset('storage/' . $event_image) }}" alt="">  
+                                  <td align="center">
+                                    <h2>{{ $title }}</h2>
+                                  </td>
                                 </tr>
+                                <tr>
+                                  <td align="center" style="padding-top: 15px">
+                                    <img src="{{ asset('storage/' . $event_image) }}" alt="" width="70%">  
+                                  </td>
+                                </tr> 
+                                
+                              </tbody>
+                            </table>
+                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #f2f4f7; padding-top: 10px;" bgcolor="#f2f4f7">
+                              <tbody>
+                                <tr>
+                                  <td align="left" style="padding-bottom: 10px; padding-left: 20px; width: 20px;">
+                                    <img src="{{ asset('storage/uploads/clock-email.png') }}" alt="" width="100%">
+                                  </td>
+                                  <td align="left" style="padding-bottom: 15px; padding-left: 20px; ">
+                                    <p>{{ $clock }}</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="left" style="padding-bottom: 20px; padding-left: 20px; width: 20px;">
+                                    <a href="{{ $event_location }}"><img src="{{ asset('storage/uploads/location-email.png') }}" alt="" width="100%"></a>
+                                  </td>
+                                  <td align="left" style="padding-bottom: 25px; padding-left: 20px; ">
+                                    <a href="{{ $event_location }}"><p>{{ $location }}</p></a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table class="card rounded px-4 py-8 p-sm-10" role="presentation" border="0" align="center" cellpadding="0" cellspacing="0" style="border-radius: 24px; border-collapse: separate !important; width: 100%; overflow: hidden; border: 1px solid #f2f4f7; padding-top: 10px;" bgcolor="#fff">
+                              <tbody>
+                                <tr>
+                                  <td align="left" style="padding-bottom: 15px; padding-left: 20px;">
+                                    <h3>Order Summary</h3>
+                                    <p>Order #{{ $order_id }} - {{ $order_date }}</p>
+                                    <p>{{ $ticket_type == 'free' ? 'Free Order' : 'Paid Order'}}</p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="left" style="padding-bottom: 15px; padding-left: 20px;">
+                                    <p>{{ $order_quantity . ' x ' . $ticket_title }}</p>
+                                  </td>
+                                  <td align="left" style="padding-bottom: 15px; padding-left: 20px;">
+                                    <p>$ {{ number_format($order_quantity * $ticket_price, 2) }}</p>
+                                  </td>
+                                </tr>
+                               
                               </tbody>
                             </table>
                             <table class="s-6 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">

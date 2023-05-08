@@ -82,6 +82,15 @@ class OrderController extends Controller
                 'name' => $all['name_buyer'],
                 'email' => $all['email_buyer'],
                 'subject' => $ticket->event->title,
+                'title' => $title,
+                'clock' => $clock,
+                'location' => $location,
+                'order_id' => $order->id,
+                'order_date' => $order_date,
+                'order_quantity' => $request->quantity,
+                'ticket_price' => $ticket->price,
+                'ticket_title' => $ticket->title,
+                'ticket_type' => $ticket->type,
                 'user_name' => $ticket->event->user->username,
                 'user_email' => $ticket->event->user->email,
                 'event_image' => $ticket->event->image,
@@ -145,36 +154,70 @@ class OrderController extends Controller
     }
     public function test() 
     {
-        $code = 'HtVUp';
+        $code = 'PGd3t';
         $order = Order::where('code', $code)->first();
         $event = Event::where('id', $order->ticket->event_id)->first(); 
-        $pdf = PDF::loadView('pages.orders.pdf', [
-            'event_title'     => $event->title,
-            'event_ubication' => $event->ubication,
-            'event_datetime'  => $event->date_time_start,
-            'order'           => $order->id,
-            'type_ticket'     => $order->ticket->type,
-            'name_ticket'     => $order->ticket->title,
-            'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
-            'order_date'      => $order->created_at,
-            'qr'              => $order->svg_qr,
-            'website'         => $event->user->web_url
-        ]);
-        $data = [
-            'event_title'     => $event->title,
-            'event_ubication' => $event->ubication,
-            'event_datetime'  => $event->date_time_start,
-            'order'           => $order->id,
-            'type_ticket'     => $order->ticket->type,
-            'name_ticket'     => $order->ticket->title,
-            'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
-            'order_date'      => $order->created_at,
-            'qr'              => $order->svg_qr,
-            'website'         => $event->user->web_url
-        ];
+        $ticket = Ticket::where('id', '2')->first();
+        $title = $ticket->event->title . ' - ' . date('j F, Y (h:s a)', strtotime($ticket->event->date_time_start));
+        $clock = date('j F, Y h:s a', strtotime($ticket->event->date_time_start)) . ' to ' . date('j F, Y h:s a', strtotime($ticket->event->date_time_end));
+        $location = $ticket->event->ubication . ' ' . $ticket->event->street_address . ', ' . $ticket->event->address_locality . ', ' . $ticket->event->address_region . ' ' . $ticket->event->postal_code . ', ' . $ticket->event->address_country;
+        $order_date = date('j F, Y', strtotime($order->created_at));
+
+        $data = array(
+            'name' => 'Arturo',
+            'email' => 'arturoalvavi989@gmail.com',
+            'subject' => $ticket->event->title,
+            'title' => $title,
+            'clock' => $clock,
+            'location' => $location,
+            'order_id' => $order->id,
+            'order_date' => $order_date,
+            'order_quantity' => '1',
+            'ticket_price' => $ticket->price,
+            'ticket_title' => $ticket->title,
+            'ticket_type' => $ticket->type,
+            'user_name' => $ticket->event->user->username,
+            'user_email' => $ticket->event->user->email,
+            'event_image' => $ticket->event->image,
+            'organizer_image' => $ticket->event->user->image,
+            'event_location' => $ticket->event->maps_url,
+            'code' => $order->code
+        );
+        // Mail::send('pages.email.email', $data, function ($message) use ($data) {
+        //     $message->from('admin@ticketsplatform.com', $data['user_name']);
+        //     $message->to($data['email'], $data['name']);
+        //     $message->subject($data['subject']);
+        //     $message->priority(3);
+    
+        // });
+        return view('pages.email.email', $data); 
+        // $pdf = PDF::loadView('pages.orders.pdf', [
+        //     'event_title'     => $event->title,
+        //     'event_ubication' => $event->ubication,
+        //     'event_datetime'  => $event->date_time_start,
+        //     'order'           => $order->id,
+        //     'type_ticket'     => $order->ticket->type,
+        //     'name_ticket'     => $order->ticket->title,
+        //     'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
+        //     'order_date'      => $order->created_at,
+        //     'qr'              => $order->svg_qr,
+        //     'website'         => $event->user->web_url
+        // ]);
+        // $data = [
+        //     'event_title'     => $event->title,
+        //     'event_ubication' => $event->ubication,
+        //     'event_datetime'  => $event->date_time_start,
+        //     'order'           => $order->id,
+        //     'type_ticket'     => $order->ticket->type,
+        //     'name_ticket'     => $order->ticket->title,
+        //     'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
+        //     'order_date'      => $order->created_at,
+        //     'qr'              => $order->svg_qr,
+        //     'website'         => $event->user->web_url
+        // ];
         
-        return view('pages.orders.pdf', $data);
-        return $pdf->download('sample.pdf');
+        // return view('pages.orders.pdf', $data);
+        // return $pdf->download('sample.pdf');
 
     }
     public function pdf($code) 
