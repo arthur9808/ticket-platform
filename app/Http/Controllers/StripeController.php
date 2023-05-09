@@ -66,7 +66,7 @@ class StripeController extends Controller
             'ticket_id' => $array_code[5]
         ];
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        // dd($ticket);
+        dd($all);
         $codes = [];
         $orders_data = [];
         
