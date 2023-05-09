@@ -455,7 +455,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkAccept" name="checkAccept" required>
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
                                                     I agree to receive text message and emails as reminders for the event.
                                                 </label>
