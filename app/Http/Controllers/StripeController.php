@@ -100,7 +100,7 @@ class StripeController extends Controller
             $title = $ticket->event->title . ' - ' . date('j F, Y (h:s a)', strtotime($ticket->event->date_time_start));
             $clock = date('j F, Y h:s a', strtotime($ticket->event->date_time_start)) . ' to ' . date('j F, Y h:s a', strtotime($ticket->event->date_time_end));
             $location = $ticket->event->ubication . ' ' . $ticket->event->street_address . ', ' . $ticket->event->address_locality . ', ' . $ticket->event->address_region . ' ' . $ticket->event->postal_code . ', ' . $ticket->event->address_country;
-            $order_date = date('j F, Y', strtotime($order->created_at));
+            $order_date = date('j F, Y', strtotime($orders_data['order_date']));
 
             $data = array(
                 'name' => $all['name_buyer'],
