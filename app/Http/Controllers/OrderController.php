@@ -39,7 +39,23 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+
+    public function get()
+    {   
+        $orders = Order::all();
+        
+        return $orders; 
+    }
+
+    public function assist($code)
+    {   
+        $order = Order::where('code', $code)->first();
+        $order->update([
+            'assist' => true
+        ]);
+        return $order; 
     }
 
     /**

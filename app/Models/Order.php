@@ -18,6 +18,7 @@ class Order extends Model
         'phone_buyer',
         'svg_qr',
         'code',
+        'assist',
         'stripe_data',
         'ticket_id'
     ];
