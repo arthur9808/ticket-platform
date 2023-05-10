@@ -42,32 +42,6 @@ class OrderController extends Controller
         
     }
 
-    public function get()
-    {   
-        $orders = Order::all();
-        
-        return $orders; 
-    }
-
-    public function assist($code)
-    {   
-        $order = Order::where('code', $code)->first();
-        if ($order->assist == null) {
-            $order->update([
-                'assist' => true
-            ]);
-            $response = [
-                'message' => 'Thanks for coming'
-            ];
-            return $response; 
-        } else {
-            $response = [
-                'message' => 'Your assistance has already been registered'
-            ];
-            return $response; 
-        }
-    }
-
     /**
      * Store a newly created resource in storage.
      */

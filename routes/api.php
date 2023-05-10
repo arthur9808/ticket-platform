@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/orders', [OrderController::class, 'get']);
-Route::post('/assist/{code}', [OrderController::class, 'assist']);
+Route::get('/organizers', [ApiController::class, 'getOrganizers']);
+Route::get('/orders', [ApiController::class, 'getOrders']);
+Route::get('/events', [ApiController::class, 'getEvents']);
+Route::get('/event/{id}', [ApiController::class, 'getEvent']);
+Route::post('/assist/{code}', [ApiController::class, 'assistOrder']);
