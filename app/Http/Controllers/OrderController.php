@@ -59,7 +59,7 @@ class OrderController extends Controller
             $response = [
                 'message' => 'Thanks for coming'
             ];
-            return $reponse; 
+            return $response; 
         } else {
             $response = [
                 'message' => 'Your assistance has already been registered'
