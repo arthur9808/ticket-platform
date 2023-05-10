@@ -52,10 +52,20 @@ class OrderController extends Controller
     public function assist($code)
     {   
         $order = Order::where('code', $code)->first();
-        $order->update([
-            'assist' => true
-        ]);
-        return $order; 
+        if ($order->assist == null) {
+            $order->update([
+                'assist' => true
+            ]);
+            $response = [
+                'message' => 'Thanks for coming'
+            ];
+            return $reponse; 
+        } else {
+            $response = [
+                'message' => 'Your assistance has already been registered'
+            ];
+            return $response; 
+        }
     }
 
     /**
