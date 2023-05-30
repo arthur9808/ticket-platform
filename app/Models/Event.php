@@ -40,6 +40,13 @@ class Event extends Model
         return $this->hasMany(Ticket::class, 'event_id', 'id');
     }
 
+    public function totalTickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'event_id', 'id')
+            ->selectRaw('event_id, sum(quantity) as total_quantity')
+            ->groupBy('event_id');
+    }
+
     public function orders(): HasManyThrough
     {
         return $this->hasManyThrough(Order::class, Ticket::class,
@@ -49,4 +56,13 @@ class Event extends Model
             'id' // Local key on the environments table...
         );
     }
+
+    public function getTotalPriceAttribute(): float
+    {
+        return $this->orders->sum(function ($order) {
+            return $order->ticket->price;
+        });
+    }
+   
+
 }

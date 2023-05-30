@@ -18,7 +18,11 @@ class ApiController extends Controller
     }
     public function getEvents()
     {   
-        $events = Event::withCount('orders')->get();
+        $events = Event::withCount('orders')->with('totalTickets')->get();
+        $events = $events->map(function ($event) {
+            $event['earned'] = $event->totalPrice;
+            return $event;
+        })->makeHidden('orders');
         
         return $events; 
     }
