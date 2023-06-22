@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Event;
 use App\Models\User;
-
+use Carbon\Carbon;
 
 class ApiController extends Controller
 {
@@ -41,6 +41,8 @@ class ApiController extends Controller
 
     public function assistOrder($code)
     {   
+        $date = Carbon::now();
+        $formattedDate = $date->format('F j, Y');
         $order = Order::where('code', $code)->first();
         if ($order == null) {
             $response = [
@@ -52,12 +54,12 @@ class ApiController extends Controller
                 'assist' => true
             ]);
             $response = [
-                'message' => 'Thanks for coming'
+                'message' => 'Confirmed attendance for ' . $order->name_buyer . ' at the ' . $order->ticket->event->title . ' event ' . $formattedDate
             ];
             return $response; 
         } else {
             $response = [
-                'message' => 'Your assistance has already been registered'
+                'message' => 'This code has already been registered'
             ];
             return $response; 
         }
