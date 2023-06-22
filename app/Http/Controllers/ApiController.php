@@ -42,6 +42,11 @@ class ApiController extends Controller
     public function assistOrder($code)
     {   
         $order = Order::where('code', $code)->first();
+        if ($order == null) {
+            $response = [
+                'message' => 'The code ' . $code . ' dont exist'
+            ];
+        }
         if ($order->assist == null) {
             $order->update([
                 'assist' => true
