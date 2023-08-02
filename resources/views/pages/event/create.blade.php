@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="street_address" class="form-control-label">Street Address</label>
-                            <input class="form-control" type="text" name="street_address" value="{{ $event->street_address }}" required>
+                            <input class="form-control" type="text" name="street_address" required>
                         </div>
                         <div class="form-group">
                             <label for="address_locality" class="form-control-label">Address Locality</label>
