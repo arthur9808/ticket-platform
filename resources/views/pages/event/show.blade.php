@@ -6,7 +6,7 @@
             style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
             <span class="mask bg-gradient-dark opacity-3"></span>
         </div> --}}
-        <div class="row" style="background-image: url('{{ asset('storage/uploads/blur.png') }}'); background-position: top; background-repeat: no-repeat; background-size: cover;">  
+        <div class="row" style="background-image: url('{{ asset('storage/uploads/blur.jpeg') }}'); background-position: top; background-repeat: no-repeat; background-size: cover;">  
             <div class="align-items-center min-vh-45" style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top; background-repeat: no-repeat;">   
             </div>   
             <span class="mask bg-gradient-dark opacity-3"></span>  
