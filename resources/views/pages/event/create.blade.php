@@ -76,7 +76,7 @@
                             <input class="form-control" type="text" name="meta_title">
                         </div>
                         <div class="form-group">
-                            <label for="meta_description" class="form-control-label">Meta Title</label>
+                            <label for="meta_description" class="form-control-label">Meta Description</label>
                             <input class="form-control" type="text" name="meta_description">
                         </div>
                     </div>
