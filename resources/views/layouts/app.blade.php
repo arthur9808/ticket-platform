@@ -113,6 +113,9 @@
         .about-html p {
             font-size: 0.80rem;            
         }
+        .tox-notifications-container {
+            display: none !important;
+        }
         #checkout .row {
             --bs-gutter-x: 1.5rem !important; 
         }
