@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
-    <div class="container-fluid py-4">
+    {{-- <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
@@ -391,7 +391,7 @@
             </div>
         </div>
         @include('layouts.footers.auth.footer')
-    </div>
+    </div> --}}
 @endsection
 
 @push('js')

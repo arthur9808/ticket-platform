@@ -164,7 +164,7 @@
                         <div class="card-transparent" style="width: 40rem">
                             <h4 style="padding-bottom: 20px">About this event</h4>  
                             <img src="{{ asset('storage/' .  $event->image) }}" class="card-img-bottom" alt="">
-                            <p class="mb-0" style="font-size: 0.80rem; padding-top: 20px;">{{ $event->about}}</p>
+                            <div class="about-html">{!! $event->about !!}</div>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 40px" id="organizer">

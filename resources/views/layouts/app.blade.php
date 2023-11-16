@@ -105,6 +105,14 @@
         .sticky-top {
             padding-top: 15px;
         }
+        .about-html {
+            padding-top: 20px;
+            text-align: justify;
+            
+        }
+        .about-html p {
+            font-size: 0.80rem;            
+        }
         #checkout .row {
             --bs-gutter-x: 1.5rem !important; 
         }
@@ -236,6 +244,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/vfs_fonts.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
     <script src="https://unpkg.com/imask"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     @stack('js')
 </body>

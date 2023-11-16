@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about" class="form-control-label">About Event</label>
-                            <textarea  class="form-control" name="about" id="about" cols="30" rows="5" required>{{ $event->about }}</textarea>
+                            <textarea class="form-control" name="about" id="about" cols="30" rows="5" required>{!! $event->about !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="meta_title" class="form-control-label">Meta Title</label>
@@ -101,6 +101,11 @@
         dateFormat: "Y-m-d H:i",
         altInput: true,
         altFormat: "F j, Y (h:S K)",
+    });
+    tinymce.init({
+        selector: 'textarea#about',
+        plugins: 'code',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | code',
     });
 </script>
 @endpush
