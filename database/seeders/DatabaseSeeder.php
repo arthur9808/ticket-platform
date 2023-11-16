@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'firstname' => 'Admin',
             'lastname' => 'Admin',
-            'email' => 'admin@admin.com',
-            'password' => bcrypt('secretpassword')
+            'email' => 'admin@ticketsplatform.com',
+            'password' => bcrypt('MuxCKRsSrWJC')
         ]);
     }
 }
