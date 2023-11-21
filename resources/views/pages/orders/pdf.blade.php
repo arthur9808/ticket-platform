@@ -77,7 +77,7 @@
                                       <tr>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-left: 15px;" align="left" width="100%" height="16">
                                          <p style="font-size: 14px; line-height: 24px; width: 100%;">Order #{{ $order_data['order'] }}. Ordered by</p>
-                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">{{ $name_buyer }} on
+                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">{{ $order_data['name_buyer'] }} on
                                           {{ date('j F, Y h:s a', strtotime($order_data['order_date'])) }}</p>
                                         </td>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-right: 15px; padding-bottom: 15px;" align="right" width="100%" height="16">
