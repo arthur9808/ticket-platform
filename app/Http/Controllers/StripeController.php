@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Http\Request;
 use PDF;
+use Carbon\Carbon;
+
 
 
 class StripeController extends Controller
