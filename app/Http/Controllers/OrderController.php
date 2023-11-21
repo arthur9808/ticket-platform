@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Stripe;
 use PDF;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -53,6 +54,9 @@ class OrderController extends Controller
         $codes = [];
         $orders_data = [];
 
+        $date = Carbon::now();
+        $date = $date->format('Y-m-d H:i:s');
+
         for ($i=0; $i < $request->quantity; $i++) { 
                 $all['code'] = Str::random(5);
                 $order = Order::create($all);
@@ -70,7 +74,7 @@ class OrderController extends Controller
                     'type_ticket'     => $order->ticket->type,
                     'name_ticket'     => $order->ticket->title,
                     'name_buyer'      => $order->name_buyer . ' ' . $order->last_name_buyer,
-                    'order_date'      => $order->created_at,
+                    'order_date'      => $date,
                     'qr'              => $order->svg_qr,
                     'website'         => $event->user->web_url
                 ];
@@ -81,7 +85,7 @@ class OrderController extends Controller
             $title = $ticket->event->title . ' - ' . date('j F, Y (h:s a)', strtotime($ticket->event->date_time_start));
             $clock = date('j F, Y h:s a', strtotime($ticket->event->date_time_start)) . ' to ' . date('j F, Y h:s a', strtotime($ticket->event->date_time_end));
             $location = $ticket->event->ubication . ' ' . $ticket->event->street_address . ', ' . $ticket->event->address_locality . ', ' . $ticket->event->address_region . ' ' . $ticket->event->postal_code . ', ' . $ticket->event->address_country;
-            $order_date = date('j F, Y', strtotime($order->created_at));
+            $order_date = date('j F, Y', strtotime($date));
             
             $data = array(
                 'name' => $all['name_buyer'],
