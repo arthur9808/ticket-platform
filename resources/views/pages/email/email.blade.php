@@ -29,6 +29,7 @@
                     <table align="center" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 600px; margin: 0 auto;">
                       <tbody>
                         @php
+                          use Carbon\Carbon;
                           Carbon::setLocale('es');
                           $orderDate = Carbon::parse($order_date)->isoFormat('D [de] MMMM, YYYY');
                           $orderDate = ucwords($orderDate);
