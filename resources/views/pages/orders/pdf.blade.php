@@ -12,6 +12,15 @@
     </style>
   </head>
   <body class="bg-red-100" style="outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;" bgcolor="#ffffff">
+    @php
+      use Carbon\Carbon;
+      Carbon::setLocale('es');
+      $formattedDate = Carbon::parse($order_data['event_datetime'])->isoFormat('D [de] MMMM, YYYY');
+      $formattedDate = ucwords($formattedDate);
+
+      $orderDate = Carbon::parse($order_data['order_date'])->isoFormat('D [de] MMMM, YYYY');
+      $orderDate = ucwords($orderDate);
+    @endphp
     @foreach ($orders_data as $order_data)    
     <table class="bg-red-100 body" valign="top" role="presentation" border="0" cellpadding="0" cellspacing="0" style="outline: 0; width: 100%; min-width: 100%; height: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: Helvetica, Arial, sans-serif; line-height: 24px; font-weight: normal; font-size: 16px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #000000; margin: 0; padding: 0; border-width: 0;" bgcolor="#ffffff">
       <tbody>
@@ -67,7 +76,7 @@
                                   <tbody>
                                       <h2 style="margin-left: 15px;">{{ $order_data['event_title'] }}</h2>
                                       <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 50px; margin-left: 15px;" align="left">{{ $order_data['event_ubication'] }}1</p>
-                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ date('j F, Y h:s a', strtotime($order_data['event_datetime'])) }}</p>
+                                      <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ $formattedDate . ' ' .date('h:s a', strtotime($order_data['event_datetime'])) }}</p>
                                       <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ strtoupper($order_data['type_ticket'] . ' order') }}</p>
                                       <p class="" style="line-height: 24px; font-size: 12px; color: #545454; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">Información de la Orden</p>
                                   </tbody>
@@ -78,7 +87,7 @@
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-left: 15px;" align="left" width="100%" height="16">
                                          <p style="font-size: 14px; line-height: 24px; width: 100%;">Orden #{{ $order_data['order'] }}. Ordenado por</p>
                                          <p style="font-size: 14px; line-height: 24px; width: 100%;">{{ $order_data['name_buyer'] }} el
-                                          {{ date('j F, Y h:s a', strtotime($order_data['order_date'])) }}</p>
+                                          {{ $orderDate . ' ' . date('h:s a', strtotime($order_data['order_date'])) }}</p>
                                         </td>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-right: 15px; padding-bottom: 15px;" align="right" width="100%" height="16">
                                           <img class="w-16" src="{{ asset('storage/' . $order_data['qr']) }}" style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 100px; border-style: none; border-width: 0;" width="64">
