@@ -57,7 +57,7 @@
                                       <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0; color:#344767" align="left">Ticketplatform</h1>
                                     </td>
                                     <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0;" align="right" width="100%" height="16">
-                                      <h5>Order#{{ $order_data['order'] }}</h5>
+                                      <h5>Orden#{{ $order_data['order'] }}</h5>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -69,15 +69,15 @@
                                       <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 50px; margin-left: 15px;" align="left">{{ $order_data['event_ubication'] }}1</p>
                                       <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ date('j F, Y h:s a', strtotime($order_data['event_datetime'])) }}</p>
                                       <p class="" style="line-height: 24px; font-size: 14px; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">{{ strtoupper($order_data['type_ticket'] . ' order') }}</p>
-                                      <p class="" style="line-height: 24px; font-size: 12px; color: #545454; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">Order Information</p>
+                                      <p class="" style="line-height: 24px; font-size: 12px; color: #545454; width: 100%; margin: 0; padding-top: 25px; margin-left: 15px;" align="left">Información de la Orden</p>
                                   </tbody>
                                 </table>
                                 <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;" width="100%">
                                   <tbody>
                                       <tr>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-left: 15px;" align="left" width="100%" height="16">
-                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">Order #{{ $order_data['order'] }}. Ordered by</p>
-                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">{{ $order_data['name_buyer'] }} on
+                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">Orden #{{ $order_data['order'] }}. Ordenado por</p>
+                                         <p style="font-size: 14px; line-height: 24px; width: 100%;">{{ $order_data['name_buyer'] }} el
                                           {{ date('j F, Y h:s a', strtotime($order_data['order_date'])) }}</p>
                                         </td>
                                         <td style="line-height: 16px; font-size: 16px; width: 100%; height: 16px; margin: 0; padding-right: 15px; padding-bottom: 15px;" align="right" width="100%" height="16">
