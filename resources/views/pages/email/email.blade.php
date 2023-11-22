@@ -127,7 +127,7 @@
                                 <tr>
                                   <td align="left" style="padding-bottom: 15px; padding-left: 20px;">
                                     <h3>Resumen de la orden</h3>
-                                    <p>Orden #{{ $order_id }} - {{ $order_date }}</p>
+                                    <p>Orden #{{ $order_id }} - {{ $orderDate }}</p>
                                     <p>{{ $ticket_type == 'free' ? 'Free Order' : 'Paid Order'}}</p>
                                   </td>
                                 </tr>
