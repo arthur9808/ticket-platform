@@ -50,7 +50,7 @@
                               </tbody>
                             </table>
                             <div class="space-y-4">
-                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0; padding-top:15px;" align="center">Thanks for your order, {{ $name }}.</h1>
+                              <h1 class="text-4xl fw-800" style="padding-top: 0; padding-bottom: 0; font-weight: 800 !important; vertical-align: baseline; font-size: 36px; line-height: 43.2px; margin: 0; padding-top:15px;" align="center">Gracias por tu orden, {{ $name }}.</h1>
                               <table class="s-4 w-full" role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%; padding-bottom: 30px;" width="100%" align="center">
                                 <tbody>
                                   <tr>
@@ -60,7 +60,7 @@
                                   </tr>
                                   <tr>
                                     <td align="center">
-                                      <p class="" style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;" align="center">Do not forget to bring your ticket the day of the event.</p>
+                                      <p class="" style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;" align="center">No olvides traer tu ticket el dia del evento.</p>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -120,8 +120,8 @@
                               <tbody>
                                 <tr>
                                   <td align="left" style="padding-bottom: 15px; padding-left: 20px;">
-                                    <h3>Order Summary</h3>
-                                    <p>Order #{{ $order_id }} - {{ $order_date }}</p>
+                                    <h3>Resumen de la orden</h3>
+                                    <p>Orden #{{ $order_id }} - {{ $order_date }}</p>
                                     <p>{{ $ticket_type == 'free' ? 'Free Order' : 'Paid Order'}}</p>
                                   </td>
                                 </tr>
