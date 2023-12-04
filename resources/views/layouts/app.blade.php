@@ -113,7 +113,7 @@
         .about-html p {
             font-size: 0.80rem;            
         }
-        .tox-notifications-container {
+        .tox-tinymce-aux {
             display: none !important;
         }
         #checkout .row {
