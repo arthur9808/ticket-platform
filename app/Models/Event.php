@@ -24,6 +24,7 @@ class Event extends Model
         'maps_url',
         'date_time_start',
         'date_time_end',
+        'coverimage',
         'image',
         'summary',
         'created_by',

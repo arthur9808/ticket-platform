@@ -64,6 +64,10 @@
                             <input class="form-control" type="text" name="date_time_end" id="dateTime" required>
                         </div>
                         <div class="form-group">
+                            <label for="image" class="form-control-label">Cover Image</label>
+                            <input class="form-control" type="file" name="coverimage" id="coverimage" required>
+                        </div>
+                        <div class="form-group">
                             <label for="image" class="form-control-label">Main Event Image</label>
                             <input class="form-control" type="file" name="image" id="image" required>
                         </div>
