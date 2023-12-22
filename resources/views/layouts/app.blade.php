@@ -144,7 +144,9 @@
                display: block; 
         }
         @media only screen and (max-width: 959px) {
-            
+            .coverimg {
+                background-repeat: round !important;
+            }
             #cardGetTickets {
                display: none !important; 
             }

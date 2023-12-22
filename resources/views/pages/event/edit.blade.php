@@ -67,6 +67,13 @@
                             <input class="form-control" type="text" name="date_time_end" id="dateTime" value="{{ $event->date_time_end }}" required>
                         </div>
                         <div class="form-group">
+                            <label for="image" class="form-control-label">Cover Event Image</label>
+                            <input class="form-control" type="file" name="coverimage" id="coverimage">
+                        </div>
+                        <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg"
+                            style="background-image: url('{{ asset('storage/' .  $event->coverimage) }}'); background-position: top;">
+                        </div>
+                        <div class="form-group">
                             <label for="image" class="form-control-label">Main Event Image</label>
                             <input class="form-control" type="file" name="image" id="image">
                         </div>

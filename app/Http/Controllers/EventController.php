@@ -51,6 +51,12 @@ class EventController extends Controller
                 'image' => $image         
             ]);
         }
+        if ($request->hasFile('coverimage')) {
+            $image = $request->file('coverimage')->store('uploads','public');
+            Event::find($event->id)->update([
+                'coverimage' => $image         
+            ]);
+        }
         $id = $event->id; 
 
         return redirect()->route('ticket.create', [$id]);
@@ -102,6 +108,13 @@ class EventController extends Controller
             $image = $request->file('image')->store('uploads','public');
             Event::find($event->id)->update([
                 'image' => $image         
+            ]);
+        }
+        if ($request->hasFile('coverimage')) {
+            Storage::delete('public/'.$event->image);
+            $image = $request->file('coverimage')->store('uploads','public');
+            Event::find($event->id)->update([
+                'coverimage' => $image         
             ]);
         }
         return back()->with('succes', 'Event succesfully updated');
