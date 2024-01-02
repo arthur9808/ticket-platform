@@ -9,4 +9,11 @@
             <p class="text-white mb-0">{{ session()->get('error') }}</p>
         </div>
     @endif
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                <p class="text-white mb-0">{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
 </div>

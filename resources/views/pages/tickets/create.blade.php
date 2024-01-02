@@ -15,6 +15,9 @@
                 </div> 
             </div>
             <br>
+            <div id="alert">
+                @include('components.alert')
+            </div>
             <form role="form" method="POST" action="{{ route('ticket.store', [$event->id]) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row d-flex justify-content-center">
@@ -29,11 +32,11 @@
                         </div>
                         <div class="form-group">
                             <label for="dateTimeStart" class="form-control-label">Sales Date and Time Start</label>
-                            <input class="form-control" type="text" name="date_time_start" id="dateTime" required>
+                            <input class="form-control dateTime" type="text" name="date_time_start" required>
                         </div>
                         <div class="form-group">
                             <label for="dateTimeEnd" class="form-control-label">Sales Date and Time End</label>
-                            <input class="form-control" type="text" name="date_time_end" id="dateTime" required>
+                            <input class="form-control dateTime" type="text" name="date_time_end" required>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="type" id="paid" value="paid" checked>
@@ -68,12 +71,13 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-    flatpickr("#dateTime", {
+    flatpickr(".dateTime", {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
         altInput: true,
         altFormat: "F j, Y (h:S K)",
     });
+    
     
     
     $("#free").on("change", function(){

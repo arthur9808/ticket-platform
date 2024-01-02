@@ -37,6 +37,10 @@ class TicketController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $request->validate([
+            'date_time_start' => 'required',
+            'date_time_end' => 'required'
+        ]);
         
         $all = $request->except(['_token']);
         $all['event_id'] = $id;
@@ -47,7 +51,7 @@ class TicketController extends Controller
         }
         $ticket = Ticket::create($all);
 
-        return redirect()->route('ticket.index', [$id]);
+        return redirect()->route('ticket.index', [$id])->with('succes', 'Ticket created successfully!');
 
     }
 
@@ -74,6 +78,11 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'date_time_start' => 'required',
+            'date_time_end' => 'required'
+        ]);
+        
         $all = $request->except(['_token']);
         // dd($request);
         if ($all['type'] == 'free') {
