@@ -50,7 +50,18 @@ class OrderController extends Controller
     {
         $all = $request->except(['_token']);
         $ticket = Ticket::where('id', $all['ticket_id'])->first();
-        
+
+        $ordersTicket = Order::where('ticket_id', $ticket->id)->get();
+        if ($ordersTicket->where('email_buyer', $all['email_buyer'])->count() >= 10) {
+            return back()->with('error', 'Has excedido el número máximo de tickets por persona.');
+        }
+        if ($ordersTicket->count() >= $ticket->quantity) {
+            return back()->with('error', 'No hay tickets disponibles.');
+        }
+        if ($request->quantity > 10) {
+            return back()->with('error', 'No puedes comprar más de 10 tickets.');
+        }
+
         $codes = [];
         $orders_data = [];
 
