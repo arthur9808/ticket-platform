@@ -58,6 +58,9 @@ class OrderController extends Controller
         if ($ordersTicket->count() >= $ticket->quantity) {
             return back()->with('error', 'There are no more tickets available.');
         }
+        if ($request->quantity > 10) {
+            return back()->with('error', 'You can not buy more than 10 tickets.');
+        }
         
         $codes = [];
         $orders_data = [];
