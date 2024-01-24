@@ -52,7 +52,8 @@
 <script>
      $(document).ready(function () {
     $('#orders').DataTable({
-      "paging": false,
+      "paging": true,
+      "lengthMenu": [20],
       "scrollY": 400,
       "lengthChange": true,
       "searching": true,
