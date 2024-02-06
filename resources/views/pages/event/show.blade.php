@@ -2,6 +2,12 @@
 
 @section('content')
     <main class="main-content  mt-0">
+        @php
+            use Carbon\Carbon;
+            Carbon::setLocale('es');
+            $formattedDate = Carbon::parse($event->date_time_start)->isoFormat('D [de] MMMM, YYYY');
+            $formattedDate = ucwords($formattedDate);
+        @endphp
         {{-- <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-6 border-radius-lg"
             style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
             <span class="mask bg-gradient-dark opacity-3"></span>
@@ -18,7 +24,7 @@
             <div class="card-body p-3">
                 <div class="card-header pb-0">
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0">{{ date('j F, Y', strtotime($event->date_time_start)) }}</h5>
+                        <h5 class="mb-0">{{ $formattedDate }}</h5>
                     </div>
                     <div class="d-flex align-items-center">
                         <h3 class="mb-0">{{ $event->title }}</h3>
@@ -35,10 +41,10 @@
                                     <a class="nav-link" id="aInfo" href="#whenandwhere">Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aDetails" href="#about">Details</a>
+                                    <a class="nav-link" id="aDetails" href="#about">Detalles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aOrganizer" href="#organizer">Organizer</a>
+                                    <a class="nav-link" id="aOrganizer" href="#organizer">Organizador</a>
                                 </li>
                             </ul>  
                         </div>
@@ -48,10 +54,10 @@
                                     <a class="nav-link" id="aInfo2" href="#whenandwhere">Info</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aDetails2" href="#about">Details</a>
+                                    <a class="nav-link" id="aDetails2" href="#about">Detalles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="aOrganizer2" href="#organizer">Organizer</a>
+                                    <a class="nav-link" id="aOrganizer2" href="#organizer">Organizador</a>
                                 </li>
                             </ul>  
                         </div>
@@ -59,15 +65,15 @@
                     <div class="row" id="whenandwhere">
                         <div class="col-6" id="whDesktop">
                             <div class="row">
-                                <h4 style="padding-bottom: 20px">When and where</h4>
+                                <h4 style="padding-bottom: 20px">Cuándo y Dónde</h4>
                                 <div class="col-sm-6">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
                                             <i class="far fa-calendar" style="padding-right: 10px"></i>
-                                            <h6 class="mb-0">Date and Time</h6>
+                                            <h6 class="mb-0">Fecha y Hora</h6>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +81,7 @@
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
-                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
+                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Ubicación</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0" style="font-size: 0.80rem">{{ $location  }}</p>
@@ -86,15 +92,15 @@
                         </div>
                         <div class="col-12" id="whPhone">
                             <div class="row">
-                                <h4 style="padding-bottom: 20px">When and where</h4>
+                                <h4 style="padding-bottom: 20px">Cuándo y Dónde</h4>
                                 <div class="col-sm-6">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
                                             <i class="far fa-calendar" style="padding-right: 10px"></i>
-                                            <h6 class="mb-0">Date and Time</h6>
+                                            <h6 class="mb-0">Fecha y Hora</h6>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +108,7 @@
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
                                             <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
-                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
+                                            <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Ubicación</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0" style="font-size: 0.80rem">{{ $location }}</p>
@@ -119,7 +125,7 @@
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-center">
                                             @if ($ticket->type == 'free')
-                                            <h4>Free</h4>
+                                            <h4>Gratis</h4>
                                             @endif
                                             @if ($ticket->type == 'paid')
                                             <h4>${{ $ticket->price }}</h4>
@@ -127,18 +133,18 @@
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getTickets">
-                                                Get Tickets
+                                                Obtener Tickets
                                             </button>
                                         </div>
                                     </div>
                                     @else
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <h4>Sales Ended</h4>
+                                            <h4>Venta terminada</h4>
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
                                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
-                                                Get Details
+                                                Ver Detalles
                                             </button>
                                         </div>
                                     </div>
@@ -146,11 +152,11 @@
                                 @else
                                 <div class="card-body">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <h4>Sales Ended</h4>
+                                        <h4>Venta terminada</h4>
                                     </div>
                                     <div class="d-grid gap-2" style="padding-top: 10px">
                                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
-                                            Get Details
+                                            Ver Detalles
                                         </button>
                                     </div>
                                 </div>
@@ -162,14 +168,14 @@
                     </div>
                     <div class="row" style="padding-top: 40px" id="about">
                         <div class="card-transparent" style="width: 40rem">
-                            <h4 style="padding-bottom: 20px">About this event</h4>  
+                            <h4 style="padding-bottom: 20px">Acerca del evento</h4>  
                             <img src="{{ asset('storage/' .  $event->image) }}" class="card-img-bottom" alt="">
                             <div class="about-html">{!! $event->about !!}</div>
                         </div>
                     </div>
                     <div class="row" style="padding-top: 40px" id="organizer">
                         <div class="card-transparent" style="width: 40rem">                          
-                            <h4 style="padding-bottom: 20px">Organizer</h4>                           
+                            <h4 style="padding-bottom: 20px">Organizador</h4>                           
                             <div class="card-body" >
                                 <div class="d-flex align-items-center justify-content-center">
                                     <div class="avatar avatar-xl">
@@ -177,14 +183,14 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center" style="padding-top: 20px">
-                                <p class="mb-0" style="font-size: 0.80rem">Organized by</p>  
+                                <p class="mb-0" style="font-size: 0.80rem">Organizado por</p>  
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
                                 <h6>{{ $event->user->username }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center" style="padding-top: 40px">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                    Contact
+                                    Contacto
                                 </button>
                                 </div>
                             </div>
@@ -197,13 +203,13 @@
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Contact Information</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Información de contacto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6">
-                                <h5>Phone</h5>
+                                <h5>Celular</h5>
                                 <p>{{ $event->user->phone }}</p>
                             </div>
                             <div class="col-6">
@@ -213,7 +219,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <h5>Social Networks</h5>
+                            <h5>Redes Sociales</h5>
                             <div class="d-flex align-items-center justify-content-around">
                                 <a href="{{ $event->user->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
                                 <a href="{{ $event->user->instagram_url }}"><i class="fab fa-instagram"></i></a>
@@ -222,7 +228,7 @@
                         </div>
                       </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
                 </div>
@@ -240,7 +246,7 @@
                                         <h6>{{ $event->title }}</h6>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +261,7 @@
                                             <p class="mb-0" style="font-size: 0.80rem"><strong>{{ $ticket->type }}</strong></>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <p class="mb-0" style="font-size: 0.80rem">Sales end on {{ date('j F, Y (h:s a)', strtotime($ticket->date_time_end)) }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">Venta termina el {{ $formattedDate . ' ' . date('(h:s a)', strtotime($ticket->date_time_end)) }}</p>
                                         </div>
                                     </div>
                                     <div class="col-3">
@@ -275,14 +281,14 @@
                                         </div>
                                         @if (($ticket->quantity - $count_orders) <= '10')    
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - $count_orders . ' left'}}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ 'Solo restan ' . $ticket->quantity - $count_orders }}</p>
                                         </div>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer" style="padding-top: 50px">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Checkout</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Ordenar</button>
                             </div>
                         </div>
                         <div class="col-4">
@@ -329,7 +335,7 @@
                                             <h6>{{ $event->title }}</h6>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -362,13 +368,13 @@
                                                 <p class="mb-0" style="font-size: 0.80rem"><strong>{{ $ticket->type }}</strong></>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-start">
-                                                <p class="mb-0" style="font-size: 0.80rem">Sales end on {{ date('j F, Y (h:s a)', strtotime($ticket->date_time_end)) }}</p>
+                                                <p class="mb-0" style="font-size: 0.80rem">Venta termina el {{ $formattedDate . ' ' . date('(h:s a)', strtotime($ticket->date_time_end)) }}</p>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             @if (($ticket->quantity - $count_orders) <= '10')    
                                             <div class="d-flex align-items-center justify-content-start">
-                                                <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - $count_orders . ' left'}}</p>
+                                                <p class="mb-0" style="font-size: 0.80rem">{{ 'Solo restan ' . $ticket->quantity - $count_orders }}</p>
                                             </div>
                                             @endif
                                         </div>
@@ -390,7 +396,7 @@
                                         <div class="col-12">
                                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                                 <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#checkoutMobile">
-                                                    Checkout
+                                                    Ordenar
                                                 </button>
                                             </div>
                                         </div>
@@ -413,7 +419,7 @@
                                         <h6>Checkout</h6>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -423,19 +429,19 @@
                                 <div class="modal-body" style="padding-top: 10px">
                                     <div class="row">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <h5>Contact Information</h5>
+                                            <h5>Información de contacto</h5>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label">First Name</label>
+                                                <label for="name" class="form-control-label">Nombre</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <label for="last_name" class="form-control-label">Apellido</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -449,7 +455,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <label for="phone" class="form-control-label">Celular</label>
                                                 <input class="form-control" type="text" id="phone_buyer" name="phone_buyer" required>
                                             </div>
                                         </div>
@@ -457,7 +463,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to receive text message and emails as reminders for the event.
+                                                    Acepto recibir mensajes de texto y emails como recordatorios para el evento.
                                                 </label>
                                               </div>
                                         </div>
@@ -466,7 +472,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="padding-top: 50px">
-                                <button type="submit" class="btn btn-primary">Place Order</button>
+                                <button type="submit" class="btn btn-primary">Realizar Orden</button>
                                 </div>
                             </form>
                         </div>
@@ -512,7 +518,7 @@
                                         <h6>Checkout</h6>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="mb-0" style="font-size: 0.80rem">{{ date('j F, Y (h:s a)', strtotime($event->date_time_start)) . ' - ' . date('j F, Y (h:s a)', strtotime($event->date_time_end)) }}</p>
+                                        <p class="mb-0" style="font-size: 0.80rem">{{ $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_start)) . ' - ' . $formattedDate . ' ' . date('(h:s a)', strtotime($event->date_time_end)) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -522,19 +528,19 @@
                                 <div class="modal-body" style="padding-top: 10px">
                                     <div class="row">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <h5>Contact Information</h5>
+                                            <h5>Información de contacto</h5>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label">First Name</label>
+                                                <label for="name" class="form-control-label">Nombre</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <label for="last_name" class="form-control-label">Apellido</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -548,7 +554,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <label for="phone" class="form-control-label">Celular</label>
                                                 <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer" required>
                                             </div>
                                         </div>
@@ -556,7 +562,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to receive text message and emails as reminders for the event.
+                                                    Acepto recibir mensajes de texto y emails como recordatorios para el evento.
                                                 </label>
                                               </div>
                                         </div>
@@ -579,7 +585,7 @@
                                         <div class="col-12">
                                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                                 <button type="submit" class="btn btn-primary btn-lg">
-                                                    Place Order
+                                                    Realizar Orden
                                                 </button>
                                             </div>
                                         </div>
@@ -611,7 +617,7 @@
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
-                                        Get Tickets
+                                        Obtener Tickets
                                     </button>
                                 </div>
                             </div>
@@ -619,14 +625,14 @@
                     @else
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
-                                <h4>Sales Ended</h4>
+                                <h4>Venta terminada</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                     <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
-                                        Get Details
+                                        Ver Detalles
                                     </button>
                                 </div>
                             </div>
@@ -635,14 +641,14 @@
                 @else
                     <div class="row" style="padding-top: 20px;">
                         <div class="col-12 d-flex align-items-center justify-content-center">
-                            <h4>Sales Ended</h4>
+                            <h4>Venta terminada</h4>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
                                 <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
-                                    Get Details
+                                    Ver Detalles
                                 </button>
                             </div>
                         </div>
