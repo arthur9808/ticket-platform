@@ -59,6 +59,7 @@ class OrderController extends Controller
             return back()->with('error', 'No hay tickets disponibles.');
         }
         if ($request->quantity > 10) {
+
             return back()->with('error', 'No puedes comprar más de 10 tickets.');
         }
 
