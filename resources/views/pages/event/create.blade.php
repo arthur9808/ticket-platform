@@ -36,7 +36,7 @@
                             <input class="form-control" type="text" name="street_address" required>
                         </div>
                         <div class="form-group">
-                            <label for="address_locality" class="form-control-label">Address Locality</label>
+                            <label for="address_locality" class="form-control-label">City</label>
                             <input class="form-control" type="text" name="address_locality" required>
                         </div>
                         <div class="form-group">
@@ -44,7 +44,7 @@
                             <input class="form-control" type="text" name="postal_code" required>
                         </div>
                         <div class="form-group">
-                            <label for="address_region" class="form-control-label">Adress Region</label>
+                            <label for="address_region" class="form-control-label">State</label>
                             <input class="form-control" type="text" name="address_region" required>
                         </div>
                         <div class="form-group">
@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about" class="form-control-label">About Event</label>
-                            <textarea class="form-control" name="about" id="about" cols="30" rows="5"></textarea>
+                            <textarea class="form-control" name="about" id="txtDescripcion" cols="30" rows="5"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="meta_title" class="form-control-label">Meta Title</label>
@@ -93,6 +93,7 @@
 @push('js')
 <!-- Datepicker -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
 <script>
     flatpickr("#dateTime", {
         enableTime: true,
@@ -100,11 +101,12 @@
         altInput: true,
         altFormat: "F j, Y (h:S K)",
     });
-    tinymce.init({
-        selector: 'textarea#about',
-        plugins: 'code',
-        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | code',
-    });
+   
+    ClassicEditor
+    .create( document.querySelector( '#txtDescripcion' ) )
+    .catch( error => {
+    console.error( error );
+    } );
 </script>
 @endpush
 
