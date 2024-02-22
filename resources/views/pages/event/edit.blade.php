@@ -47,7 +47,7 @@
                             <input class="form-control" type="text" name="postal_code" value="{{ $event->postal_code }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="address_region" class="form-control-label">State/label>
+                            <label for="address_region" class="form-control-label">State</label>
                             <input class="form-control" type="text" name="address_region" value="{{ $event->address_region }}" required>
                         </div>
                         <div class="form-group">
