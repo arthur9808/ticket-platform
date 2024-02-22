@@ -47,7 +47,7 @@
                             <input class="form-control" type="text" name="postal_code" value="{{ $event->postal_code }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="address_region" class="form-control-label">State/label>
+                            <label for="address_region" class="form-control-label">State</label>
                             <input class="form-control" type="text" name="address_region" value="{{ $event->address_region }}" required>
                         </div>
                         <div class="form-group">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about" class="form-control-label">About Event</label>
-                            <textarea class="form-control" name="about" id="txtDescripcion" cols="30" rows="5" required>{!! $event->about !!}</textarea>
+                            <textarea class="form-control" name="about" id="txtDescripcion" cols="30" rows="5">{!! $event->about !!}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="meta_title" class="form-control-label">Meta Title</label>
