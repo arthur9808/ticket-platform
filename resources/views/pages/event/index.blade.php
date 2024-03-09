@@ -8,6 +8,10 @@
         </div>
         <div class="card-body p-3">
             <div class="card-header pb-0">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Show Past Events</label>
+                </div>
                 <div class="d-flex align-items-center">
                     <h4 class="mb-0">Events</h4>
                     <a href="{{ route('event.create') }}" class="btn btn-primary btn-sm ms-auto">Create</a>
@@ -21,6 +25,7 @@
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date and Time start</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tickets Sold</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">Actions</th>
                             </tr>
                         </thead>
@@ -35,6 +40,9 @@
                                 </td>
                                 <td>
                                     <p class="text-sm font-weight-bold mb-0">{{ $event->date_time_start }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-sm font-weight-bold mb-0">{{ count($event->orders) . ' / ' . $event->totalTickets[0]->total_quantity }}</p>
                                 </td>
                                 <td style="display:flex; justify-content:space-around;"><a href="{{ route('event.edit', [$event->id]) }}"><i class="fas fa-edit"></i></a><a href="{{ route('event.show', [$event->id]) }}"><i class="fas fa-eye"></i></a><a href="{{ route('ticket.index', [$event->id]) }}"><i class="fas fa-ticket-alt"></i></a><a href="{{ route('order.event', [$event->id]) }}"><i class="fas fa-shopping-cart"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
                                     action="{{ route('event.destroy', $event->id) }}">
@@ -59,5 +67,35 @@
             $(this).parent().find(".frmDelete").submit();
         }
     });    
+    document.addEventListener('DOMContentLoaded', function() {
+        const switchElement = document.getElementById('flexSwitchCheckDefault');
+
+        // Verificar si el parámetro past-orders está presente en la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const pastOrdersParam = 'past-events';
+        const hasPastOrdersParam = urlParams.has(pastOrdersParam);
+
+        // Establecer el estado del interruptor según la presencia del parámetro
+        switchElement.checked = hasPastOrdersParam;
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const switchElement = document.getElementById('flexSwitchCheckDefault');
+
+        switchElement.addEventListener('change', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pastEventsParam = 'past-events';
+
+            if (this.checked) {
+                // Agregar el parámetro past_events a la URL
+                urlParams.set(pastEventsParam, '');
+            } else {
+                // Eliminar el parámetro past_events de la URL
+                urlParams.delete(pastEventsParam);
+            }
+
+            // Redirigir a la URL actual con los parámetros actualizados
+            window.location.href = `${window.location.pathname}?${urlParams.toString()}`;
+        });
+    });
 </script>
 @endpush
