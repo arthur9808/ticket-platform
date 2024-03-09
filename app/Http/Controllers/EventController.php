@@ -18,9 +18,15 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::all();
+        if(request()->has('past-events')) {
+            $yesterday = Carbon::yesterday()->toDateString();
+            $events = Event::where('date_time_start', '<=', $yesterday)->get();
+        } else {
+            $yesterday = Carbon::yesterday()->toDateString();
+            $events = Event::where('date_time_start', '>', $yesterday)->get();
+        }
         return view('pages.event.index', compact('events'));
 
     }
