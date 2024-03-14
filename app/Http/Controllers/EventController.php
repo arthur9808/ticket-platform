@@ -91,6 +91,15 @@ class EventController extends Controller
 
     }
 
+    public function events()
+    {
+        $yesterday = Carbon::yesterday()->toDateString();
+        $events = Event::where('date_time_start', '>', $yesterday)->get();
+        $header = env('TITLE_HEADER');
+
+        return view('pages.event.events', compact('events', 'header'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

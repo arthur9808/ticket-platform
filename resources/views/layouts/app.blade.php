@@ -194,6 +194,42 @@
                 padding-top: 20px !important;
             }
         }
+        .hover-event-list:hover{
+            color: currentColor;
+        }
+        .header {
+            background-color: #FB6340;
+            padding: 20px;
+            text-align: center;
+            h2 {
+                margin: 0; 
+                color: white;
+                
+            }
+        }
+        .list-event {
+            padding-top: 30px;
+            .card-img-top{
+                border-top-left-radius: 0rem;
+                border-top-right-radius: 0rem;
+                height: 300px;
+            }
+            .date-event {
+                font-weight: bold;
+                font-size: 14px;
+            }
+            .ubication {
+                font-size: 14px;
+            }
+            .price {
+                font-size: 14px;
+                font-weight: bold;
+            }
+            .createdBy {
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
     </style>
     
 </head>
@@ -205,7 +241,7 @@
     @endguest
 
     @auth
-        @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality', 'event.show', 'successpage']))
+        @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality', 'event.show', 'event.list-events', 'successpage']))
             @yield('content')
         @else
             @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
