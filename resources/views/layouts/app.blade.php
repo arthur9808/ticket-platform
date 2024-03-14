@@ -212,6 +212,7 @@
             .card-img-top{
                 border-top-left-radius: 0rem;
                 border-top-right-radius: 0rem;
+                height: 300px;
             }
             .date-event {
                 font-weight: bold;
