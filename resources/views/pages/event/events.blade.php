@@ -6,12 +6,12 @@
             <h2>{{ $header }}</h2>
         </div>
         <div class="container">
-            <div class="mt-5">
+            <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-start mt-5">
                 <h3>Next Events</h3>
             </div>
             <div class="d-flex row">
                     @foreach ($events as $event)
-                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-start">
                         <a class="hover-event-list" href="{{ route('event.show', [$event->id])}}">
                             <div class="card-transparent list-event" style="width: 18rem;">
                                 <img src="{{ asset('storage/' .  $event->coverimage) }}" class="card-img-top" alt="...">
