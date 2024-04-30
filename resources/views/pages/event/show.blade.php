@@ -112,17 +112,17 @@
                             </div>
                         </div>
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
-                            @if ($ticket !=null)    
+                            @if ($tickets !== null)    
                             <div class="card" style="width: 20rem">
                                 @if ($today < $event->date_time_start)
-                                    @if ($count_orders < $ticket->quantity)    
+                                    @if (count($tickets[0]->orders) < $tickets[0]->quantity)    
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-center">
-                                            @if ($ticket->type == 'free')
+                                            @if ($tickets[0]->type == 'free')
                                             <h4>Free</h4>
                                             @endif
-                                            @if ($ticket->type == 'paid')
-                                            <h4>${{ $ticket->price }}</h4>
+                                            @if ($tickets[0]->type == 'paid')
+                                            <h4>${{ $tickets[0]->price }}</h4>
                                             @endif
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
@@ -246,6 +246,7 @@
                             </div>
                             <hr>
                             <div class="modal-body" style="padding-top: 60px">
+                                @foreach ($tickets as $ticket)
                                 <div class="row">
                                     <div class="col-9">
                                         <div class="d-flex align-items-center justify-content-start">
@@ -261,6 +262,7 @@
                                     <div class="col-3">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <select class="form-select" id="selectTickets" aria-label="Default select example">
+                                                <option value="0">0</option>
                                                 <option value="1" selected>1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -273,13 +275,14 @@
                                                 <option value="10">10</option>
                                               </select>
                                         </div>
-                                        @if (($ticket->quantity - $count_orders) <= '10')    
+                                        @if (($ticket->quantity - count($ticket->orders)) <= '10')    
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - $count_orders . ' left'}}</p>
+                                            <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - count($ticket->orders) . ' left'}}</p>
                                         </div>
                                         @endif
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                             <div class="modal-footer" style="padding-top: 50px">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Checkout</button>
@@ -297,6 +300,7 @@
                             <div class="d-flex align-items-center justify-content-start" style="padding-top: 30px">
                                 <p class="mb-0" style="font-size: 0.80rem"><strong>Order summary</strong></>
                             </div>
+                            @foreach ($tickets as $ticket)
                             <div class="d-flex align-items-center justify-content-around" style="padding-top: 10px">
                                 <p class="mb-0" style="font-size: 0.80rem" id="totalTickets">1 x {{ $ticket->title }}</>
                                     @if ($ticket->type == 'free')
@@ -305,6 +309,7 @@
                                     <p class="mb-0" style="font-size: 0.80rem">${{  number_format($ticket->price, 2) }}</>
                                     @endif
                             </div>
+                            @endforeach
                             <hr>
                             <div class="d-flex align-items-center justify-content-around">
                                 <h6>Total</h6>
@@ -335,6 +340,7 @@
                                 </div>
                                 <hr>
                                 <div class="modal-body" style="padding-top: 60px">
+                                    @foreach ($tickets as $ticket)
                                     <div class="row" style="--bs-gutter-x: -0.5rem;">
                                         <div class="col-7">
                                             <div class="d-flex align-items-center justify-content-start">
@@ -348,7 +354,7 @@
                                                 <i class="fas fa-minus"></i>
                                                 </button>
                                                 <div class="form-outline" style="margin-bottom: 0.5rem;">
-                                                <input id="inputTickets" min="1"  max="10" name="quantity" value="1" type="number" class="form-control" style="-webkit-appearance: none;
+                                                <input id="inputTickets" min="0"  max="10" name="quantity" value="1" type="number" class="form-control" style="-webkit-appearance: none;
                                                 margin: 0;"/>
                                                 </div>
                                                 <button class="btn btn-primary px-3 ms-2 moreLess"
@@ -366,13 +372,14 @@
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            @if (($ticket->quantity - $count_orders) <= '10')    
+                                            @if (($ticket->quantity - count($ticket->orders)) <= '10')    
                                             <div class="d-flex align-items-center justify-content-start">
-                                                <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - $count_orders . ' left'}}</p>
+                                                <p class="mb-0" style="font-size: 0.80rem">{{ 'Only ' . $ticket->quantity - count($ticket->orders) . ' left'}}</p>
                                             </div>
                                             @endif
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
                                 <hr>
                                 <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">    
