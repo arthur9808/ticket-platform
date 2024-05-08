@@ -20,11 +20,10 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+        $yesterday = Carbon::yesterday()->toDateString();
         if(request()->has('past-events')) {
-            $yesterday = Carbon::yesterday()->toDateString();
             $events = Event::where('date_time_start', '<=', $yesterday)->get();
         } else {
-            $yesterday = Carbon::yesterday()->toDateString();
             $events = Event::where('date_time_start', '>', $yesterday)->get();
         }
         return view('pages.event.index', compact('events'));
