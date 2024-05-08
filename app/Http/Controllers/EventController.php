@@ -76,16 +76,12 @@ class EventController extends Controller
         
         $data['event'] = Event::find($id);
         $data['ticket'] = Ticket::where('event_id', $id)->where('available', '1')->first();
-        // dd($ticket);
         if ($data['ticket'] != null) {
             $data['count_orders'] = Order::where('ticket_id', $data['ticket']->id)->count();
         }else {
             $data['count_orders'] = 0;
 
         }
-
-        $data['tickets'] = Ticket::where('event_id', $id)->where('available', '1')->get();
-        
         $data['location'] = $data['event']->ubication . ' ' . $data['event']->street_address . ', ' . $data['event']->address_locality . ', ' . $data['event']->address_region . ' ' . $data['event']->postal_code . ', ' . $data['event']->address_country;
         $data['today'] = Carbon::now()->toDateTimeString();
         
