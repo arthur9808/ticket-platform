@@ -20,11 +20,10 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+        $yesterday = Carbon::yesterday()->toDateString();
         if(request()->has('past-events')) {
-            $yesterday = Carbon::yesterday()->toDateString();
             $events = Event::where('date_time_start', '<=', $yesterday)->get();
         } else {
-            $yesterday = Carbon::yesterday()->toDateString();
             $events = Event::where('date_time_start', '>', $yesterday)->get();
         }
         return view('pages.event.index', compact('events'));
@@ -77,7 +76,6 @@ class EventController extends Controller
         
         $data['event'] = Event::find($id);
         $data['ticket'] = Ticket::where('event_id', $id)->where('available', '1')->first();
-        // dd($ticket);
         if ($data['ticket'] != null) {
             $data['count_orders'] = Order::where('ticket_id', $data['ticket']->id)->count();
         }else {

@@ -118,10 +118,10 @@
                             </div>
                         </div>
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
-                            @if ($ticket !=null)    
+                            @if ($ticket !== null)    
                             <div class="card" style="width: 20rem">
                                 @if ($today < $event->date_time_start)
-                                    @if ($count_orders < $ticket->quantity)    
+                                    @if ($count_orders < $ticket->quantity) 
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-center">
                                             @if ($ticket->type == 'free')
@@ -279,7 +279,7 @@
                                                 <option value="10">10</option>
                                               </select>
                                         </div>
-                                        @if (($ticket->quantity - $count_orders) <= '10')    
+                                        @if (($ticket->quantity - $count_orders) <= '10')      
                                         <div class="d-flex align-items-center justify-content-start">
                                             <p class="mb-0" style="font-size: 0.80rem">{{ 'Solo restan ' . $ticket->quantity - $count_orders }}</p>
                                         </div>
@@ -372,7 +372,7 @@
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            @if (($ticket->quantity - $count_orders) <= '10')    
+                                            @if (($ticket->quantity - $count_orders) <= '10')       
                                             <div class="d-flex align-items-center justify-content-start">
                                                 <p class="mb-0" style="font-size: 0.80rem">{{ 'Solo restan ' . $ticket->quantity - $count_orders }}</p>
                                             </div>
