@@ -457,7 +457,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to receive text message and emails as reminders for the event.
+                                                    {{"I agree to authorize " . env('APP_NAME') . " to text and email me about their products and services (you’ll have the option to easily unsubscribe at any time)." }}
                                                 </label>
                                               </div>
                                         </div>
@@ -556,7 +556,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to receive text message and emails as reminders for the event.
+                                                    {{"I agree to authorize " . env('APP_NAME') . " to text and email me about their products and services (you’ll have the option to easily unsubscribe at any time)." }}
                                                 </label>
                                               </div>
                                         </div>
