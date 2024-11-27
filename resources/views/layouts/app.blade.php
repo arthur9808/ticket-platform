@@ -241,7 +241,7 @@
     @endguest
 
     @auth
-        @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality', 'event.show', 'event.list-events', 'successpage']))
+        @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality', 'event.show', 'event.list-events', 'successpage', 'privacy-policy']))
             @yield('content')
         @else
             @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
