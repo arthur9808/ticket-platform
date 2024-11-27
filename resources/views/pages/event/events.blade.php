@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content  mt-0">
+    <main class="main-content  mt-0 min-vh-90">
         <div class="header">
             <h2>{{ $header }}</h2>
         </div>
