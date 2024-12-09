@@ -457,7 +457,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to <a target="_blank" href="{{ env('APP_URL') . '/terms-and-conditions' }}">tems and conditions.</a>
+                                                    I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
                                               </div>
                                         </div>
@@ -556,7 +556,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 <label class="form-check-label" for="checkAccept">
-                                                    I agree to <a target="_blank" href="{{ env('APP_URL') . '/terms-and-conditions' }}">tems and conditions.</a>
+                                                    I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
                                               </div>
                                         </div>
