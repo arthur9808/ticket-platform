@@ -120,7 +120,7 @@
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
                             @if ($ticket !== null)    
                             <div class="card" style="width: 20rem">
-                                @if ($today < $event->date_time_start)
+                                @if ($today < $ticket->date_time_end)
                                     @if ($count_orders < $ticket->quantity) 
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-center">
@@ -601,7 +601,7 @@
         </div>
         <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom1">
             @if ($ticket !=null)   
-                @if ($today < $event->date_time_start) 
+                @if ($today < $ticket->date_time_end) 
                     @if ($count_orders < $ticket->quantity)
                         <div class="row" style="padding-top: 20px;">
                             <div class="col-12 d-flex align-items-center justify-content-center">
