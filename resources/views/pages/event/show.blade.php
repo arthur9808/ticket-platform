@@ -456,9 +456,11 @@
                                         <div class="col-md-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
+                                                @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
                                                 <label class="form-check-label" for="checkAccept">
                                                     I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
+                                                @endif
                                               </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantity" value="1">
@@ -555,9 +557,11 @@
                                         <div class="col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
+                                                @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
                                                 <label class="form-check-label" for="checkAccept">
                                                     I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
+                                                @endif
                                               </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantityMobile" value="1">
