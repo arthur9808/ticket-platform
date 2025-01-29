@@ -1,22 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content  mt-0">
-        {{-- <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-6 border-radius-lg"
-            style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
-            <span class="mask bg-gradient-dark opacity-3"></span>
-        </div> --}}
-        <div class="row" style="background-image: url('{{ asset('img/blur.jpeg') }}'); background-position: top; background-repeat: no-repeat; background-size: cover;">  
-            <div class="align-items-center min-vh-45 coverimg" style="background-image: url('{{ asset('storage/' .  $event->coverimage) }}'); background-position: top; background-repeat: no-repeat;">   
-            </div>   
-            <span class="mask bg-gradient-dark opacity-3"></span>  
-        </div>
-        <div id="alert">
+    <main class="main-content mt-0 bgcolor-dark">
+        {{-- <div id="alert">
             @include('components.alert')
+        </div> --}}
+        <div class="header">
+            <a href="/list-events">
+                <img src="{{ asset('img/logos/logo.png') }}" alt="Logo" class="logo">
+            </a>
         </div>
-        <div class="card shadow-lg mt-0">
+        <div class="card-transparent shadow-lg mt-0">
             <div class="card-body p-3">
-                <div class="card-header pb-0">
+                <div class="card-header pb-0 bgcolor-dark">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0">{{ date('j F, Y', strtotime($event->date_time_start)) }}</h5>
                     </div>
@@ -28,7 +24,7 @@
                     </div>
                 </div> 
                 <div class="card-body pb-0">                 
-                    <nav class="navbar sticky-top navbar-light  nav-event">
+                    <nav class="navbar sticky-top navbar-dark  nav-event">
                         <div class="col-6" id="navDesktop">
                             <ul class="nav justify-content-around" id="mi-ul">
                                 <li class="nav-item">
@@ -74,7 +70,7 @@
                                 <div class="col-sm-6">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a class="text-white" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
@@ -113,7 +109,7 @@
                         </div>
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
                             @if ($ticket !== null)    
-                            <div class="card" style="width: 20rem">
+                            <div class="card-transpatent" style="width: 20rem; border:1px solid;">
                                 @if ($today < $ticket->date_time_end)
                                     @if ($count_orders < $ticket->quantity) 
                                     <div class="card-body">
@@ -126,7 +122,7 @@
                                             @endif
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getTickets">
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#getTickets">
                                                 Get Tickets
                                             </button>
                                         </div>
@@ -137,7 +133,7 @@
                                             <h4>Sales Ended</h4>
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
                                                 Get Details
                                             </button>
                                         </div>
@@ -149,7 +145,7 @@
                                         <h4>Sales Ended</h4>
                                     </div>
                                     <div class="d-grid gap-2" style="padding-top: 10px">
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
                                             Get Details
                                         </button>
                                     </div>
@@ -183,9 +179,19 @@
                                 <h6>{{ $event->user->username }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center" style="padding-top: 40px">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     Contact
                                 </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 40px" id="organizer">
+                        <div class="card-transparent" style="width: 40rem">                          
+                            <h4 style="padding-bottom: 20px">Other events you may like</h4>                           
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center" style="padding-top: 40px">
+                                    <a href="/list-events" class="btn btn-dark">View Events</a>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +201,7 @@
             <!-- Modal Contact -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content bgcolor-dark modal-border">
                     <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Contact Information</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -222,7 +228,7 @@
                         </div>
                       </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
                 </div>
@@ -231,7 +237,7 @@
             <!-- Modal GetTickets-->
             <div class="modal fade" id="getTickets" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content bgcolor-dark modal-border">
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
@@ -282,7 +288,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer" style="padding-top: 50px">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkout">Checkout</button>
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#checkout">Checkout</button>
                             </div>
                         </div>
                         <div class="col-4">
@@ -317,7 +323,7 @@
             </div>              
             <div class="modal fade" id="getTicketsMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                    <div class="modal-content">
+                    <div class="modal-content bgcolor-dark modal-border">
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
@@ -343,7 +349,7 @@
                                         </div>
                                         <div class="col-5">
                                             <div class="d-flex align-items-center justify-content-center">                                                
-                                                <button class="btn btn-primary px-3 me-2 moreLess"
+                                                <button class="btn btn-dark px-3 me-2 moreLess"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                 <i class="fas fa-minus"></i>
                                                 </button>
@@ -351,7 +357,7 @@
                                                 <input id="inputTickets" min="1"  max="10" name="quantity" value="1" type="number" class="form-control" style="-webkit-appearance: none;
                                                 margin: 0;"/>
                                                 </div>
-                                                <button class="btn btn-primary px-3 ms-2 moreLess"
+                                                <button class="btn btn-dark px-3 ms-2 moreLess"
                                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                                                 <i class="fas fa-plus"></i>
                                                 </button>
@@ -375,7 +381,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">    
+                                <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom">    
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -389,7 +395,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#checkoutMobile">
+                                                <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#checkoutMobile">
                                                     Checkout
                                                 </button>
                                             </div>
@@ -404,7 +410,7 @@
             <!-- Modal Checkout-->
             <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content" data-tor="show(p):reveal(up)">
+                <div class="modal-content bgcolor-dark modal-border" data-tor="show(p):reveal(up)">
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
@@ -429,13 +435,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label">First Name</label>
+                                                <label for="name" class="form-control-label text-white">First Name</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <label for="last_name" class="form-control-label text-white">Last Name</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -443,24 +449,24 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="email" class="form-control-label">Email</label>
+                                                <label for="email" class="form-control-label text-white">Email</label>
                                                 <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <label for="phone" class="form-control-label text-white">Phone</label>
                                                 <input class="form-control" type="text" id="phone_buyer" name="phone_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
-                                                @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
-                                                <label class="form-check-label" for="checkAccept">
-                                                    I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
+                                                {{-- @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com') --}}
+                                                <label class="form-check-label text-white" for="checkAccept">
+                                                    I agree to <a class="text-white" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
-                                                @endif
+                                                {{-- @endif --}}
                                               </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantity" value="1">
@@ -468,7 +474,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="padding-top: 50px">
-                                <button type="submit" class="btn btn-primary">Place Order</button>
+                                <button type="submit" class="btn btn-dark">Place Order</button>
                                 </div>
                             </form>
                         </div>
@@ -502,7 +508,7 @@
             </div>
             <div class="modal fade" id="checkoutMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                <div class="modal-content" data-tor="show(p):reveal(up)">
+                <div class="modal-content bgcolor-dark modal-border" data-tor="show(p):reveal(up)">
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
@@ -530,13 +536,13 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label">First Name</label>
+                                                <label for="name" class="form-control-label text-white">First Name</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label">Last Name</label>
+                                                <label for="last_name" class="form-control-label text-white">Last Name</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -544,31 +550,31 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="email" class="form-control-label">Email</label>
+                                                <label for="email" class="form-control-label text-white">Email</label>
                                                 <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label">Phone</label>
+                                                <label for="phone" class="form-control-label text-white">Phone</label>
                                                 <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
-                                                @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
-                                                <label class="form-check-label" for="checkAccept">
-                                                    I agree to <a target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
+                                                {{-- @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com') --}}
+                                                <label class="form-check-label text-white" for="checkAccept">
+                                                    I agree to <a class="text-white" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
-                                                @endif
+                                                {{-- @endif --}}
                                               </div>
                                         </div>
                                         <input type="text" hidden name="quantity" id="quantityMobile" value="1">
                                         <input type="text" hidden name="ticket_id" id="ticket_idMobile" value="{{ $ticket->id }}">
                                     </div>
                                 </div>
-                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">  
+                                <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom">  
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -582,7 +588,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                                <button type="submit" class="btn btn-primary btn-lg">
+                                                <button type="submit" class="btn btn-dark btn-lg">
                                                     Place Order
                                                 </button>
                                             </div>
@@ -597,7 +603,7 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom1">
+        <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom1">
             @if ($ticket !=null)   
                 @if ($today < $ticket->date_time_end) 
                     @if ($count_orders < $ticket->quantity)
@@ -614,7 +620,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
+                                    <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
                                         Get Tickets
                                     </button>
                                 </div>
@@ -629,7 +635,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                    <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                         Get Details
                                     </button>
                                 </div>
@@ -645,7 +651,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                     Get Details
                                 </button>
                             </div>

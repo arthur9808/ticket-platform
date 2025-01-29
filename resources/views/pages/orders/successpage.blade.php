@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content  mt-0">  
-          <div class="modal fade" id="sucesspage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <main class="main-content mt-0 bgcolor-dark">  
+          <div class="modal fade bgcolor-dark" id="sucesspage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-xl modal-dialog-centered desktop">
-                <div class="modal-content">
+                <div class="modal-content bgcolor-dark modal-border">
                     <div class="row">
                         <div class="col-8" style="padding-right: 0px">
                             <div class="row" style="padding-top: 40px;">
@@ -58,23 +58,23 @@
                                 </div>
                             </div>
                             <div class="modal-footer d-flex align-items-center justify-content-between" style="padding-top: 50px">
-                            <a href="{{ route('event.show', [$event->id]) }}" type="button" class="btn btn-primary">Back</a>
+                            <a href="{{ route('event.show', [$event->id]) }}" type="button" class="btn btn-dark">Back</a>
                             <div class="col-4">
                               <div class="d-flex align-items-center justify-content-around">
-                                <a href="{{ $event->user->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
-                                <a href="{{ $event->user->instagram_url }}"><i class="fab fa-instagram"></i></a>
-                                <a href="{{ $event->user->web_url }}"><i class="fas fa-globe"></i></a>
+                                <a class="text-white" href="{{ $event->user->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
+                                <a class="text-white" href="{{ $event->user->instagram_url }}"><i class="fab fa-instagram"></i></a>
+                                <a class="text-white" href="{{ $event->user->web_url }}"><i class="fas fa-globe"></i></a>
                             </div>
                             </div>
                             </div>
                         </div>
-                        <div class="col-4" style="border-left: 2px;border-left-color: #d7d7d7;border-left-width: 1px;border-left-style: solid; background-color: #dbdbdb;">
+                        <div class="col-4 bgcolor-dark">
                             <div class="d-flex align-items-center justify-content-end">
-                                <a href="{{ route('event.show', [$event->id]) }}" type="button" style="padding-right: 5px;"><i class="fas fa-times"></i></a>
+                                <a class="text-white" href="{{ route('event.show', [$event->id]) }}" type="button" style="padding-right: 5px;"><i class="fas fa-times"></i></a>
                             </div>
                             <div class="card">
                                 <div class="image-container">
-                                    <img src="{{ asset('storage/' .  $event->image) }}" style="height:auto;" class="card-img-top" alt="">
+                                    <img src="{{ asset('storage/' .  $event->image) }}" style="height:auto;" class="card-img-top card-no-border" alt="">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                 </div>
               </div>
               <div class="modal-dialog modal-fullscreen modal-dialog-centered mobile">
-                <div class="modal-content">
+                <div class="modal-content bgcolor-dark modal-border">
                     <div class="row">
                         <div class="col-12" style="padding-right: 0px">
                             <div class="row" style="padding-top: 10px;">
@@ -143,11 +143,11 @@
                               <a href="{{ $event->user->instagram_url }}"><i class="fab fa-instagram"></i></a>
                               <a href="{{ $event->user->web_url }}"><i class="fas fa-globe"></i></a>
                             </div>
-                            <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">    
+                            <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom">    
                               <div class="row" style="padding-top: 40px">
                                   <div class="col-12">
                                       <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">        
-                                        <a href="{{ route('event.show', [$event->id]) }}" type="button" class="btn btn-primary  btn-lg">Back</a>
+                                        <a href="{{ route('event.show', [$event->id]) }}" type="button" class="btn btn-dark  btn-lg">Back</a>
                                       </div>
                                   </div>
                               </div>

@@ -92,6 +92,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     
     <style>
+        .bgcolor-dark {
+            background-color: #0E1012 !important;
+        }
+        .modal-border{
+            border: 2px solid #7d7d7d;
+        }
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             background: none !important;
             border: none !important;
@@ -151,6 +157,12 @@
         #cardGetTickets {
                display: block; 
         }
+        #sucesspage .mobile {
+            display: none;
+        }
+        .card-no-border{
+            border-radius: 0px !important;
+        }
         @media only screen and (max-width: 959px) {
             .coverimg {
                 background-repeat: round !important;
@@ -198,36 +210,100 @@
             color: currentColor;
         }
         .header {
-            background-color: #FB6340;
+            
             padding: 20px;
             text-align: center;
-            h2 {
-                margin: 0; 
-                color: white;
-                
+            .logo {
+                width: 200px;
             }
+            
+        }
+        .subheader {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 0.2rem;
+            text-align: center;
+        }
+        .events-main {
+            min-height: 100vh;
+            background-color: #0E1012;
         }
         .list-event {
-            padding-top: 30px;
+            width: 380px;
+            position: relative;
+            margin-bottom: 20px;
+            .image-container {
+                position: relative;
+                border-radius: 25px;
+                overflow: hidden;
+            }
+            .image-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.1); /* Fondo semitransparente */
+            }   
             .card-img-top{
-                border-top-left-radius: 0rem;
-                border-top-right-radius: 0rem;
-                height: 300px;
+                border-radius: 25px;
+                height: 220px;
+                width: 100%;
             }
-            .date-event {
-                font-weight: bold;
-                font-size: 14px;
+            .event-title-container {
+                position: absolute;
+                bottom: 10px;
+                left: 10%;
+                transform: translateX(-10%);
+                display: flex;
+                align-items: center;
+                z-index: 1;
+                width: 100%;
             }
-            .ubication {
-                font-size: 14px;
+
+            .event-date-circle {
+                background-color: black;
+                border: 1px solid orange;
+                border-radius: 50%;
+                color: white;
+                text-align: center;
+                width: 80px;
+                height: 80px;
+                .event-date {
+                    margin-top: 20px;
+                }
             }
-            .price {
-                font-size: 14px;
-                font-weight: bold;
+
+            .event-title {
+                color: white;
+                font-size: 1rem;
+                margin-left: 10px;
+                width: 280px;
             }
-            .createdBy {
-                font-size: 14px;
-                font-weight: bold;
+
+        }
+        .events-container {
+            padding: 0px !important;
+        }
+        @media only screen and (max-width: 1400px) {
+           .list-event {
+            width: 300px;
+            height: 200px;
+            .card-img-top{
+                height: 200px;
+            }
+            .event-date-circle {
+                width: 60px;
+                height: 60px;
+                .event-date {
+                    font-size: 12px;
+                    margin-top: 10px;
+                }
+           }
+           .event-title {
+                width: 200px;
             }
         }
     </style>
