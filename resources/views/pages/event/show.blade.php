@@ -1,28 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content  mt-0">
+    <main class="main-content mt-0 bgcolor-dark">
         @php
             use Carbon\Carbon;
             Carbon::setLocale('es');
             $formattedDate = Carbon::parse($event->date_time_start)->isoFormat('D [de] MMMM, YYYY');
             $formattedDate = ucwords($formattedDate);
         @endphp
-        {{-- <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-6 border-radius-lg"
-            style="background-image: url('{{ asset('storage/' .  $event->image) }}'); background-position: top;">
-            <span class="mask bg-gradient-dark opacity-3"></span>
-        </div> --}}
-        <div class="row" style="background-image: url('{{ asset('img/blur.jpeg') }}'); background-position: top; background-repeat: no-repeat; background-size: cover;">  
-            <div class="align-items-center min-vh-45 coverimg" style="background-image: url('{{ asset('storage/' .  $event->coverimage) }}'); background-position: top; background-repeat: no-repeat;">   
-            </div>   
-            <span class="mask bg-gradient-dark opacity-3"></span>  
-        </div>
-        <div id="alert">
+        {{-- <div id="alert">
             @include('components.alert')
-        </div>
-        <div class="card shadow-lg mt-0">
+        </div> --}}
+        <div class="card-transparent shadow-lg mt-0">
             <div class="card-body p-3">
-                <div class="card-header pb-0">
+                <div class="card-header pb-0 bgcolor-dark">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0">{{ $formattedDate }}</h5>
                     </div>
@@ -34,7 +25,7 @@
                     </div>
                 </div> 
                 <div class="card-body pb-0">                 
-                    <nav class="navbar sticky-top navbar-light  nav-event">
+                    <nav class="navbar sticky-top navbar-dark  nav-event">
                         <div class="col-6" id="navDesktop">
                             <ul class="nav justify-content-around" id="mi-ul">
                                 <li class="nav-item">
@@ -119,7 +110,7 @@
                         </div>
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
                             @if ($ticket !== null)    
-                            <div class="card" style="width: 20rem">
+                            <div class="card-transpatent" style="width: 20rem; border:1px solid;">
                                 @if ($today < $ticket->date_time_end)
                                     @if ($count_orders < $ticket->quantity) 
                                     <div class="card-body">
@@ -132,7 +123,7 @@
                                             @endif
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#getTickets">
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#getTickets">
                                                 Obtener Tickets
                                             </button>
                                         </div>
@@ -143,7 +134,7 @@
                                             <h4>Venta terminada</h4>
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
+                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
                                                 Ver Detalles
                                             </button>
                                         </div>
@@ -155,7 +146,7 @@
                                         <h4>Venta terminada</h4>
                                     </div>
                                     <div class="d-grid gap-2" style="padding-top: 10px">
-                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
                                             Ver Detalles
                                         </button>
                                     </div>
@@ -189,7 +180,7 @@
                                 <h6>{{ $event->user->username }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center" style="padding-top: 40px">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                     Contacto
                                 </button>
                                 </div>
@@ -201,7 +192,7 @@
             <!-- Modal Contact -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content bgcolor-dark">
                     <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Información de contacto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -228,7 +219,7 @@
                         </div>
                       </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
                 </div>
@@ -381,7 +372,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">    
+                                <nav class="fixed-bottom navbar-dark bg-dark" id="getTicketsBottom">    
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -570,7 +561,7 @@
                                         <input type="text" hidden name="ticket_id" id="ticket_idMobile" value="{{ $ticket->id }}">
                                     </div>
                                 </div>
-                                <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom">  
+                                <nav class="fixed-bottom navbar-dark bg-dark" id="getTicketsBottom">  
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -599,7 +590,7 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-light bg-light" id="getTicketsBottom1">
+        <nav class="fixed-bottom navbar-dark bg-dark" id="getTicketsBottom1">
             @if ($ticket !=null)   
                 @if ($today < $ticket->date_time_end) 
                     @if ($count_orders < $ticket->quantity)
@@ -631,7 +622,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                    <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                         Ver Detalles
                                     </button>
                                 </div>
@@ -647,7 +638,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                     Ver Detalles
                                 </button>
                             </div>

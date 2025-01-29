@@ -57,7 +57,7 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #67748e;
+  --bs-body-color: #fff;
   --bs-body-bg: #fff;
 }
 
@@ -103,7 +103,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 400;
   line-height: 1.2;
-  color: #344767;
+  color: #fff;
 }
 
 h1, .h1 {
@@ -3670,8 +3670,9 @@ textarea.form-control-lg {
 
 .btn-dark {
   color: #fff;
-  background-color: #344767;
-  border-color: #344767;
+  background-color: #000;
+  border-color: #fff;
+  border: 1px solid !important;
 }
 .btn-dark:hover {
   color: #fff;
@@ -20945,7 +20946,7 @@ hr.horizontal.gray-light {
   font-size: 0.875rem;
 }
 .navbar .nav-link {
-  color: #344767;
+  color: #fff;
   padding: 0.5rem 1rem;
   font-weight: 400;
   font-size: 0.875rem;
@@ -23008,7 +23009,7 @@ h4, .h4 {
 
 a {
   letter-spacing: -0.025rem;
-  color: #344767;
+  color: #fff;
 }
 
 .text-sm {

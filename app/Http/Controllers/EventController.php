@@ -92,6 +92,7 @@ class EventController extends Controller
     public function events()
     {
         $yesterday = Carbon::yesterday()->toDateString();
+        $yesterday = '2024-11-19';
         $events = Event::where('date_time_start', '>', $yesterday)->orderBy('date_time_start', 'asc')->get();
         $header = env('TITLE_HEADER');
 
