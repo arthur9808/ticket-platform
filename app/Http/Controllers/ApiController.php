@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Event;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
@@ -63,5 +64,19 @@ class ApiController extends Controller
             ];
             return $response; 
         }
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('API Token')->plainTextToken;
+
+            return response()->json(['token' => $token], 200);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }

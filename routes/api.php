@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ApiController;
 
 /*
@@ -15,13 +14,15 @@ use App\Http\Controllers\ApiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login', [ApiController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('ensureTokenIsValid')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::get('/organizers', [ApiController::class, 'getOrganizers']);
+    Route::get('/orders', [ApiController::class, 'getOrders']);
+    Route::get('/events', [ApiController::class, 'getEvents']);
+    Route::get('/event/{id}', [ApiController::class, 'getEvent']);
+    Route::post('/assist/{code}', [ApiController::class, 'assistOrder']);
 });
-
-Route::get('/organizers', [ApiController::class, 'getOrganizers']);
-Route::get('/orders', [ApiController::class, 'getOrders']);
-Route::get('/events', [ApiController::class, 'getEvents']);
-Route::get('/event/{id}', [ApiController::class, 'getEvent']);
-Route::post('/assist/{code}', [ApiController::class, 'assistOrder']);
