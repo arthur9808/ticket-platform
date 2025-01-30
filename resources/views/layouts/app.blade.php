@@ -283,6 +283,7 @@
                 font-size: 1rem;
                 margin-left: 10px;
                 width: 280px;
+                font-weight: bold;
             }
 
         }
