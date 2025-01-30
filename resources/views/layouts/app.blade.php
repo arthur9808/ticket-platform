@@ -267,14 +267,14 @@
 
             .event-date-circle {
                 background-color: black;
-                border: 1px solid orange;
+                border: 1px solid #D9BC73;
                 border-radius: 50%;
                 color: white;
                 text-align: center;
                 width: 80px;
                 height: 80px;
                 .event-date {
-                    margin-top: 20px;
+                    margin:0px;
                 }
             }
 
@@ -289,6 +289,10 @@
         }
         .events-container {
             padding: 0px !important;
+        }
+        .btn-yellow{
+            background-color: #D9BC73;
+            color: #fff;
         }
         @media only screen and (max-width: 1400px) {
            .list-event {

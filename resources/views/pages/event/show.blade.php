@@ -122,7 +122,7 @@
                                             @endif
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#getTickets">
+                                            <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#getTickets">
                                                 Get Tickets
                                             </button>
                                         </div>
@@ -133,7 +133,7 @@
                                             <h4>Sales Ended</h4>
                                         </div>
                                         <div class="d-grid gap-2" style="padding-top: 10px">
-                                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
+                                            <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#">
                                                 Get Details
                                             </button>
                                         </div>
@@ -145,7 +145,7 @@
                                         <h4>Sales Ended</h4>
                                     </div>
                                     <div class="d-grid gap-2" style="padding-top: 10px">
-                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#">
+                                        <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#">
                                             Get Details
                                         </button>
                                     </div>
@@ -620,7 +620,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
+                                    <button type="button" class="btn btn-yellow btn-lg" data-bs-toggle="modal" data-bs-target="#getTicketsMobile">
                                         Get Tickets
                                     </button>
                                 </div>
@@ -635,7 +635,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                    <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                    <button type="button" class="btn btn-yellow btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                         Get Details
                                     </button>
                                 </div>
@@ -651,7 +651,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
-                                <button type="button" class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#">
+                                <button type="button" class="btn btn-yellow btn-lg" data-bs-toggle="modal" data-bs-target="#">
                                     Get Details
                                 </button>
                             </div>
@@ -737,34 +737,34 @@
         
 
         $('#aInfo').click(function() {
-            $('#aInfo').css('border-bottom', 'solid #fb6340');
+            $('#aInfo').css('border-bottom', 'solid #D9BC73');
             $('#aDetails').css('border-bottom', 'none');
             $('#aOrganizer').css('border-bottom', 'none');
         });
         $('#aDetails').click(function() {
             $('#aInfo').css('border-bottom', 'none');
-            $('#aDetails').css('border-bottom', 'solid #fb6340');
+            $('#aDetails').css('border-bottom', 'solid #D9BC73');
             $('#aOrganizer').css('border-bottom', 'none');
         });
         $('#aOrganizer').click(function() {
             $('#aInfo').css('border-bottom', 'none');
             $('#aDetails').css('border-bottom', 'none');
-            $('#aOrganizer').css('border-bottom', 'solid #fb6340');
+            $('#aOrganizer').css('border-bottom', 'solid #D9BC73');
         });
         $('#aInfo2').click(function() {
-            $('#aInfo2').css('border-bottom', 'solid #fb6340');
+            $('#aInfo2').css('border-bottom', 'solid #D9BC73');
             $('#aDetails2').css('border-bottom', 'none');
             $('#aOrganizer2').css('border-bottom', 'none');
         });
         $('#aDetails2').click(function() {
             $('#aInfo2').css('border-bottom', 'none');
-            $('#aDetails2').css('border-bottom', 'solid #fb6340');
+            $('#aDetails2').css('border-bottom', 'solid #D9BC73');
             $('#aOrganizer2').css('border-bottom', 'none');
         });
         $('#aOrganizer2').click(function() {
             $('#aInfo2').css('border-bottom', 'none');
             $('#aDetails2').css('border-bottom', 'none');
-            $('#aOrganizer2').css('border-bottom', 'solid #fb6340');
+            $('#aOrganizer2').css('border-bottom', 'solid #D9BC73');
         });
         
 

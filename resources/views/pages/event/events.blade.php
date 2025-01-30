@@ -9,7 +9,7 @@
         </div>
         <div class="container events-container">
             <div class="d-flex justify-content-center mt-5 mb-5">
-                <h4 class="subheader">UP COMMING EVENTS</h4>
+                <h4 class="subheader">UPCOMING EVENTS</h4>
             </div>
             <div class="d-flex row">
                     @foreach ($events as $event)
@@ -21,7 +21,8 @@
                                         <img src="{{ asset('storage/' .  $event->coverimage) }}" class="card-img-top" alt="...">
                                         <div class="row event-title-container">
                                             <div class="event-date-circle">
-                                                <p class="event-date">{{ strtoupper(\Carbon\Carbon::parse($event->date_time_start)->format('D d M')) }}</p>
+                                                <p class="event-date mt-3">{{ strtoupper(\Carbon\Carbon::parse($event->date_time_start)->format('D d')) }}</p>
+                                                <p class="event-date">{{ strtoupper(\Carbon\Carbon::parse($event->date_time_start)->format('M')) }}</p>
                                             </div>
                                             <div class="event-title">{{ $event->title }}</div>
                                         </div>
