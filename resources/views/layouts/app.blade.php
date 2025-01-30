@@ -261,6 +261,8 @@
                 align-items: center;
                 z-index: 1;
                 width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                margin: 0px;
             }
 
             .event-date-circle {
