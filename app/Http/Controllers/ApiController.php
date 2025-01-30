@@ -17,9 +17,23 @@ class ApiController extends Controller
         
         return $organizers; 
     }
-    public function getEvents()
+    public function getEvents(Request $request)
     {   
-        $events = Event::withCount('orders')->with('totalTickets')->get();
+        $from = $request->query('from');
+        $to = $request->query('to');
+
+        $query = Event::withCount('orders')->with('totalTickets');
+
+        if ($from) {
+            $query->where('date_time_start', '>=', Carbon::parse($from));
+        }
+
+        if ($to) {
+            $query->where('date_time_end', '<=', Carbon::parse($to));
+        }
+
+        $events = $query->get();
+
         $events = $events->map(function ($event) {
             $event['earned'] = $event->totalPrice;
             return $event;
