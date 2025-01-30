@@ -306,7 +306,6 @@
                 height: 60px;
                 .event-date {
                     font-size: 12px;
-                    margin-top: 10px;
                 }
            }
            .event-title {
