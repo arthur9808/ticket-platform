@@ -97,7 +97,7 @@
                                 <div class="col-sm-6 locationDiv">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <a href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a class="text-white" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
