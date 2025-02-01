@@ -24,7 +24,7 @@
                     </div>
                 </div> 
                 <div class="card-body pb-0">                 
-                    <nav class="navbar sticky-top navbar-dark  nav-event">
+                    <nav class="navbar sticky-top navbar-dark nav-event bgcolor-dark">
                         <div class="col-6" id="navDesktop">
                             <ul class="nav justify-content-around" id="mi-ul">
                                 <li class="nav-item">
