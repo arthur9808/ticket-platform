@@ -152,6 +152,16 @@
                                 </div>
                                 @endif
                             </div>
+                            @else
+                            <div class="card-transpatent" style="width: 20rem; border:1px solid;">
+                                <div class="card-body">
+                                    <div class="d-grid gap-2" style="padding-top: 10px">
+                                        <a type="button" class="btn btn-yellow" href="{{ $event->link_external_sales }}" target="_blank">
+                                            Get Tickets
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                         </div>
                         

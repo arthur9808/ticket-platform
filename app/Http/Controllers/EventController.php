@@ -47,7 +47,11 @@ class EventController extends Controller
         
         $all = $request->except(['_token', 'image']);
         $all['created_by'] = Auth::id();
-    //    dd($all);
+        
+        if (!$request->has('external_sales')) {
+            $all['link_external_sales'] = null;
+        }
+        
         $event = Event::create($all);
     
         if ($request->hasFile('image')) {
@@ -63,6 +67,11 @@ class EventController extends Controller
             ]);
         }
         $id = $event->id; 
+
+        if ($request->has('external_sales')) {
+            return redirect()->route('event.index')->with('succes', 'Event succesfully updated');
+
+        }
 
         return redirect()->route('ticket.create', [$id]);
 
@@ -84,7 +93,7 @@ class EventController extends Controller
         }
         $data['location'] = $data['event']->ubication . ' ' . $data['event']->street_address . ', ' . $data['event']->address_locality . ', ' . $data['event']->address_region . ' ' . $data['event']->postal_code . ', ' . $data['event']->address_country;
         $data['today'] = Carbon::now()->toDateTimeString();
-        
+        //dd($data);
         return view('pages.event.show', $data);
 
     }
@@ -94,7 +103,6 @@ class EventController extends Controller
         $yesterday = Carbon::yesterday()->toDateString();
         $events = Event::where('date_time_start', '>', $yesterday)->orderBy('date_time_start', 'asc')->get();
         $header = env('TITLE_HEADER');
-
         return view('pages.event.events', compact('events', 'header'));
     }
 
@@ -115,6 +123,9 @@ class EventController extends Controller
     {
         $all = $request->except(['_token', 'image']);
         $event = Event::find($id);
+        if (!$request->has('external_sales')) {
+            $all['link_external_sales'] = null;
+        }
         $event->update($all);
         if ($request->hasFile('image')) {
             Storage::delete('public/'.$event->image);

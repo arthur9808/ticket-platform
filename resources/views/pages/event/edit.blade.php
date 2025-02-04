@@ -92,6 +92,14 @@
                             <label for="meta_description" class="form-control-label">Meta Description</label>
                             <input class="form-control" type="text" name="meta_description" value="{{ $event->meta_description }}">
                         </div>
+                        <div class="form-check form-switch" style="padding-bottom: 15px;">
+                            <input class="form-check-input" type="checkbox" role="switch" id="external_sales" name="external_sales" onchange="toggleExternalSales()" {{ $event->link_external_sales !== null ? 'checked' : '' }}>
+                            <label class="form-check-label" for="external_sales">External sales</label>
+                        </div>
+                        <div class="form-group" id="link_external_sales_group" style="{{ $event->link_external_sales !== null ? '' : 'display: none;' }}">
+                            <label for="meta_description" class="form-control-label">Link external page for sales</label>
+                            <input class="form-control" type="text" name="link_external_sales" value="{{ $event->link_external_sales }}">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Update</button>
                 </div>
@@ -115,6 +123,16 @@
     .catch( error => {
     console.error( error );
     } );
+
+    function toggleExternalSales() {
+        var externalSalesCheckbox = document.getElementById('external_sales');
+        var linkExternalSalesGroup = document.getElementById('link_external_sales_group');
+        if (externalSalesCheckbox.checked) {
+            linkExternalSalesGroup.style.display = 'block';
+        } else {
+            linkExternalSalesGroup.style.display = 'none';
+        }
+    }
 </script>
 @endpush
 

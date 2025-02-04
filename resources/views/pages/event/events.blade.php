@@ -13,7 +13,6 @@
             </div>
             <div class="d-flex row">
                     @foreach ($events as $event)
-                        @unless($event->tickets->isEmpty())
                         <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center">
                             <a class="hover-event-list" href="{{ route('event.show', [$event->id])}}">
                                 <div class="card-transparent list-event">
@@ -30,7 +29,6 @@
                                 </div>
                             </a>
                         </div>
-                        @endunless
                     @endforeach
                 </div>
             </div>

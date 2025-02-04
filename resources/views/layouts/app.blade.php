@@ -249,8 +249,9 @@
             }   
             .card-img-top{
                 border-radius: 25px;
-                height: 220px;
+                height: 380px;
                 width: 100%;
+                object-fit: cover;
             }
             .event-title-container {
                 position: absolute;
@@ -297,9 +298,8 @@
         @media only screen and (max-width: 1400px) {
            .list-event {
             width: 300px;
-            height: 200px;
             .card-img-top{
-                height: 200px;
+                height: 300px;
             }
             .event-date-circle {
                 width: 60px;

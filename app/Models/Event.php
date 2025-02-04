@@ -29,7 +29,8 @@ class Event extends Model
         'summary',
         'created_by',
         'meta_title',
-        'meta_description'
+        'meta_description',
+        'link_external_sales'
     ];
 
     public function user(): BelongsTo{
