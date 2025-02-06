@@ -31,7 +31,7 @@ class ApiController extends Controller
         if ($to) {
             $query->where('date_time_end', '<=', Carbon::parse($to));
         }
-
+        $query->orderBy('date_time_start', 'asc');
         $events = $query->get();
 
         $events = $events->map(function ($event) {
