@@ -43,6 +43,7 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/list-events', [EventController::class, 'events'])->name('event.list-events');
 Route::post('/event-store', [EventController::class, 'store'])->middleware('auth')->name('event.store');
 Route::delete('/event-delete/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('event.destroy');
+Route::get('/create-event', [EventController::class, 'createGoogleEvent']);
 
 
 Route::get('/tickets/{id}', [TicketController::class, 'index'])->middleware('auth')->name('ticket.index');

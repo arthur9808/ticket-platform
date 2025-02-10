@@ -30,7 +30,8 @@ class Event extends Model
         'created_by',
         'meta_title',
         'meta_description',
-        'link_external_sales'
+        'link_external_sales',
+        'google_event_id',
     ];
 
     public function user(): BelongsTo{
