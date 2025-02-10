@@ -10,8 +10,9 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 Use \Carbon\Carbon;
-
-
+use Google\Client;
+use Google\Service\Calendar;
+use Google\Service\Calendar\Event as GoogleEvent;
 
 class EventController extends Controller
 {
@@ -67,6 +68,8 @@ class EventController extends Controller
             ]);
         }
         $id = $event->id; 
+
+        $this->createGoogleEvent($event);
 
         if ($request->has('external_sales')) {
             return redirect()->route('event.index')->with('succes', 'Event succesfully updated');
@@ -141,6 +144,8 @@ class EventController extends Controller
                 'coverimage' => $image         
             ]);
         }
+        $this->updateGoogleEvent($event);
+
         return back()->with('succes', 'Event succesfully updated');
     }
 
@@ -150,9 +155,96 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::find($id);
+        $this->deleteGooogleEvent($event);
         $event->delete();
         return back()->with('succes', 'Event succesfully deleted');
     }
 
+    public function createGoogleEvent($event)
+    {
+        $client = new Client();
+        $client->setAuthConfig(config('google.service_account_key_path'));
+        $client->addScope(\Google_Service_Calendar::CALENDAR);
+
+        $service = new Calendar($client);
+
+        $startDateTime = Carbon::parse($event->date_time_start)->format('Y-m-d\TH:i:sP');
+        $endDateTime = Carbon::parse($event->date_time_end)->format('Y-m-d\TH:i:sP');
+
+        $googleEvent = new GoogleEvent([
+            'summary' => $event->title,
+            'location' => $event->ubication,
+            'description' => $event->summary,
+            'start' => [
+                'dateTime' => $startDateTime,
+                'timeZone' => env('APP_TIMEZONE'),
+            ],
+            'end' => [
+                'dateTime' => $endDateTime,
+                'timeZone' => env('APP_TIMEZONE'),
+            ],
+            'reminders' => [
+                'useDefault' => false,
+                'overrides' => [
+                    ['method' => 'email', 'minutes' => 24 * 60],
+                    ['method' => 'popup', 'minutes' => 10],
+                ],
+            ],
+        ]);
+
+        $calendarId = env('GOOGLE_CALENDAR_ID'); 
+
+        $createdEvent = $service->events->insert($calendarId, $googleEvent);
+        $googleEventId = $createdEvent->getId();
+
+        $event->google_event_id = $googleEventId;
+        $event->save();
+
+        return response()->json(['message' => 'Evento creado', 'event' => $createdEvent]);
+    }
+
+    public function updateGoogleEvent($event)
+    {
+        $client = new Client();
+        $client->setAuthConfig(config('google.service_account_key_path'));
+        $client->addScope(\Google_Service_Calendar::CALENDAR);
+
+        $service = new Calendar($client);
+
+        $calendarId = env('GOOGLE_CALENDAR_ID');
+        $googleEvent = $service->events->get($calendarId, $event->google_event_id);
+
+        $googleEvent->setSummary($event->title);
+        $googleEvent->setDescription($event->summary);
+        $googleEvent->setLocation($event->ubication);
+
+        $startDateTime = Carbon::parse($event->date_time_start)->format('Y-m-d\TH:i:sP');
+        $endDateTime = Carbon::parse($event->date_time_end)->format('Y-m-d\TH:i:sP');
+
+        $googleEvent->start = new \Google_Service_Calendar_EventDateTime([
+            'dateTime' => $startDateTime,
+            'timeZone' => env('APP_TIMEZONE'),
+        ]);
+        $googleEvent->end = new \Google_Service_Calendar_EventDateTime([
+            'dateTime' => $endDateTime,
+            'timeZone' => env('APP_TIMEZONE'),
+        ]);
+
+        $updatedEvent = $service->events->update($calendarId, $googleEvent->getId(), $googleEvent);
+
+        return response()->json(['message' => 'Evento actualizado', 'event' => $updatedEvent]);
+    }
+
+    public function deleteGooogleEvent($event)
+    {
+        $client = new Client();
+        $client->setAuthConfig(config('google.service_account_key_path'));
+        $client->addScope(\Google_Service_Calendar::CALENDAR);
+
+        $service = new Calendar($client);
+        $calendarId = env('GOOGLE_CALENDAR_ID');
+
+        $service->events->delete($calendarId, $event->google_event_id);
+    }
     
 }
