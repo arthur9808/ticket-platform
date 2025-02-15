@@ -144,7 +144,9 @@ class EventController extends Controller
                 'coverimage' => $image         
             ]);
         }
-        $this->updateGoogleEvent($event);
+        if ($event->google_event_id !== null) {
+            $this->updateGoogleEvent($event);
+        }
 
         return back()->with('succes', 'Event succesfully updated');
     }
