@@ -82,7 +82,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
     <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css') }}?v=1001" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css') }}?v={{ env('VERSION_CSS') }}" rel="stylesheet" />
     <!-- Datepicker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Datatables -->
@@ -220,7 +220,7 @@
             
         }
         .subheader {
-            color: white;
+            color: #0E1012;
             font-size: 1.8rem;
             font-weight: bold;
             letter-spacing: 0.2rem;
