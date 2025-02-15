@@ -668,6 +668,16 @@
                         </div>
                     </div>       
                 @endif 
+            @else
+                <div class="row pt-5">
+                    <div class="col-12">
+                        <div class="d-grid gap-2" style="padding-left: 20px; padding-right:20px;">
+                            <a type="button" class="btn btn-yellow btn-lg" href="{{ $event->link_external_sales }}" target="_blank">
+                                Get Tickets
+                            </a>
+                        </div>
+                    </div>
+                </div>    
             @endif
         </nav>
     </main>
