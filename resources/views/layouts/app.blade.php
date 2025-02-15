@@ -178,8 +178,8 @@
             #getTicketsBottom1{
                display: block;
                height: 140px; 
-               box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.16);
                position: sticky !important;
+               background-color: #ffff;
             }
             #whDesktop {
                 display: none;
@@ -213,6 +213,7 @@
             
             padding: 20px;
             text-align: center;
+            background-color: #0E1012;
             .logo {
                 width: 200px;
             }
@@ -227,7 +228,7 @@
         }
         .events-main {
             min-height: 100vh;
-            background-color: #0E1012;
+            /* background-color: #0E1012; */
         }
         .list-event {
             width: 380px;
@@ -267,8 +268,8 @@
             }
 
             .event-date-circle {
-                background-color: black;
-                border: 1px solid #D9BC73;
+                background-color: #D9BC73;
+                border: 1px solid #ffff;
                 border-radius: 50%;
                 color: white;
                 text-align: center;

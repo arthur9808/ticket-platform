@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="main-content mt-0 bgcolor-dark">
+    <main class="main-content mt-0">
         {{-- <div id="alert">
             @include('components.alert')
         </div> --}}
@@ -12,7 +12,7 @@
         </div>
         <div class="card-transparent shadow-lg mt-0">
             <div class="card-body p-3">
-                <div class="card-header pb-0 bgcolor-dark">
+                <div class="card-header pb-0">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0">{{ date('j F, Y', strtotime($event->date_time_start)) }}</h5>
                     </div>
@@ -24,7 +24,7 @@
                     </div>
                 </div> 
                 <div class="card-body pb-0">                 
-                    <nav class="navbar sticky-top navbar-dark nav-event bgcolor-dark">
+                    <nav class="navbar sticky-top navbar-dark nav-event">
                         <div class="col-6" id="navDesktop">
                             <ul class="nav justify-content-around" id="mi-ul">
                                 <li class="nav-item">
@@ -70,7 +70,7 @@
                                 <div class="col-sm-6">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <a class="text-white" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a class="" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
@@ -97,7 +97,7 @@
                                 <div class="col-sm-6 locationDiv">
                                     <div class="card-transparent">
                                         <div class="d-flex align-items-center justify-content-start">
-                                            <a class="text-white" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
+                                            <a class="" href="{{ $event->maps_url }}" target="_blank"><i class="fas fa-map-pin" style="padding-right: 10px"></i></a>
                                             <a href="{{ $event->maps_url }}" target="_blank"><h6 class="mb-0">Location</h6></a>
                                         </div>
                                         <div class="d-flex align-items-center">
@@ -109,7 +109,7 @@
                         </div>
                         <div class="col-6 d-flex align-items-center justify-content-end" id="cardGetTickets">
                             @if ($ticket !== null)    
-                            <div class="card-transpatent" style="width: 20rem; border:1px solid;">
+                            <div class="card-transpatent" style="width: 20rem;">
                                 @if ($today < $ticket->date_time_end)
                                     @if ($count_orders < $ticket->quantity) 
                                     <div class="card-body">
@@ -153,7 +153,7 @@
                                 @endif
                             </div>
                             @else
-                            <div class="card-transpatent" style="width: 20rem; border:1px solid;">
+                            <div class="card-transpatent" style="width: 20rem;">
                                 <div class="card-body">
                                     <div class="d-grid gap-2" style="padding-top: 10px">
                                         <a type="button" class="btn btn-yellow" href="{{ $event->link_external_sales }}" target="_blank">
@@ -211,7 +211,7 @@
             <!-- Modal Contact -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content bgcolor-dark modal-border">
+                <div class="modal-content modal-border">
                     <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Contact Information</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -247,7 +247,7 @@
             <!-- Modal GetTickets-->
             <div class="modal fade" id="getTickets" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content bgcolor-dark modal-border">
+                <div class="modal-content modal-border">
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
@@ -333,7 +333,7 @@
             </div>              
             <div class="modal fade" id="getTicketsMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                    <div class="modal-content bgcolor-dark modal-border">
+                    <div class="modal-content modal-border">
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
@@ -391,7 +391,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom">    
+                                <nav class="fixed-bottom navbar-dark" id="getTicketsBottom">    
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -420,7 +420,7 @@
             <!-- Modal Checkout-->
             <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content bgcolor-dark modal-border" data-tor="show(p):reveal(up)">
+                <div class="modal-content modal-border" data-tor="show(p):reveal(up)">
                     <div class="row">
                         <div class="col-8">
                             <div class="row">
@@ -445,13 +445,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label text-white">First Name</label>
+                                                <label for="name" class="form-control-label">First Name</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label text-white">Last Name</label>
+                                                <label for="last_name" class="form-control-label">Last Name</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -459,13 +459,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="email" class="form-control-label text-white">Email</label>
+                                                <label for="email" class="form-control-label">Email</label>
                                                 <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label text-white">Phone</label>
+                                                <label for="phone" class="form-control-label">Phone</label>
                                                 <input class="form-control" type="text" id="phone_buyer" name="phone_buyer" required>
                                             </div>
                                         </div>
@@ -473,8 +473,8 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
-                                                <label class="form-check-label text-white" for="checkAccept">
-                                                    I agree to <a class="text-white" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
+                                                <label class="form-check-label" for="checkAccept">
+                                                    I agree to <a class="" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
                                                 @endif
                                               </div>
@@ -518,7 +518,7 @@
             </div>
             <div class="modal fade" id="checkoutMobile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen modal-dialog-centered">
-                <div class="modal-content bgcolor-dark modal-border" data-tor="show(p):reveal(up)">
+                <div class="modal-content modal-border" data-tor="show(p):reveal(up)">
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
@@ -546,13 +546,13 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="name" class="form-control-label text-white">First Name</label>
+                                                <label for="name" class="form-control-label">First Name</label>
                                                 <input class="form-control" type="text" name="name_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="last_name" class="form-control-label text-white">Last Name</label>
+                                                <label for="last_name" class="form-control-label">Last Name</label>
                                                 <input class="form-control" type="text" name="last_name_buyer" required>
                                             </div>
                                         </div>
@@ -560,13 +560,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="email" class="form-control-label text-white">Email</label>
+                                                <label for="email" class="form-control-label">Email</label>
                                                 <input class="form-control" type="text" name="email_buyer" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="phone" class="form-control-label text-white">Phone</label>
+                                                <label for="phone" class="form-control-label">Phone</label>
                                                 <input class="form-control" type="text" id="phone_buyerMobile" name="phone_buyer" required>
                                             </div>
                                         </div>
@@ -574,8 +574,8 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="checkAccept" required>
                                                 @if (env('APP_URL') == 'https://tickets.elaftersocialclub.com')
-                                                <label class="form-check-label text-white" for="checkAccept">
-                                                    I agree to <a class="text-white" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
+                                                <label class="form-check-label" for="checkAccept">
+                                                    I agree to <a class="" target="_blank" href="https://elaftersocialclub.com/terms-and-conditions">tems and conditions.</a>
                                                 </label>
                                                 @endif
                                               </div>
@@ -584,7 +584,7 @@
                                         <input type="text" hidden name="ticket_id" id="ticket_idMobile" value="{{ $ticket->id }}">
                                     </div>
                                 </div>
-                                <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom">  
+                                <nav class="fixed-bottom navbar-dark" id="getTicketsBottom">  
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="col-6">
                                         </div>
@@ -613,7 +613,7 @@
             </div>
             @endif
         </div>
-        <nav class="fixed-bottom navbar-dark bgcolor-dark" id="getTicketsBottom1">
+        <nav class="fixed-bottom navbar-dark" id="getTicketsBottom1">
             @if ($ticket !=null)   
                 @if ($today < $ticket->date_time_end) 
                     @if ($count_orders < $ticket->quantity)
