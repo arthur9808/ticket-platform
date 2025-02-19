@@ -80,6 +80,31 @@ class EventController extends Controller
 
     }
 
+    public function clonar($id)
+    {
+        // Buscar el evento original
+        $originalEvent = Event::findOrFail($id);
+
+        // Crear una copia del evento
+        $clonedEvent = $originalEvent->replicate();
+        $clonedEvent->created_by = Auth::id();
+        $clonedEvent->date_time_start = Carbon::parse($originalEvent->date_time_start)->addWeek()->format('Y-m-d H:i');
+        $clonedEvent->date_time_end = Carbon::parse($originalEvent->date_time_end)->addWeek()->format('Y-m-d H:i');
+        $clonedEvent->save();
+
+        // Clonar los tickets del evento original
+        $originalTickets = Ticket::where('event_id', $originalEvent->id)->get();
+        foreach ($originalTickets as $originalTicket) {
+            $clonedTicket = $originalTicket->replicate();
+            $clonedTicket->event_id = $clonedEvent->id; // Asignar el nuevo evento clonado
+            $clonedTicket->date_time_start = Carbon::parse($originalTicket->date_time_start)->addWeek()->format('Y-m-d H:i');
+            $clonedTicket->date_time_end = Carbon::parse($originalTicket->date_time_end)->addWeek()->format('Y-m-d H:i');
+            $clonedTicket->save();
+        }
+        $this->createGoogleEvent($clonedEvent);
+        // Redirigir al usuario a la página de edición del nuevo evento clonado
+        return redirect()->route('event.index')->with('succes', 'Event succesfully duplicated');
+    }
     /**
      * Display the specified resource.
      */
@@ -157,7 +182,7 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::find($id);
-        $this->deleteGooogleEvent($event);
+        //$this->deleteGooogleEvent($event);
         $event->delete();
         return back()->with('succes', 'Event succesfully deleted');
     }
