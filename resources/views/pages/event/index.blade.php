@@ -50,7 +50,7 @@
                                     <p class="text-sm font-weight-bold mb-0">{{ count($event->orders) . ' / ' . $event->totalTickets[0]->total_quantity }}</p>
                                 </td>
                                 @endif
-                                <td style="display:flex; justify-content:space-around;"><a href="{{ route('event.edit', [$event->id]) }}"><i class="fas fa-edit"></i></a><a href="{{ route('event.show', [$event->id]) }}"><i class="fas fa-eye"></i></a><a href="{{ route('ticket.index', [$event->id]) }}"><i class="fas fa-ticket-alt"></i></a><a href="{{ route('order.event', [$event->id]) }}"><i class="fas fa-shopping-cart"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
+                                <td style="display:flex; justify-content:space-around;"><a href="#" onclick="confirmClone({{ $event->id }})"><i class="fas fa-clone"></i></a><a href="{{ route('event.edit', [$event->id]) }}"><i class="fas fa-edit"></i></a><a href="{{ route('event.show', [$event->id]) }}"><i class="fas fa-eye"></i></a><a href="{{ route('ticket.index', [$event->id]) }}"><i class="fas fa-ticket-alt"></i></a><a href="{{ route('order.event', [$event->id]) }}"><i class="fas fa-shopping-cart"></i></a><a class="btnDelete"><i class="fas fa-trash"></i></a><form class="frmDelete" method="POST"
                                     action="{{ route('event.destroy', $event->id) }}">
                                     @csrf
                                     {{ method_field('DELETE') }}
@@ -69,10 +69,18 @@
 
 <script>
     $('.btnDelete').click(function(){
-        if (confirm("Are you sure you want to delete this ticket?")) {
+        if (confirm("Are you sure you want to delete this event?")) {
             $(this).parent().find(".frmDelete").submit();
         }
     });    
+    
+    function confirmClone(eventId) {
+        if (confirm('¿Are you sure you want to clone this event?')) {
+            // Si el usuario confirma, redirigir a la ruta de clonación
+            window.location.href = "{{ route('event.clonar', '') }}/" + eventId;
+        }
+    }
+   
     document.addEventListener('DOMContentLoaded', function() {
         const switchElement = document.getElementById('flexSwitchCheckDefault');
 
